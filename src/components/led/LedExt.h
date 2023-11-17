@@ -4,12 +4,9 @@
 #include "LightExt.h"
 #include "Led.h"
 
-class LedExt : public Light, public LightExt 
-{
+class LedExt : public Light, public LightExt  {
 
 public:
-    int pin;
-
     LedExt(int pin);
     void switchOn();
     void switchOff();

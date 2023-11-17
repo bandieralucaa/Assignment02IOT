@@ -3,14 +3,14 @@
 
 #include "Light.h"
 
-class Led : public Light
-{
+class Led : public Light {
 public:
-    int pin;
-
     Led(int pin);
     void switchOn();
     void switchOff();
+
+protected:
+    int pin;
 };
 
 
