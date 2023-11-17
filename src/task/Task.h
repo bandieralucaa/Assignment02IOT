@@ -3,9 +3,9 @@
 
 class Task {
     public:
-        virtual void init();
-        virtual void tick();
-        virtual bool updateAndCheckTIme(int millis);
+    virtual void init();
+    virtual void tick();
+    virtual bool updateAndCheckTIme(int millis);
 };
 
 #endif

@@ -4,7 +4,7 @@
 #include "LightExt.h"
 #include "Led.h"
 
-class LedExt : public Light, public LightExt  {
+class LedExt : public Led, public LightExt  {
 
 public:
     LedExt(int pin);

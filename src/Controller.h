@@ -6,12 +6,26 @@
 
 #include "./task/Task.h"
 #include "./state/State.h"
+#include "./task/Task.h"
+#include "./state/State.h"
+#include "./task/Scheduler.h"
+#include "./components/outputComponents/OutputManager.h"
+#include "./components/pir/CarPresenceDetector.h"
+#include "./state/impls/SleepState.h"
+#include "./state/impls/WelcomeState.h"
 
 #include "configs.h"
 
 
 class Controller{
 public:
+    Controller();
     void execute();
+
+private:
+    Scheduler* s;
+    StateName actState;
+    State* myStates[2];
 };
+
 #endif

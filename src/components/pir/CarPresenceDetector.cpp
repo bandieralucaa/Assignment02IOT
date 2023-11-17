@@ -19,7 +19,7 @@ class CarPresenceDetector{
 
 
 
-    Pir::isAnyone(){
+    bool isAnyone(){
         return isAnyone;
     }
 

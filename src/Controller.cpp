@@ -2,49 +2,31 @@
 // using namespace std;
 #include "Controller.h"
 
-#include "./task/Task.h"
-#include "./state/State.h"
-#include "./task/Scheduler.h"
-#include "./components/outputComponents/OutputManager.h"
-#include "./components/pir/CarPresenceDetector.h"
-#include "./state/impls/SleepState.h"
-#include "./state/impls/WelcomeState.h"
-
-
 #include "configs.h"
 
 
-class Controller{
-public:
+Controller::Controller() {
+    OutputManager* out = new OutputManager();
 
-    Scheduler* s;
-    StateName actState;
-    State* myStates[2];
-    // map<StateName, State> a;
+    CarPresenceDetector* myPir = new CarPresenceDetector(PIR_PIN);
+    //Led l1 = new Led(LED1_PIN);
 
-    Controller() {
-        OutputManager* out = new OutputManager();
+    State* s1 = new SleepState(out, ((Pir*) myPir));
+    State* s2 = new WelcomeState(out, ((Pir*) myPir));
+    myStates = {s1, s2};
+    Task* a[] = {((Task*) myPir)};
+    s = new Scheduler(1, a);
 
-        CarPresenceDetector* myPir = new CarPresenceDetector(PIR_PIN);
-        //Led l1 = new Led(LED1_PIN);
+    actState = SLEEP_STATE;
+    // State s1 = new SleepState(myPir);
+}
 
-        State* s1 = new SleepState(out, myPir);
-        State* s2 = new WelcomeState(out, myPir);
-        // myStates = {s1, s2};
-        Task* a[] = {((Task*) myPir)};
-        s = new Scheduler(1, a);
-
-        actState = SLEEP_STATE;
-        // State s1 = new SleepState(myPir);
+void Controller::execute() {
+    s->schedule();
+    
+    StateName newState = myStates[actState]->changeState();
+    if(newState != NONE){
+        actState = newState;
+        myStates[actState]->init();
     }
-
-    void execute() {
-        s->schedule();
-        
-        StateName newState = myStates[actState]->changeState();
-        if(newState != NONE){
-            actState = newState;
-            myStates[actState]->init();
-        }
-    }
-};
+}

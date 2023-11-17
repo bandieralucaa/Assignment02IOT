@@ -8,9 +8,9 @@ class SleepState : public State {
 public:
 
     Pir* myPir;
-    OutputDevice* o;
+    OutputManager* o;
 
-    SleepState(OutputDevice* o, Pir* awakePir){
+    SleepState(OutputManager* o, Pir* awakePir){
         myPir = awakePir;
         this->o = o;
     }
