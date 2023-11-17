@@ -12,6 +12,9 @@ public:
     void switchOff();
     void setIntensity(int intensity);
 
+private:
+    bool isOn;
+
 };
 
 #endif
