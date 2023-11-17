@@ -1,7 +1,7 @@
 #include "LedExt.h"
 #include <Arduino.h>
 
-LedExt::LedExt(int pin) : Led(pin) {
+LedExt::LedExt(int pin) {
     pinMode(pin, OUTPUT);
     isOn = false;
 }

@@ -1,17 +1,19 @@
-// #include <map>
-// using namespace std;
+#include "configs.h"
+
 #include "Controller.h"
 
 #include "./task/Task.h"
 #include "./state/State.h"
 #include "./task/Scheduler.h"
+
 #include "./components/outputComponents/OutputManager.h"
 #include "./components/pir/CarPresenceDetector.h"
+
 #include "./state/impls/SleepState.h"
 #include "./state/impls/WelcomeState.h"
 
 
-#include "configs.h"
+
 
 
 class Controller{
@@ -20,7 +22,7 @@ public:
     Scheduler* s;
     StateName actState;
     State* myStates[2];
-    // map<StateName, State> a;
+    
 
     Controller() {
         OutputManager* out = new OutputManager();

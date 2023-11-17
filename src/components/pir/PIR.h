@@ -3,7 +3,7 @@
 
 class Pir {
 public:
-    bool isAnyone();
+    virtual bool isAnyone() = 0;
 };
 
 

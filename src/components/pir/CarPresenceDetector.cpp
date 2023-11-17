@@ -3,43 +3,31 @@
 #include <Arduino.h>
 #include "CarPresenceDetector.h"
 
-class CarPresenceDetector{
 
-    int myPin = 0;
-    unsigned long millis;
-
-    unsigned long period = 200;
-
-    bool isAnyone = false;
-
-    CarPresenceDetector(int pin) {
+CarPresenceDetector::CarPresenceDetector(int pin) {
         this->myPin = pin;
-    }
+}
 
-
-
-
-    Pir::isAnyone(){
+bool Pir::isAnyone(){
         return isAnyone;
+}
+
+void Task::init() {}
+
+void CarPresenceDetector::tick() {
+    if (digitalRead(myPin) == HIGH) { //se c'è qualcuno
+        isAnyone = true;
+    } else {
+        isAnyone = false;
     }
-
-
-
-
-    void init() {
-
-    }
-
-    void tick() {
-        if (digitalRead(myPin) == HIGH) { //se c'è qualcuno
-            isAnyone = true;
-        } else {
-            isAnyone = false;
-        }
-    }
+}
     
-    bool updateAndCheckTIme(int millis) {
-        this->millis += millis;
+bool CarPresenceDetector::updateAndCheckTIme(int millis) {
+    bool res = false;
+    this->millis += millis;
+    if (this->millis>period){
+        res = true;
+        this->millis = 0;
     }
-
-};
+    return res;
+}
