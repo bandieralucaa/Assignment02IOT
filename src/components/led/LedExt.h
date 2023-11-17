@@ -13,6 +13,7 @@ public:
     void setIntensity(int intensity);
 
 private:
+    int pin;
     bool isOn;
 
 };
