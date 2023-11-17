@@ -7,5 +7,8 @@
 class CarPresenceDetector : Pir, Task {
 public:
 
+    CarPresenceDetector(int pin);
+    
 };
+
 #endif

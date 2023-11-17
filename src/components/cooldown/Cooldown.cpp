@@ -1,35 +1,35 @@
-#include "Cooldown.h"
+// #include "Cooldown.h"
 
-#include "./task/Task.h"
+// #include "./task/Task.h"
 
-class Cooldown : Cooldown, Task{
+// class Cooldown : Cooldown, Task{
 
-    unsigned long amountTime;
-    unsigned long elapsedTime;
-    unsigned long millis;
+//     unsigned long amountTime;
+//     unsigned long elapsedTime;
+//     unsigned long millis;
 
-    Cooldown(){}
+//     Cooldown(){}
 
-    Cooldown::Cooldown(unsigned long time) {
-        this->amountTime = time;
-    }
+//     Cooldown::Cooldown(unsigned long time) {
+//         this->amountTime = time;
+//     }
 
-    bool Cooldown::isOver() {
-        return elapsedTime >= amountTime;
-    }
+//     bool Cooldown::isOver() {
+//         return elapsedTime >= amountTime;
+//     }
 
-    void init() {
-    }
+//     void init() {
+//     }
 
-    void tick() {
+//     void tick() {
         
-    }
+//     }
 
-    bool updateAndCheckTime(int millis) {
-        this->elapsedTime += millis;
-        this->millis += millis;
-    }
+//     bool updateAndCheckTime(int millis) {
+//         this->elapsedTime += millis;
+//         this->millis += millis;
+//     }
 
     
-}
+// }
 

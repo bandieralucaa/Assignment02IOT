@@ -1,6 +1,6 @@
 #include "./state/State.h"
 #include "./components/pir/PIR.h"
-#include "./components/outputComponents/OutputDevice.h"
+#include "./components/outputComponents/OutputManager.h"
 #include <Arduino.h>
 #include <avr/sleep.h>
 

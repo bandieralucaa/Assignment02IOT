@@ -2,8 +2,8 @@
 #define __PIR__
 
 class Pir {
-    public:
-        virtual bool isAnyone();
+public:
+    bool isAnyone();
 };
 
 

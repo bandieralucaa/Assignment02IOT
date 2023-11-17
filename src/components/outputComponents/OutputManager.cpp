@@ -1,28 +1,28 @@
-#include "OutputDevice.h"
+#include "OutputManager.h"
 #include "./components/led/Led.h"
 
 #include "configs.h"
 
 #define AMOUNTLEDS 2
 
-class OutputManager: public OutputDevice{
-public:
+class OutputManager{
+
     Led* myStaticLeds[AMOUNTLEDS];
 
-    OutputManager() {
+    OutputManager::OutputManager() {
         myStaticLeds[0] = new Led(LED1_PIN);
         myStaticLeds[1] = new Led(LED2_PIN);
     }
 
-    void turnOnLed(int witch){
+    void OutputManager::turnOnLed(int witch){
         myStaticLeds[witch]->switchOn();
     }
     
-    void turnOffLed(int witch){
+    void OutputManager::turnOffLed(int witch){
         myStaticLeds[witch]->switchOff();
     }
 
-    int getAmountLeds() {
+    int OutputManager::getAmountLeds() {
         return AMOUNTLEDS;
     }
 

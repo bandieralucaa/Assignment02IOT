@@ -1,14 +1,14 @@
 #include "./state/State.h"
 #include "./components/pir/PIR.h"
-#include "components/outputComponents/outputs.h"
+#include "components/outputComponents/OutputManager.h"
 
 class WelcomeState : public State {
 public:
 
     Pir* myPir;
-    OutputDevice* o;
+    OutputManager* o;
 
-    WelcomeState(OutputDevice* o, Pir* awakePir){
+    WelcomeState(OutputManager* o, Pir* awakePir){
         myPir = awakePir;
     }
 

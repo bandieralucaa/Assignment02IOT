@@ -12,8 +12,6 @@
 
 class Controller{
 public:
-    
-    virtual void execute() = 0;
-    
+    void execute();
 };
 #endif

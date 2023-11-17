@@ -1,16 +1,11 @@
 #include "Task.h"
 #include "Scheduler.h"
 
-class Scheduler : Scheduler {
+class Scheduler{
 public:
-
     Task* myTasks[10];
     int amountTask;
     unsigned long basePeriod = 50;
-
-    Scheduler() {
-        amountTask = 0;
-    }
 
     Scheduler(int amount, Task* myTasks[]) {
         int i;

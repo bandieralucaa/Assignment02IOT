@@ -3,8 +3,7 @@
 #include <Arduino.h>
 #include "CarPresenceDetector.h"
 
-class CarPresenceDetector : Pir, Task {
-public:
+class CarPresenceDetector{
 
     int myPin = 0;
     unsigned long millis;
@@ -13,19 +12,25 @@ public:
 
     bool isAnyone = false;
 
-    CarPresenceDetector(int pin){
+    CarPresenceDetector(int pin) {
         this->myPin = pin;
     }
 
-    bool isAnyone(){
+
+
+
+    Pir::isAnyone(){
         return isAnyone;
     }
 
-    void init(){
+
+
+
+    void init() {
 
     }
 
-    void tick(){
+    void tick() {
         if (digitalRead(myPin) == HIGH) { //se c'è qualcuno
             isAnyone = true;
         } else {
