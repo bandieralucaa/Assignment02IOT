@@ -13,6 +13,12 @@ class Scheduler {
     void init(int period);
 
     void schedule();
+
+
+protected:
+    Task* myTasks[10];
+    int amountTask;
+    unsigned long basePeriod = 50;
 };
 
 #endif
