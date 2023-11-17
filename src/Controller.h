@@ -1,5 +1,5 @@
-// #include <map>
-using namespace std;
+#ifndef __CONTROLLER__
+#define __CONTROLLER__
 
 #include "./components/pir/PIR.h"
 #include "./task/Task.h"
@@ -23,3 +23,4 @@ public:
 
     }
 };
+#endif

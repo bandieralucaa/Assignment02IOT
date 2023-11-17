@@ -1,37 +1,16 @@
-#include "PIR.h"
+#include "Task.h"
 
-class CarPresenceDetector : Pir, Task {
+
+class Scheduler {
 public:
 
-    int myPin = 0;
-    unsigned long millis;
-
-    unsigned long period = 200;
-
-    bool isAnyone = false;
-
-    CarPresenceDetector(int pin){
+    Scheduler(){
 
     }
 
-    bool isAnyone(){
-        return isAnyone;
+    void initScheduler(Task* tasks){
+        
     }
 
-    void init(){
-
-    }
-
-    void tick(){
-        if (true) { //se c'è qualcuno
-            isAnyone = true;
-        } else {
-            isAnyone = false;
-        }
-    }
-    
-    void updateAndCheckTIme(int millis) {
-        this->millis += millis;
-    }
 
 };

@@ -1,18 +1,12 @@
 #include <Arduino.h>
+#include "Controller.h"
 
-// put function declarations here:
-int myFunction(int, int);
+Controller* myController;
 
 void setup() {
-  // put your setup code here, to run once:
-  int result = myFunction(2, 3);
+  myController = new Controller();
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
-}
-
-// put function definitions here:
-int myFunction(int x, int y) {
-  return x + y;
+  myController->execute();
 }
