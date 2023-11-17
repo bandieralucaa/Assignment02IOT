@@ -1,7 +1,7 @@
 #include "Task.h"
 #include "Scheduler.h"
 
-class Scheduler : public Scheduler {
+class Scheduler : Scheduler {
 public:
 
     Task* myTasks[10];

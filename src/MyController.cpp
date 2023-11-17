@@ -28,14 +28,15 @@ public:
         State* s1 = new SleepState(out, myPir);
         State* s2 = new WelcomeState(out, myPir);
         // myStates = {s1, s2};
+        Task* a[] = {((Task*) myPir)};
+        s = new Scheduler(2, a);
 
-        s = new Scheduler(2, {s1,s2});
         actState = SLEEP_STATE;
         // State s1 = new SleepState(myPir);
     }
 
     void execute() {
-        //s fai
+        s->schedule();
         
         StateName newState = myStates[actState]->changeState();
         if(newState != NONE){

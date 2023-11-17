@@ -2,11 +2,13 @@
 
 #include "./task/Task.h"
 
-class Cooldown : public Cooldown, Task{
+class Cooldown : Cooldown, Task{
 
     unsigned long amountTime;
     unsigned long elapsedTime;
     unsigned long millis;
+
+    Cooldown(){}
 
     Cooldown::Cooldown(unsigned long time) {
         this->amountTime = time;
@@ -16,14 +18,15 @@ class Cooldown : public Cooldown, Task{
         return elapsedTime >= amountTime;
     }
 
-    void Task::init() {
+    void init() {
     }
 
-    void Task::tick() {
+    void tick() {
         
     }
 
-    bool Task::updateAndCheckTIme(int millis) {
+    bool updateAndCheckTime(int millis) {
+        this->elapsedTime += millis;
         this->millis += millis;
     }
 
