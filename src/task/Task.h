@@ -5,7 +5,7 @@ class Task {
     public:
         virtual void init();
         virtual void tick();
-        virtual void updateAndCheckTIme(int millis);
+        virtual bool updateAndCheckTIme(int millis);
 };
 
 #endif

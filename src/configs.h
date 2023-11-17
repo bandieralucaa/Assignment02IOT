@@ -1,10 +1,9 @@
 #ifndef __CONFS__
 #define __CONFS__
 
-class Controller{
-public:
-    
-    virtual void execute() = 0;
-    
-};
+#define PIR_PIN 10
+
+#define LED1_PIN 13
+#define LED2_PIN 12
+
 #endif

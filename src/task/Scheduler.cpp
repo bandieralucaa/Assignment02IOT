@@ -4,6 +4,8 @@
 class Scheduler {
 public:
 
+    Task myTask[10];
+
     Scheduler(){
 
     }
@@ -11,6 +13,5 @@ public:
     void initScheduler(Task* tasks){
         
     }
-
 
 };

@@ -33,7 +33,7 @@ public:
         }
     }
     
-    void updateAndCheckTIme(int millis) {
+    bool updateAndCheckTIme(int millis) {
         this->millis += millis;
     }
 

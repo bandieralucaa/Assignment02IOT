@@ -2,6 +2,8 @@
 #define __CONTROLLER__
 
 #include "./components/pir/PIR.h"
+#include "./components/led/Led.h"
+
 #include "./task/Task.h"
 #include "./state/State.h"
 
@@ -11,16 +13,7 @@
 class Controller{
 public:
     
-    StateName actState;
-    State myState[2];
-    //map<StateName, State> a;
-
-    Controller(){
-        CarPresenceDetector* myPir = new CarPresenceDetector(PIR_PIN);
-    }
-
-    void execute(){
-
-    }
+    virtual void execute() = 0;
+    
 };
 #endif

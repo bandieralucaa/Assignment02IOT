@@ -1,12 +1,12 @@
 #include "./state/State.h"
 #include "./components/pir/PIR.h"
 
-class SleepState : public State {
+class WelcomeState : public State {
 public:
 
     Pir* myPir;
 
-    SleepState(Pir* awakePir){
+    WelcomeState(Pir* awakePir){
         myPir = awakePir;
     }
 
@@ -15,9 +15,8 @@ public:
     }
 
     StateName changeState(){
-        if (myPir->isAnyone()){
-            return WELCOME_STATE;
+        if (!myPir->isAnyone()){
+            return SLEEP_STATE;
         }
-        
     };
 };
