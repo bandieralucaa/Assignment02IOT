@@ -14,7 +14,7 @@ public:
     bool isAnyone = false;
 
     CarPresenceDetector(int pin){
-
+        this->myPin = pin;
     }
 
     bool isAnyone(){

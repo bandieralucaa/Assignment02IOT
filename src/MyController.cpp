@@ -1,10 +1,12 @@
 // #include <map>
-using namespace std;
+// using namespace std;
+#include "Controller.h"
 
-#include "./components/pir/PIR.h"
+#include "./components/pir/CarPresenceDetector.h"
 #include "./task/Task.h"
 #include "./state/State.h"
-#include "./components/outputComponents/outputs.h"
+#include "./task/Scheduler.h"
+#include "./components/outputComponents/OutputDevice.h"
 
 #include "configs.h"
 
@@ -12,12 +14,12 @@ using namespace std;
 class MyController : public Controller{
 public:
 
-    Scheduler s;
+    Scheduler* s;
     StateName actState;
     State* myStates[2];
-    //map<StateName, State> a;
+    // map<StateName, State> a;
 
-    Controller(){
+    MyController() {
         OutputDevice* out = new OutputManager();
 
         CarPresenceDetector* myPir = new CarPresenceDetector(PIR_PIN);
@@ -25,8 +27,9 @@ public:
 
         State* s1 = new SleepState(out, myPir);
         State* s2 = new WelcomeState(out, myPir);
-        myStates = {s1, s2};
+        // myStates = {s1, s2};
 
+        s = new Scheduler(2, {s1,s2});
         actState = SLEEP_STATE;
         // State s1 = new SleepState(myPir);
     }
