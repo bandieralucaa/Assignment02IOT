@@ -11,9 +11,10 @@ using namespace std;
 
 class MyController : public Controller{
 public:
+
     Scheduler s;
     StateName actState;
-    State* myState[2];
+    State* myStates[2];
     //map<StateName, State> a;
 
     Controller(){
@@ -22,19 +23,21 @@ public:
         CarPresenceDetector* myPir = new CarPresenceDetector(PIR_PIN);
         //Led l1 = new Led(LED1_PIN);
 
-        State s1 = new SleepState(out, myPir);
-        State s2 = new WelcomeState(out, myPir);
-        myState = {s1, s2};
+        State* s1 = new SleepState(out, myPir);
+        State* s2 = new WelcomeState(out, myPir);
+        myStates = {s1, s2};
+
+        actState = SLEEP_STATE;
         // State s1 = new SleepState(myPir);
     }
 
     void execute() {
         //s fai
         
-        StateName newState = myState[actState]->changeState;
+        StateName newState = myStates[actState]->changeState();
         if(newState != NONE){
             actState = newState;
-            myState[actState]->init();
+            myStates[actState]->init();
         }
     }
 };

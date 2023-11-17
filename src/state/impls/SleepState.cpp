@@ -21,15 +21,17 @@ public:
         for (i = 0; i<amount;i++){
             o->turnOffLed(i);
         }
-        
-        set_sleep_mode(SLEEP_MODE_PWR_DOWN); 
-        sleep_enable(); 
-        sleep_mode();
+
+        // set_sleep_mode(SLEEP_MODE_PWR_DOWN); 
+        // sleep_enable(); 
+        // sleep_mode();
     }
 
     StateName changeState(){
         if (myPir->isAnyone()){
             return WELCOME_STATE;
+        } else {
+            return NONE;
         }
         
     };

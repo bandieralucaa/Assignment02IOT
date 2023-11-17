@@ -19,6 +19,8 @@ public:
     StateName changeState(){
         if (!myPir->isAnyone()){
             return SLEEP_STATE;
+        } else {
+            return NONE;
         }
     };
 };
