@@ -4,7 +4,7 @@
 class SleepState : public State {
 public:
 
-    private PIR myPir;
+    Pir* myPir;
 
     SleepState(){
 

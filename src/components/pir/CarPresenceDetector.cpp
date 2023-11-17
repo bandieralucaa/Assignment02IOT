@@ -1,5 +1,6 @@
 #include "PIR.h"
 #include "./task/Task.h"
+#include <Arduino.h>
 
 class CarPresenceDetector : Pir, Task {
 public:
@@ -24,7 +25,7 @@ public:
     }
 
     void tick(){
-        if (true) { //se c'è qualcuno
+        if (digitalRead(myPin) == HIGH) { //se c'è qualcuno
             isAnyone = true;
         } else {
             isAnyone = false;
