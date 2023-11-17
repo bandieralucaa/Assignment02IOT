@@ -4,7 +4,7 @@
 Controller* myController;
 
 void setup() {
-  myController = new Controller();
+  myController = new MyController();
 }
 
 void loop() {

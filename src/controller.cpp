@@ -9,26 +9,32 @@ using namespace std;
 #include "configs.h"
 
 
-class Controller{
+class MyController : public Controller{
 public:
-
+    Scheduler s;
     StateName actState;
-    State myState[2];
+    State* myState[2];
     //map<StateName, State> a;
 
     Controller(){
-        OutputDevice out = new OutputManager();
+        OutputDevice* out = new OutputManager();
 
         CarPresenceDetector* myPir = new CarPresenceDetector(PIR_PIN);
-        Led l1 = new Led(LED1_PIN);
+        //Led l1 = new Led(LED1_PIN);
 
-        State s1 = new SleepState(myPir)
-        State s2 = new WelcomeState(myPir)
-        myState = {s1, s2}
+        State s1 = new SleepState(out, myPir);
+        State s2 = new WelcomeState(out, myPir);
+        myState = {s1, s2};
         // State s1 = new SleepState(myPir);
     }
 
     void execute() {
-
+        //s fai
+        
+        StateName newState = myState[actState]->changeState;
+        if(newState != NONE){
+            actState = newState;
+            myState[actState]->init();
+        }
     }
 };

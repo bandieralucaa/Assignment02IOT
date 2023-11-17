@@ -6,7 +6,7 @@
 #define AMOUNTLEDS 2
 
 class OutputManager: public OutputDevice{
-
+public:
     Led* myStaticLeds[AMOUNTLEDS];
 
     OutputManager() {
@@ -18,8 +18,12 @@ class OutputManager: public OutputDevice{
         myStaticLeds[witch]->switchOn();
     }
     
-    virtual void turnOffLed(int witch){
+    void turnOffLed(int witch){
         myStaticLeds[witch]->switchOff();
+    }
+
+    int getAmountLeds() {
+        return AMOUNTLEDS;
     }
 
 };

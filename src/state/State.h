@@ -2,6 +2,7 @@
 #define __STATE__
 
 enum StateName {
+    NONE = -1,
     SLEEP_STATE,
     WELCOME_STATE
 };
