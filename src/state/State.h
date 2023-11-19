@@ -4,7 +4,9 @@
 enum StateName {
     NONE = -1,
     SLEEP_STATE,
-    WELCOME_STATE
+    WELCOME_STATE,
+    PRE_ENTERING_STATE,
+    ENTERING_STATE
 };
 
 class State {

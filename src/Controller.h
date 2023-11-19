@@ -11,6 +11,8 @@
 #include "./components/pir/CarPresenceDetector.h"
 #include "./state/impls/SleepState.h"
 #include "./state/impls/WelcomeState.h"
+#include "./state/impls/EnteringState.h"
+
 
 #include "configs.h"
 

@@ -10,8 +10,9 @@ Controller::Controller() {
 
     State* s1 = new SleepState(out, ((Pir*) myPir));
     State* s2 = new WelcomeState(out, ((Pir*) myPir));
+    State* s3 = new EnteringState();
 
-    myStates = new State*[2]{s1, s2};
+    myStates = new State*[3]{s1, s2, s3};
     //State* myStates[] = {s1, s2};
     // myStates[0] = s1;
     // myStates[1] = s2;
@@ -22,10 +23,7 @@ Controller::Controller() {
 
     actState = SLEEP_STATE;
     myStates[actState]->init();
-<<<<<<< HEAD
-=======
     
->>>>>>> tmp3
 }
 
 void Controller::execute() {
