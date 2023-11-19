@@ -12,7 +12,7 @@ public:
 
     void init();
     void tick();
-    bool updateAndCheckTIme(int millis);
+    bool updateAndCheckTime(int millis);
 
 private:
     int myPin = 0;

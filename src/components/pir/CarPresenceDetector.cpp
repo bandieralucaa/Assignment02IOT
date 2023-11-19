@@ -22,7 +22,7 @@ void CarPresenceDetector::tick() {
     }
 }
     
-bool CarPresenceDetector::updateAndCheckTIme(int millis) {
+bool CarPresenceDetector::updateAndCheckTime(int millis) {
     bool res = false;
     this->millis += millis;
     if (this->millis>period){

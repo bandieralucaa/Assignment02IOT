@@ -1,6 +1,8 @@
 #ifndef __SCHEDULER__
 #define __SCHEDULER__
 
+#include <arduino-timer.h>
+
 class Scheduler {
     public:
     
@@ -11,10 +13,14 @@ class Scheduler {
     void schedule();
 
 
-protected:
+
+private:
     Task* myTasks[10];
+    Timer<1> timer;
     int amountTask;
     unsigned long basePeriod = 50;
+
+    void manageEndPeriod();
 };
 
 #endif
