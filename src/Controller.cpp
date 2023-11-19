@@ -22,6 +22,10 @@ Controller::Controller() {
 
     actState = SLEEP_STATE;
     myStates[actState]->init();
+<<<<<<< HEAD
+=======
+    
+>>>>>>> tmp3
 }
 
 void Controller::execute() {

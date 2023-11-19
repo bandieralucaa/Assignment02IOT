@@ -10,5 +10,9 @@ void setup() {
 
 void loop() {
   myController->execute();
+<<<<<<< HEAD
   // Serial.println("CIAOOO");
+=======
+  // Serial.print(" A ");
+>>>>>>> tmp3
 }

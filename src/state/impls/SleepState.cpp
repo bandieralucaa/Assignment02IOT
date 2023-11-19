@@ -18,10 +18,11 @@ void SleepState::init() {
     for (i = 0; i<amount;i++){
         o->turnOffLed(i);
     }
-    o->printOut("NOT HELO\n");
-    // set_sleep_mode(SLEEP_MODE_PWR_DOWN);
-    // sleep_enable();
-    // sleep_mode();
+    o->printOut("NOT HELO\n"); delay(100);
+
+    set_sleep_mode(SLEEP_MODE_PWR_DOWN); 
+    sleep_enable(); 
+    sleep_mode();
 }
 
 StateName SleepState::changeState(){

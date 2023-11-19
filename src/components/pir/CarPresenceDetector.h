@@ -21,4 +21,7 @@ private:
     bool anyone = false;
 };
 
+
+void awakeArduino();
+
 #endif
