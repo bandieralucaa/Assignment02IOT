@@ -21,6 +21,7 @@ Controller::Controller() {
     s = new Scheduler(1, a);
 
     actState = SLEEP_STATE;
+    myStates[actState]->init();
     
 }
 

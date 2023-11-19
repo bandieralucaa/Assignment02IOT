@@ -17,11 +17,13 @@ void Scheduler::init(int period){
 void Scheduler::schedule(){
     unsigned long t1 = millis();
     int i;
+   
     for(i=0; i<amountTask; i++) {
-        if (myTasks[i]->updateAndCheckTIme(basePeriod)){
+        if (myTasks[i]->updateAndCheckTime(basePeriod)){
             myTasks[i]->tick();
         }
     }
+   
     unsigned long elapsed = millis() - t1;
     unsigned long remain = basePeriod - elapsed;
     delay(remain);

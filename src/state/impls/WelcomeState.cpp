@@ -9,7 +9,7 @@ WelcomeState::WelcomeState(OutputManager* o, Pir* awakePir){
 }
 
 void WelcomeState::init() {
-    o->printOut("HELO");
+    o->printOut("HELO\n");
 }
 
 StateName WelcomeState::changeState() {
