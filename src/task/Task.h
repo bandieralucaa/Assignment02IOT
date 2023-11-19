@@ -5,7 +5,20 @@ class Task {
     public:
     virtual void init();
     virtual void tick();
-    virtual bool updateAndCheckTime(int millis);
+
+    virtual bool updateAndCheckTime(int millis){
+        bool res = false;
+        this->millis += millis;
+        if (this->millis > this->period){
+            res = true;
+            this->millis = 0;
+        }
+        return res;
+    }
+
+private:
+    unsigned long millis=0;
+    unsigned long period = 200;
 };
 
 #endif

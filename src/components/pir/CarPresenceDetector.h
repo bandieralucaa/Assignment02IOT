@@ -12,12 +12,10 @@ public:
 
     void init();
     void tick();
-    bool updateAndCheckTime(int millis);
+    // bool updateAndCheckTime(int millis);
 
 private:
     int myPin = 0;
-    unsigned long millis=0;
-    unsigned long period = 200;
     bool anyone = false;
 };
 
