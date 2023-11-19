@@ -5,8 +5,8 @@ class Task {
     public:
     virtual void init();
     virtual void tick();
-    
-    bool updateAndCheckTime(int millis){
+
+    virtual bool updateAndCheckTime(int millis){
         bool res = false;
         this->millis += millis;
         if (this->millis > this->period){
