@@ -2,9 +2,6 @@
 
 #include "Controller.h"
 
-#include "configs.h"
-
-
 Controller::Controller() {
     OutputManager* out = new OutputManager();
 
@@ -13,19 +10,25 @@ Controller::Controller() {
 
     State* s1 = new SleepState(out, ((Pir*) myPir));
     State* s2 = new WelcomeState(out, ((Pir*) myPir));
-    myStates = {s1, s2};
+
+    myStates = new State*[2]{s1, s2};
+    //State* myStates[] = {s1, s2};
+    // myStates[0] = s1;
+    // myStates[1] = s2;
+    // myStates = (State*){s1, s2};
+    
     Task* a[] = {((Task*) myPir)};
     s = new Scheduler(1, a);
 
     actState = SLEEP_STATE;
-    // State s1 = new SleepState(myPir);
+    
 }
 
 void Controller::execute() {
     s->schedule();
     
     StateName newState = myStates[actState]->changeState();
-    if(newState != NONE){
+    if (newState != NONE) {
         actState = newState;
         myStates[actState]->init();
     }

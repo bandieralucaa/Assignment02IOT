@@ -4,7 +4,11 @@
 
 class SleepState : public State {
 public:
-
     SleepState(OutputManager* o, Pir* awakePir);
-
+    void init();
+    StateName changeState();
+    
+private:
+    Pir* myPir;
+    OutputManager* o;
 };

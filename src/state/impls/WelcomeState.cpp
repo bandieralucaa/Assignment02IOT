@@ -1,26 +1,20 @@
-#include "./state/State.h"
+
 #include "./components/pir/PIR.h"
 #include "components/outputComponents/OutputManager.h"
+#include "./state/impls/WelcomeState.h"
 
-class WelcomeState : public State {
-public:
+WelcomeState::WelcomeState(OutputManager* o, Pir* awakePir){
+    myPir = awakePir;
+}
 
-    Pir* myPir;
-    OutputManager* o;
+void State::init() {
+    // o-> STAMPA CIAOOO
+}
 
-    WelcomeState(OutputManager* o, Pir* awakePir){
-        myPir = awakePir;
+StateName WelcomeState::changeState() {
+    if (!myPir->isAnyone()){
+        return SLEEP_STATE;
+    } else {
+        return NONE;
     }
-
-    void init() {
-        // o-> STAMPA CIAOOO
-    }
-
-    StateName changeState(){
-        if (!myPir->isAnyone()){
-            return SLEEP_STATE;
-        } else {
-            return NONE;
-        }
-    };
 };

@@ -8,21 +8,17 @@ CarPresenceDetector::CarPresenceDetector(int pin) {
         this->myPin = pin;
 }
 
-<<<<<<< HEAD
-    bool isAnyone(){
-=======
-bool Pir::isAnyone(){
->>>>>>> main
-        return isAnyone;
+bool CarPresenceDetector::isAnyone(){
+    return anyone;
 }
 
-void Task::init() {}
+void CarPresenceDetector::init() {}
 
 void CarPresenceDetector::tick() {
     if (digitalRead(myPin) == HIGH) { //se c'è qualcuno
-        isAnyone = true;
+        anyone = true;
     } else {
-        isAnyone = false;
+        anyone = false;
     }
 }
     

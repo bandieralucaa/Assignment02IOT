@@ -11,10 +11,11 @@ Scheduler::Scheduler(int amount, Task* myTasks[]) {
 }
 
 void Scheduler::init(int period){
-    amountTask = period;
+    basePeriod = period;
 }
 
 void Scheduler::schedule(){
+    unsigned long t1 = millis();
     int i;
     for(i=0; i<amountTask; i++) {
         if (myTasks[i]->updateAndCheckTIme(basePeriod)){

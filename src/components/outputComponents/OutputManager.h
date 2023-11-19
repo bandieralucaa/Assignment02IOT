@@ -12,10 +12,9 @@ public:
     OutputManager();
     void turnOnLed(int witch);
     void turnOffLed(int witch);
-<<<<<<< HEAD
-=======
     
->>>>>>> main
+    void printOut(char* toPrint);
+
     int getAmountLeds(){
         return AMOUNTLEDS;
     }

@@ -8,11 +8,17 @@ class CarPresenceDetector : Pir, Task {
 public:
     CarPresenceDetector(int pin);
 
+    bool isAnyone();
+
+    void init();
+    void tick();
+    bool updateAndCheckTIme(int millis);
+
 private:
     int myPin = 0;
     unsigned long millis=0;
     unsigned long period = 200;
-    bool isAnyone = false;
+    bool anyone = false;
 };
 
 #endif

@@ -9,8 +9,8 @@ enum StateName {
 
 class State {
     public:
-        void init();
-        StateName changeState();
+        virtual void init() = 0;
+        virtual StateName changeState() = 0;
 };
 
 
