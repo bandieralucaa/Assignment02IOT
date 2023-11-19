@@ -1,20 +1,20 @@
 
 #include "./components/pir/PIR.h"
 #include "components/outputComponents/OutputManager.h"
-#include "./state/impls/EnteringState.h"
+#include "./state/impls/PreEnteringState.h"
 
-EnteringState::EnteringState(OutputManager* o, Pir* awakePir){
-    myPir = awakePir;
-    this->o = o;
+PreEnteringState::PreEnteringState(Gate* myGate){
+    this->myGate = myGate;
 }
 
-void EnteringState::init() {
-    o->printOut("HELO\n");
+void PreEnteringState::init() {
+    this->myGate->open();
 }
 
-StateName EnteringState::changeState() {
-    if (!myPir->isAnyone()){
-        return SLEEP_STATE;
+StateName PreEnteringState::changeState() {
+    if (myGate->isOpen()){
+        myGate->stop();
+        return ENTERING_STATE;
     } else {
         return NONE;
     }

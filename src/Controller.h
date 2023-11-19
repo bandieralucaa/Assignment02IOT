@@ -9,8 +9,11 @@
 #include "./state/State.h"
 #include "./components/outputComponents/OutputManager.h"
 #include "./components/pir/CarPresenceDetector.h"
+
+
 #include "./state/impls/SleepState.h"
 #include "./state/impls/WelcomeState.h"
+#include "./state/impls/PreEnteringState.h"
 #include "./state/impls/EnteringState.h"
 
 

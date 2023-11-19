@@ -1,11 +1,12 @@
 #include "./state/State.h"
-#include "./components/ser"
+#include "./components/servomotor/Gate.h"
 
 class PreEnteringState : public State {
 public:
-    PreEnteringState(Gate* );
-
+    PreEnteringState(Gate* myGate);
+    void init();
+    StateName changeState();
 
 private:
-    
+    Gate* myGate;
 };

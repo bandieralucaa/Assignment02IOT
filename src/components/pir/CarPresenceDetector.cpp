@@ -6,8 +6,8 @@
 
 
 CarPresenceDetector::CarPresenceDetector(int pin) {
-        this->myPin = pin;
-        attachInterrupt(digitalPinToInterrupt(pin),awakeArduino,CHANGE);
+    this->myPin = pin;
+    attachInterrupt(digitalPinToInterrupt(pin),awakeArduino,CHANGE);
 }
 
 bool CarPresenceDetector::isAnyone(){
