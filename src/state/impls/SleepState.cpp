@@ -27,6 +27,7 @@ void SleepState::init() {
 
 StateName SleepState::changeState(){
     if (myPir->isAnyone()){
+        o->turnOnLed(0);
         return WELCOME_STATE;
     } else {
         return NONE;

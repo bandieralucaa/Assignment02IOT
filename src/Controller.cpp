@@ -21,6 +21,7 @@ Controller::Controller() {
     // myStates[1] = s2;
     // myStates = (State*){s1, s2};
     
+    // Task* a[] = {((Task*) myPir), ((Task*) myGate)};
     Task* a[] = {((Task*) myPir)};
     s = new Scheduler(1, a);
 

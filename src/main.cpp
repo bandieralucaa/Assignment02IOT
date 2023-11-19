@@ -10,5 +10,5 @@ void setup() {
 
 void loop() {
   myController->execute();
-  // Serial.print(" A ");
+  Serial.print(" A ");
 }
