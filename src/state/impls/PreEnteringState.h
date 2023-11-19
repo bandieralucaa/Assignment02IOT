@@ -1,9 +1,11 @@
 #include "./state/State.h"
+#include "./components/ser"
 
-class EnteringState : public State {
+class PreEnteringState : public State {
 public:
+    PreEnteringState(Gate* );
 
-    
+
 private:
     
 };

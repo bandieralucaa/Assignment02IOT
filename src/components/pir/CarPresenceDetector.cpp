@@ -24,15 +24,15 @@ void CarPresenceDetector::tick() {
     }
 }
     
-bool CarPresenceDetector::updateAndCheckTime(int millis) {
-    bool res = false;
-    this->millis += millis;
-    if (this->millis>period){
-        res = true;
-        this->millis = 0;
-    }
-    return res;
-}
+// bool CarPresenceDetector::updateAndCheckTime(int millis) {
+//     bool res = false;
+//     this->millis += millis;
+//     if (this->millis>period){
+//         res = true;
+//         this->millis = 0;
+//     }
+//     return res;
+// }
 
 void awakeArduino(){
     sleep_disable(); 

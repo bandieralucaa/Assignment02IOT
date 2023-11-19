@@ -3,17 +3,12 @@
 
 class Servomotor {
 public:
-    Servomotor(int pin, bool isActOpen);
-    bool isOpen();
-    bool isClose();
-    void open();
-    void close();
+    virtual bool isOpen() = 0;
+    virtual bool isClose() = 0;
+    virtual void open() = 0;
+    virtual void close() = 0;
+    virtual void stop() = 0;
 
-private:
-    int pin;
-    bool actOpen;
-    bool actClose;
-    int actGrade;
 };
 
 
