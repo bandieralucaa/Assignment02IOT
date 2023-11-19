@@ -6,6 +6,7 @@
 
 #define AMOUNTLEDS 2
 #include "./components/led/Led.h"
+// #include <string>
 
 class OutputManager{
 public:

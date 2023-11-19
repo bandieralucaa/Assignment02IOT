@@ -5,10 +5,11 @@
 
 WelcomeState::WelcomeState(OutputManager* o, Pir* awakePir){
     myPir = awakePir;
+    this->o = o;
 }
 
-void State::init() {
-    // o-> STAMPA CIAOOO
+void WelcomeState::init() {
+    o->printOut("HELO");
 }
 
 StateName WelcomeState::changeState() {

@@ -1,5 +1,7 @@
 #include "OutputManager.h"
 
+#include <Arduino.h>
+
 #include "configs.h"
 
 int index[] = {LED1_PIN, LED2_PIN};
@@ -17,4 +19,8 @@ void OutputManager::turnOnLed(int witch){
     
 void OutputManager::turnOffLed(int witch){
     myStaticLeds[witch]->switchOff();
+}
+
+void OutputManager::printOut(char* toPrint){
+    Serial.print(toPrint);
 }

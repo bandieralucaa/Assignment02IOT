@@ -4,6 +4,7 @@
 Controller* myController;
 
 void setup() {
+  Serial.begin(9600);
   myController = new Controller();
 }
 
