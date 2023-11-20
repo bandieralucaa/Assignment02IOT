@@ -1,9 +1,21 @@
-// #ifndef __COOLDOWN__
-// #define __COOLDOWN__
+#ifndef __COOLDOWN__
+#define __COOLDOWN__
 
-// class Cooldown {
-//     public:
-//         virtual bool isOver();
-// };
+#include "./task/Task.h"
 
-// #endif
+class Cooldown : Task {
+    public:
+        Cooldown(unsigned long clock);
+        bool isOver();
+        void reset();
+        Cooldown* format(unsigned long newClock);
+
+        void init();
+        void tick();
+    private:
+        unsigned long amountTime;
+        unsigned long actTime;
+
+};
+
+#endif

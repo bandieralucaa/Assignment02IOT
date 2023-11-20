@@ -3,7 +3,7 @@
 
 class EnteringState : public State {
 public:
-    EnteringState(Servomotor* myMotor);
+    EnteringState();
     void init();
     StateName changeState(); 
 private:

@@ -7,6 +7,7 @@ Gate::Gate(int pin, bool isActOpen) {
     this->actOpen = isActOpen;
     this->direction = 0;
     this->motor.attach(pin);
+    this->period = 100;
 }
 
 bool Gate::isOpen() {

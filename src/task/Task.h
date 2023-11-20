@@ -16,7 +16,7 @@ class Task {
         return res;
     };
 
-private:
+protected:
     unsigned long millis=0;
     unsigned long period = 200;
 };

@@ -1,18 +1,19 @@
 
 #include "components/outputComponents/OutputManager.h"
 #include "./state/impls/EnteringState.h"
+#include <Arduino.h>
 
-EnteringState::EnteringState(Servomotor* myMotor){
-    this->myMotor = myMotor;
+EnteringState::EnteringState(){
+    
 }
 
 void EnteringState::init() {
-    
+    Serial.print("OOKK");
 }
 
 StateName EnteringState::changeState() {
     if (this->myMotor->isOpen()){
-        return ENTERING_STATE;
+        return NONE;
     } else {
         return NONE;
     }

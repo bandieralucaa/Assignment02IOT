@@ -6,7 +6,7 @@
 #include <Arduino.h>
 #include <Servo.h>
 
-class Gate {
+class Gate : Servomotor, Task {
 public:
     Gate(int pin, bool isActOpen);
     bool isOpen();

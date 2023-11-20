@@ -17,10 +17,6 @@ void Scheduler::init(int period){
 }
 
 void Scheduler::schedule(){
-    timer.tick();
-}
-
-void Scheduler::manageEndPeriod(){
     unsigned long t1 = millis();
     int i;
    
@@ -33,4 +29,8 @@ void Scheduler::manageEndPeriod(){
     unsigned long elapsed = millis() - t1;
     unsigned long remain = basePeriod - elapsed;
     delay(remain);
+}
+
+void Scheduler::manageEndPeriod(){
+    
 }

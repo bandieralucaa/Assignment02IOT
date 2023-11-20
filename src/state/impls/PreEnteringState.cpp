@@ -9,6 +9,7 @@ PreEnteringState::PreEnteringState(Gate* myGate){
 
 void PreEnteringState::init() {
     this->myGate->open();
+    Serial.print("AHAHAHAHAHAH");
 }
 
 StateName PreEnteringState::changeState() {

@@ -9,6 +9,7 @@
 #include "./state/State.h"
 #include "./components/outputComponents/OutputManager.h"
 #include "./components/pir/CarPresenceDetector.h"
+#include "./components/cooldown/Cooldown.h"
 
 
 #include "./state/impls/SleepState.h"
