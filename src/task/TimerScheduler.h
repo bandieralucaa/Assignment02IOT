@@ -10,6 +10,9 @@ public:
     TimerScheduler(int amount, Task* myTasks[]);
     void init(int period);
     void schedule();
+    bool manageEndPeriod(void *);
+
+
 };
 
 #endif

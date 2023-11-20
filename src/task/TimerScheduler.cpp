@@ -1,10 +1,11 @@
 #include "TimerScheduler.h"
-#include "Task.h"
+#include "Timer.h"
+#include <Arduino.h>
 
 class TimerScheduler{
     Task* myTasks[10];
-    //Timer<1> timer;
     Timer* timer;
+
     int amountTask;
     unsigned long basePeriod = 50;
     
@@ -14,15 +15,15 @@ class TimerScheduler{
             this->myTasks[i] = myTasks[i];
         }
         this->amountTask = amount;
-        //this->timer = timer_create_default();
     };
 
     void init(int period){
-        timer.every(period, manageEndPeriod);
+        timer = new Timer();
+        timer -> setupPeriod(period);
     }
 
     void schedule(){
-        timer.tick();
+        timer->waitForNextTick();
     }
 
     bool manageEndPeriod(void *){
@@ -35,7 +36,7 @@ class TimerScheduler{
         }
         unsigned long elapsed = millis() - t1;
         unsigned long remain = basePeriod - elapsed;
-        delay(remain);
+        schedule();
         return true;
     }
 };
