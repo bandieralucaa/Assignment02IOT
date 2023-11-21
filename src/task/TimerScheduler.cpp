@@ -2,41 +2,26 @@
 #include "Timer.h"
 #include <Arduino.h>
 
-class TimerScheduler{
-    Task* myTasks[10];
-    Timer* timer;
-
-    int amountTask;
-    unsigned long basePeriod = 50;
-    
-    TimerScheduler(int amount, Task* myTasks[]){
-        int i;
-        for(i=0; i<amount;i++){
-            this->myTasks[i] = myTasks[i];
-        }
-        this->amountTask = amount;
-    };
-
-    void init(int period){
-        timer = new Timer();
-        timer -> setupPeriod(period);
+TimerScheduler::TimerScheduler(int amount, Task* myTasks[]){
+    int i;
+    for(i=0; i<amount;i++){
+        this->myTasks[i] = myTasks[i];
     }
-
-    void schedule(){
-        timer->waitForNextTick();
-    }
-
-    bool manageEndPeriod(void *){
-        unsigned long t1 = millis();
-        int i;
-        for(i=0; i<amountTask; i++) {
-            if (myTasks[i]->updateAndCheckTime(basePeriod)){
-                myTasks[i]->tick();
-            }
-        }
-        unsigned long elapsed = millis() - t1;
-        unsigned long remain = basePeriod - elapsed;
-        schedule();
-        return true;
-    }
+    this->amountTask = amount;
 };
+
+void TimerScheduler::init(int period){
+    this->timer = new Timer();
+    this->timer -> setupPeriod(period);
+}
+
+void TimerScheduler::schedule(){
+    int i;
+    for(i=0; i<amountTask; i++) {
+        if (myTasks[i]->updateAndCheckTime(basePeriod)){
+            myTasks[i]->tick();
+        }
+    }
+
+    this->timer->waitForNextTick();
+}

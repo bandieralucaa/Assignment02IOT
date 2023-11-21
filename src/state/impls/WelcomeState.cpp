@@ -6,6 +6,7 @@
 WelcomeState::WelcomeState(OutputManager* o, Pir* awakePir){
     myPir = awakePir;
     this->o = o;
+    // this->cooldown = cooldown;
 }
 
 void WelcomeState::init() {

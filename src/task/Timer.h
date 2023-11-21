@@ -4,9 +4,9 @@
 class Timer {
 
     public:
-    Timer();
-    void setupPeriod(int period);
-    void waitForNextTick();
+        Timer();
+        void setupPeriod(int period);
+        void waitForNextTick();
 };
 
 #endif

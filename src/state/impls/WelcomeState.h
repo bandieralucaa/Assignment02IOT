@@ -2,7 +2,7 @@
 
 #include "./components/pir/PIR.h"
 #include "./components/outputComponents/OutputManager.h"
-
+#include "./task/Timer.h"
 
 class WelcomeState : public State {
 public:
@@ -12,4 +12,5 @@ public:
 private:
     Pir* myPir;
     OutputManager* o;
+    // Timer* cooldown;
 };

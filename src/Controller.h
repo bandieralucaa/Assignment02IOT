@@ -5,7 +5,7 @@
 #include "./components/led/Led.h"
 
 #include "./task/Task.h"
-#include "./task/Scheduler.h"
+#include "./task/TimerScheduler.h"
 #include "./state/State.h"
 #include "./components/outputComponents/OutputManager.h"
 #include "./components/pir/CarPresenceDetector.h"
@@ -27,7 +27,7 @@ public:
     void execute();
 
 private:
-    Scheduler* s;
+    TimerScheduler* s;
     StateName actState;
     State** myStates;
 };

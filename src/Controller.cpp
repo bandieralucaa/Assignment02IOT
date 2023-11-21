@@ -10,8 +10,8 @@ Controller::Controller() {
     Gate* myGate = new Gate(SERVO_MOTOR_PIN, false);
     //Led l1 = new Led(LED1_PIN);
 
-    State* s1 = new SleepState(out, ((Pir*) myPir));
-    State* s2 = new WelcomeState(out, ((Pir*) myPir));
+    State* s1 = new SleepState(out, (myPir));
+    State* s2 = new WelcomeState(out, (myPir));
     State* s3 = new PreEnteringState(myGate);
     // State* s4 = new EnteringState();
 
@@ -22,8 +22,10 @@ Controller::Controller() {
     // myStates = (State*){s1, s2};
     
     // Task* a[] = {((Task*) myPir), ((Task*) myGate)};
-    Task* a[] = {((Task*) myPir)};
-    s = new Scheduler(1, a);
+    Task* a[] = {(myPir)};
+    s = new TimerScheduler(1,a);
+    s->init(200);
+    // s = new Scheduler(1, a);
 
     actState = SLEEP_STATE;
     myStates[actState]->init();

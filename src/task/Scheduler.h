@@ -1,26 +1,24 @@
-#ifndef __SCHEDULER__
-#define __SCHEDULER__
+// #ifndef __SCHEDULER__
+// #define __SCHEDULER__
 
-#include <arduino-timer.h>
-
-class Scheduler {
-    public:
+// class Scheduler {
+//     public:
     
-    Scheduler(int amount, Task* myTasks[]);
+//     Scheduler(int amount, Task* myTasks[]);
 
-    void init(int period);
+//     void init(int period);
 
-    void schedule();
+//     void schedule();
 
 
 
-private:
-    Task* myTasks[10];
-    Timer<1> timer;
-    int amountTask;
-    unsigned long basePeriod = 50;
+// private:
+//     Task* myTasks[10];
+//     Timer<1> timer;
+//     int amountTask;
+//     unsigned long basePeriod = 50;
 
-    void manageEndPeriod();
-};
+//     void manageEndPeriod();
+// };
 
-#endif
+// #endif

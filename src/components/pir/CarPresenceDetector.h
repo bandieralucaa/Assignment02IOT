@@ -4,7 +4,7 @@
 #include "./task/Task.h"
 #include "./components/pir/PIR.h"
 
-class CarPresenceDetector : Pir, Task {
+class CarPresenceDetector : public Pir, public Task {
 public:
     CarPresenceDetector(int pin);
 
