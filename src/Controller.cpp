@@ -24,7 +24,7 @@ Controller::Controller() {
     // Task* a[] = {((Task*) myPir), ((Task*) myGate)};
     Task* a[] = {(myPir)};
     s = new TimerScheduler(1,a);
-    s->init(200);
+    s->init(500);
     // s = new Scheduler(1, a);
 
     actState = SLEEP_STATE;

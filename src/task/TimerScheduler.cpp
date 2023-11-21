@@ -16,12 +16,16 @@ void TimerScheduler::init(int period){
 }
 
 void TimerScheduler::schedule(){
+    unsigned long t1 = millis();
     int i;
     for(i=0; i<amountTask; i++) {
         if (myTasks[i]->updateAndCheckTime(basePeriod)){
             myTasks[i]->tick();
         }
     }
-
     this->timer->waitForNextTick();
+    unsigned long t2 = millis() - t1;
+    Serial.print(" ");
+    Serial.print(t2);
+    Serial.print(" ");
 }
