@@ -4,7 +4,7 @@
 
 volatile bool timerFlag;
 
-ISR(TIMER3_COMPA_vect){
+ISR(TIMER2_COMPA_vect){
   timerFlag = true;
 }
 
@@ -41,25 +41,22 @@ void Timer::setupPeriod(int period){
   // sei();
 
 
-
-
-
-
-
-
- // Disable global interrupts
+  // disabling interrupt
   cli();
 
-  disableTimer3();
- 
-  // Set compare match register to desired timer count - 25ms 40Hz (16000000/1024/40 = 390.63)
-  OCR3A = 391;
+  //set timer2 interrupt at 8kHz
+  TCCR2A = 0;// set entire TCCR2A register to 0
+  TCCR2B = 0;// same for TCCR2B
+  TCNT2  = 0;//initialize counter value to 0
 
-  // Turn on CTC mode WGM32 set CS10 and CS12 bits for Timer3 prescaler of 1024
-  TCCR3B = bit (WGM32) | bit (WGM32) | bit (CS30);
-
-  // Enable timer compare interrupt
-  TIMSK3 |= (1 << OCIE3A);
+  // set compare match register for 8khz increments
+  OCR2A = 16.384*period;// = (16*10^6) / (8000*8) - 1 (must be <256)
+  // turn on CTC mode
+  TCCR2A |= (1 << WGM21);
+  // Set CS21 bit for 8 prescaler
+  TCCR2B |= (1 << CS21);   
+  // enable timer compare interrupt
+  TIMSK2 |= (1 << OCIE2A);
   
   // Enable global interrupts  
   sei(); 
