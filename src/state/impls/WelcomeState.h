@@ -7,7 +7,7 @@
 
 class WelcomeState : public State {
 public:
-    WelcomeState(OutputManager* o, Pir* awakePir, Timer<3> clock);
+    WelcomeState(OutputManager* o, Pir* awakePir, Timer<3>* clock);
     void init();
     StateName changeState();
 private:

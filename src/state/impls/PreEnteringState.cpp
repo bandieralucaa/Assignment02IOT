@@ -3,7 +3,7 @@
 #include "components/outputComponents/OutputManager.h"
 #include "./state/impls/PreEnteringState.h"
 #include "./task/TimerScheduler.h"
-
+#include <Arduino.h>
 // TimerScheduler* timer;
 
 PreEnteringState::PreEnteringState(Gate* myGate){
@@ -12,6 +12,7 @@ PreEnteringState::PreEnteringState(Gate* myGate){
 
 void PreEnteringState::init() {
     // timer->init(3000);
+    Serial.print("AHAHAHAH");
     this->myGate->open();
 }
 
@@ -21,6 +22,6 @@ StateName PreEnteringState::changeState() {
         myGate->stop();
         return ENTERING_STATE;
     } else {
-        return NONE;
+        return SLEEP_STATE;
     }
 };
