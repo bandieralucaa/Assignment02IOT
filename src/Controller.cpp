@@ -12,10 +12,10 @@ Controller::Controller() {
 
     State* s1 = new SleepState(out, (myPir));
     State* s2 = new WelcomeState(out, (myPir));
-    State* s3 = new PreEnteringState(myGate);
+    // State* s3 = new PreEnteringState(myGate);
     // State* s4 = new EnteringState();
 
-    myStates = new State*[3]{s1, s2, s3};
+    myStates = new State*[2]{s1, s2};
     //State* myStates[] = {s1, s2};
     // myStates[0] = s1;
     // myStates[1] = s2;
@@ -24,7 +24,7 @@ Controller::Controller() {
     // Task* a[] = {((Task*) myPir), ((Task*) myGate)};
     Task* a[] = {(myPir)};
     s = new TimerScheduler(1,a);
-    s->init(500);
+    s->init(200);
     // s = new Scheduler(1, a);
 
     actState = SLEEP_STATE;
@@ -40,4 +40,5 @@ void Controller::execute() {
         actState = newState;
         myStates[actState]->init();
     }
+    s->completeTimer();
 }

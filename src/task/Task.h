@@ -1,6 +1,9 @@
 #ifndef __TASK__
 #define __TASK__
 
+#include "string.h"
+#include <Arduino.h>
+
 class Task {
     public:
     virtual void init();
@@ -12,13 +15,15 @@ class Task {
         if (this->millis > this->period){
             res = true;
             this->millis = 0;
+            // Serial.print("PIR: my turn!\n");
         }
         return res;
     };
 
-private:
+protected:
     unsigned long millis=0;
     unsigned long period = 200;
+    // String name = "";
 };
 
 #endif
