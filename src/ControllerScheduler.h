@@ -5,7 +5,7 @@
 #include "./components/led/Led.h"
 
 #include "./task/Task.h"
-#include "./task/TimerScheduler.h"
+// #include "./task/TimerScheduler.h"
 #include "./state/State.h"
 #include "./components/outputComponents/OutputManager.h"
 #include "./components/pir/CarPresenceDetector.h"
@@ -19,17 +19,23 @@
 
 #include "configs.h"
 
+// #include "Timer.h"
+#include <arduino-timer.h>
 
 
-class Controller{
+class ControllerScheduler{
 public:
-    Controller();
+    ControllerScheduler();
+    void init(unsigned long basePeriod);
     void execute();
 
-private:
-    TimerScheduler* s;
-    StateName actState;
-    State** myStates;
+// private:
+//     StateName actState;
+//     State** myStates;
+//     Timer<1> timer;
+    
+//     Task** myTasks;
+//     int amountTask;
 };
 
 #endif
