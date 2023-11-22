@@ -8,4 +8,7 @@
 
 #define SERVO_MOTOR_PIN 9
 
+
+#define N1_TIME 3000
+
 #endif

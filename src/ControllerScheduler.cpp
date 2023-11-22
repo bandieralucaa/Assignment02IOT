@@ -4,7 +4,7 @@
 
 StateName actState;
 State** myStates;
-Timer<1> timer;
+Timer<3> timer;
 
 Task** myTasks;
 int actAmountTask;
@@ -17,20 +17,21 @@ ControllerScheduler::ControllerScheduler() {
 
     CarPresenceDetector* myPir = new CarPresenceDetector(PIR_PIN);
 
-    // Gate* myGate = new Gate(SERVO_MOTOR_PIN, false);
+    Gate* myGate = new Gate(SERVO_MOTOR_PIN, false);
 
-    State* s1 = new SleepState(out, (myPir));
-    State* s2 = new WelcomeState(out, (myPir));
-    
-
-    myStates = new State*[2]{s1, s2};
-    
     int amountTask = 1;
-    myTasks = new Task*[amountTask]{(myPir)};
+    myTasks = new Task*[amountTask]{(myPir),myGate};
     actAmountTask = amountTask;
 
     actState = SLEEP_STATE;
     myStates[actState]->init();
+
+
+    State* s1 = new SleepState(out, (myPir));
+    State* s2 = new WelcomeState(out, (myPir), timer);
+    State* s3 = new PreEnteringState(myGate);
+
+    myStates = new State*[3]{s1, s2, s3};
     
 }
 
