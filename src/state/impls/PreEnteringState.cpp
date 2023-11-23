@@ -22,6 +22,6 @@ StateName PreEnteringState::changeState() {
         myGate->stop();
         return ENTERING_STATE;
     } else {
-        return SLEEP_STATE;
+        return ENTERING_STATE;
     }
 };

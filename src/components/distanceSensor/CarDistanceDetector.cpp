@@ -1,13 +1,16 @@
 #include "CarDistanceDetector.h"
 
+#include <Arduino.h>
+
 CarDistanceDetector::CarDistanceDetector(int trigPin, int echoPin){
     this->trigPin = trigPin;
     this->echoPin = echoPin;
+    this->period = 150;
 }
 
 double CarDistanceDetector::getDistance(){
     float temperature = 20; // SENSORE_TEMP?
-    
+
     float vs = 331.45 + 0.62*temperature;
 
 
@@ -24,6 +27,8 @@ double CarDistanceDetector::getDistance(){
     float tUS = pulseIn(this->echoPin, HIGH);
     float t = tUS / 1000.0 / 1000.0 / 2;
     float d = t*vs;
+    Serial.print("############ ");
+    Serial.println(d);
     return d;
 }
 
@@ -32,7 +37,7 @@ bool CarDistanceDetector::isAboveMax(){
 }
 
 bool CarDistanceDetector::isUnderMin(){
-    return this->getDistance() > MAX_DIST;
+    return this->getDistance() < MIN_DIST;
 }
 
 void CarDistanceDetector::init(){

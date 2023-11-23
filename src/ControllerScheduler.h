@@ -5,21 +5,20 @@
 #include "./components/led/Led.h"
 
 #include "./task/Task.h"
-// #include "./task/TimerScheduler.h"
 #include "./state/State.h"
 #include "./components/outputComponents/OutputManager.h"
 #include "./components/pir/CarPresenceDetector.h"
-
+#include "./components/distanceSensor/CarDistanceDetector.h"
+#include "./components/led/LedExtTimered.h"
 
 #include "./state/impls/SleepState.h"
 #include "./state/impls/WelcomeState.h"
 #include "./state/impls/PreEnteringState.h"
 #include "./state/impls/EnteringState.h"
-
+#include "./state/impls/WaitEnteringState.h"
 
 #include "configs.h"
 
-// #include "Timer.h"
 #include <arduino-timer.h>
 
 

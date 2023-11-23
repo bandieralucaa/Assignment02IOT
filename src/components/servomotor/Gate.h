@@ -6,6 +6,9 @@
 #include <Arduino.h>
 #include <Servo.h>
 
+#define MAX_ANGLE 0
+#define MIN_ANGLE 0
+
 class Gate : public Servomotor, public Task{
 public:
     Gate(int pin, bool isActOpen);

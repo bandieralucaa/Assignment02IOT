@@ -1,5 +1,5 @@
-#ifndef __CPD__
-#define __CPD__
+#ifndef __CDD__
+#define __CDD__
 
 #include "./task/Task.h"
 #include "./components/distanceSensor/DistanceSensor.h"

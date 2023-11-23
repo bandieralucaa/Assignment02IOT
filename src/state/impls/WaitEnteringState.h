@@ -2,14 +2,17 @@
 
 #include "./components/distanceSensor/CarDistanceDetector.h"
 #include "./components/led/LedExtTimered.h"
+#include <arduino-timer.h>
 
-class EnteringState : public State {
+class WaitEnteringState : public State {
 public:
-    EnteringState(LedExtTimered* blinkLed, CarDistanceDetector* sonar);
+    WaitEnteringState(LedExtTimered* blinkLed, CarDistanceDetector* sonar, Timer<3>* clock);
     void init();
     StateName changeState(); 
 
 private:
     LedExtTimered* blinkLed;
     CarDistanceDetector* sonar;
+    Timer<3>* clock;
+    void flushTimer();
 };

@@ -19,15 +19,21 @@ ControllerScheduler::ControllerScheduler() {
 
     Gate* myGate = new Gate(SERVO_MOTOR_PIN, false);
 
-    int amountTask = 2;
-    myTasks = new Task*[amountTask]{(myPir),myGate};
+    CarDistanceDetector* sonar = new CarDistanceDetector(SONAR_TRIG,SONAR_ECHO);
+
+    LedExtTimered* blinkLed = new LedExtTimered(BLINKING_LED, 20);
+
+    int amountTask = 4;
+    myTasks = new Task*[amountTask]{(myPir), myGate, sonar, blinkLed};
     actAmountTask = amountTask;
 
     State* s1 = new SleepState(out, (myPir));
     State* s2 = new WelcomeState(out, (myPir), &timer);
     State* s3 = new PreEnteringState(myGate);
+    State* s4 = new EnteringState(blinkLed,sonar);
+    State* s5 = new WaitEnteringState(blinkLed, sonar, &timer);
 
-    myStates = new State*[3]{s1, s2, s3};
+    myStates = new State*[5]{s1, s2, s3, s4, s5};
     
     actState = SLEEP_STATE;
     myStates[actState]->init();

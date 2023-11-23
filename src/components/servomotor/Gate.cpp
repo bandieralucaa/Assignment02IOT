@@ -37,6 +37,8 @@ void Gate::stop() {
 void Gate::tick(){
     int newGrade = this->actGrade + this->direction * AMOUNT_MOVE;
     this->motor.write(newGrade);
+    actOpen = actGrade > MAX_ANGLE ? true : false ;
+    actClose = actGrade < MIN_ANGLE ? true : false ;
 }
 
 

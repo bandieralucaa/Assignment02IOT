@@ -12,11 +12,20 @@ public:
 
     void init();
     void tick();
+
+    void switchOn();
+    void switchOff();
+
+    void setIntensity(int intensity);
     
 private:
+    void updateIntensity(int toUpdate);
     int delta;
     bool isIncrease;
     int actIntensity;
+
+    bool isOn;
+    int pin;
 };
 
 #endif

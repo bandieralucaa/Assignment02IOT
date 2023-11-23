@@ -6,7 +6,7 @@
 
 class DistanceSensor {
 public:
-    virtual void getDistance();
+    virtual double getDistance();
     virtual bool isAboveMax();
     virtual bool isUnderMin();
 };
