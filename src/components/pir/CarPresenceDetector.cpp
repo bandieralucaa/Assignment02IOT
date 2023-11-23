@@ -8,6 +8,8 @@
 CarPresenceDetector::CarPresenceDetector(int pin) {
     this->myPin = pin;
     attachInterrupt(digitalPinToInterrupt(pin),awakeArduino,CHANGE);
+    this->period = 300;
+    // this->name = "PIR";
 }
 
 bool CarPresenceDetector::isAnyone(){

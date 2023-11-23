@@ -1,41 +1,44 @@
-#include "TimerScheduler.h"
-#include "Task.h"
+// #include "TimerScheduler.h"
+// #include "Timer.h"
+// #include <Arduino.h>
 
-class TimerScheduler{
-    Task* myTasks[10];
-    //Timer<1> timer;
-    Timer* timer;
-    int amountTask;
-    unsigned long basePeriod = 50;
-    
-    TimerScheduler(int amount, Task* myTasks[]){
-        int i;
-        for(i=0; i<amount;i++){
-            this->myTasks[i] = myTasks[i];
-        }
-        this->amountTask = amount;
-        //this->timer = timer_create_default();
-    };
+// TimerScheduler::TimerScheduler(int amount, Task* myTasks[]){
+//     int i;
+//     for(i=0; i<amount;i++){
+//         this->myTasks[i] = myTasks[i];
+//     }
+//     this->amountTask = amount;
+// };
 
-    void init(int period){
-        timer.every(period, manageEndPeriod);
-    }
+// void TimerScheduler::init(int period){
+//     this->basePeriod = period;
+//     // this->timer = new Timer<>();
+//     // this->timer -> setupPeriod(period);
+//     timer.every(period,callFunc);
+// }
 
-    void schedule(){
-        timer.tick();
-    }
+// bool callFunc(void *){
+//     schedule();
+//     return true;
+// }
 
-    bool manageEndPeriod(void *){
-        unsigned long t1 = millis();
-        int i;
-        for(i=0; i<amountTask; i++) {
-            if (myTasks[i]->updateAndCheckTime(basePeriod)){
-                myTasks[i]->tick();
-            }
-        }
-        unsigned long elapsed = millis() - t1;
-        unsigned long remain = basePeriod - elapsed;
-        delay(remain);
-        return true;
-    }
-};
+// void TimerScheduler::schedule(){
+//     // unsigned long t1 = millis();
+
+//     int i;
+//     for(i=0; i<amountTask; i++) {
+//         if (myTasks[i]->updateAndCheckTime(basePeriod)){
+//             myTasks[i]->tick();
+//         }
+//     }
+//     // this->timer->waitForNextTick();
+
+//     // unsigned long t2 = millis() - t1;
+//     // Serial.print(" ");
+//     // Serial.print(t2);
+//     // Serial.print(" ");
+// }
+
+// // void TimerScheduler::completeTimer(){
+// //     this->timer->waitForNextTick();
+// // }

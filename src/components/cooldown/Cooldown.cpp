@@ -1,35 +1,45 @@
 // #include "Cooldown.h"
+// #include "Arduino.h"
 
-// #include "./task/Task.h"
+// volatile bool isFinish = false;
 
-// class Cooldown : Cooldown, Task{
+// Cooldown::Cooldown(unsigned long clock){
+//     this->setupPeriod(clock);   
+//     this->amountTime = clock;
+//     this->initTime = millis();
+// };
 
-//     unsigned long amountTime;
-//     unsigned long elapsedTime;
-//     unsigned long millis;
+// bool Cooldown::isOver(){
+//     return !this->isStopped && isFinish;
+// };
 
-//     Cooldown(){}
-
-//     Cooldown::Cooldown(unsigned long time) {
-//         this->amountTime = time;
-//     }
-
-//     bool Cooldown::isOver() {
-//         return elapsedTime >= amountTime;
-//     }
-
-//     void init() {
-//     }
-
-//     void tick() {
-        
-//     }
-
-//     bool updateAndCheckTime(int millis) {
-//         this->elapsedTime += millis;
-//         this->millis += millis;
-//     }
-
-    
+// Cooldown* Cooldown::reset(){
+//     return format(this->amountTime);
 // }
+
+// Cooldown* Cooldown::format(unsigned long newClock){
+//     Cooldown* c = new Cooldown(newClock);
+//     this->~Cooldown();
+//     return c;
+// }
+
+// void Cooldown::stop(){
+//     this->isStopped = true;
+//     this->stopTime = millis();
+// }
+
+// Cooldown* Cooldown::resume(){
+//     return format(this->amountTime - ((this->isStopped ? this->stopTime : millis())  - this->initTime));
+// }
+
+// void goneOverTime() {
+//     isFinish = true;
+// }
+
+// ISR(TIMER1_COMPA_vect) : ISR(TIMER1_COMPA_vect) {
+    
+
+
+// }
+
 

@@ -1,14 +1,15 @@
 #include <Arduino.h>
-#include "Controller.h"
+#include "ControllerScheduler.h"
 
-Controller* myController;
+ControllerScheduler* myController;
 
 void setup() {
   Serial.begin(9600);
-  myController = new Controller();
+  myController = new ControllerScheduler();
+  myController->init(50);
 }
 
 void loop() {
   myController->execute();
-  Serial.print(" A ");
+  // Serial.print(" A ");
 }
