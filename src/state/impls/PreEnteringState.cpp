@@ -17,9 +17,9 @@ void PreEnteringState::init() {
 }
 
 StateName PreEnteringState::changeState() {
-    if (myGate->isOpen()){
+    if (this->myGate->isOpen()){
         // timer->schedule();
-        myGate->stop();
+        this->myGate->stop();
         return ENTERING_STATE;
     } else {
         return ENTERING_STATE;

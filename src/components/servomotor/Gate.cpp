@@ -1,13 +1,13 @@
 #include "Gate.h"
 
-#define AMOUNT_MOVE 5
+#define AMOUNT_MOVE 10
 
 Gate::Gate(int pin, bool isActOpen) {
     this->pin = pin; //VALUTA SE ELIMINARMI
     this->actOpen = isActOpen;
     this->direction = 0;
     this->motor.attach(pin);
-    this->period = 50;
+    this->period = 100;
 }
 
 bool Gate::isOpen() {
@@ -32,11 +32,12 @@ void Gate::stop() {
 
 
 void Gate::tick(){
-    int newGrade = this->actGrade + this->direction * AMOUNT_MOVE;
+    int newGrade = this->actGrade + (this->direction * AMOUNT_MOVE);
+    Serial.print("£££££ " + (String)newGrade);
     this->motor.write(newGrade);
     this->actGrade = newGrade;
-    actOpen = actGrade > MAX_ANGLE ? true : false ;
-    actClose = actGrade < MIN_ANGLE ? true : false ;
+    this->actOpen = this->actGrade >= MAX_ANGLE;
+    this->actClose = this->actGrade <= MIN_ANGLE;
 }
 
 
