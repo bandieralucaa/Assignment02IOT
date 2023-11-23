@@ -1,6 +1,6 @@
 #include "Gate.h"
 
-#define AMOUNT_MOVE 1
+#define AMOUNT_MOVE 5
 
 Gate::Gate(int pin, bool isActOpen) {
     this->pin = pin; //VALUTA SE ELIMINARMI
@@ -34,6 +34,7 @@ void Gate::stop() {
 void Gate::tick(){
     int newGrade = this->actGrade + this->direction * AMOUNT_MOVE;
     this->motor.write(newGrade);
+    this->actGrade = newGrade;
     actOpen = actGrade > MAX_ANGLE ? true : false ;
     actClose = actGrade < MIN_ANGLE ? true : false ;
 }
@@ -41,7 +42,8 @@ void Gate::tick(){
 
 
 void Gate::init(){
-    direction = MIN_ANGLE;
+    this->actGrade = MIN_ANGLE;
+    this->motor.write(this->actGrade);
 };
 
 

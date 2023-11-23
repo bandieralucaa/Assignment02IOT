@@ -18,6 +18,7 @@ ControllerScheduler::ControllerScheduler() {
     CarPresenceDetector* myPir = new CarPresenceDetector(PIR_PIN);
 
     Gate* myGate = new Gate(SERVO_MOTOR_PIN, false);
+    myGate->init();
 
     CarDistanceDetector* sonar = new CarDistanceDetector(SONAR_TRIG,SONAR_ECHO);
 
@@ -71,6 +72,7 @@ void ControllerScheduler::init(unsigned long basePeriod) {
     Serial.print(timer.size());
     timer.every(basePeriod, interuptAppened);
     Serial.print(timer.size());
+    Serial.print("****** init controller scheduler");
 }
 
 void ControllerScheduler::execute() {
