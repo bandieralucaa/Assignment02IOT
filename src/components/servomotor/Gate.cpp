@@ -7,6 +7,7 @@ Gate::Gate(int pin, bool isActOpen) {
     this->actOpen = isActOpen;
     this->direction = 0;
     this->motor.attach(pin);
+    //this->period = 50;
 }
 
 bool Gate::isOpen() {
@@ -30,17 +31,19 @@ void Gate::stop() {
 }
 
 
-
-
-
 void Gate::tick(){
     int newGrade = this->actGrade + this->direction * AMOUNT_MOVE;
     this->motor.write(newGrade);
+    actOpen = actGrade > MAX_ANGLE ? true : false ;
+    actClose = actGrade < MIN_ANGLE ? true : false ;
 }
 
 
 
-void Gate::init(){ };
+void Gate::init(){
+    direction = MIN_ANGLE;
+};
+
 
 
 // bool Gate::updateAndCheckTime(int millis) {
