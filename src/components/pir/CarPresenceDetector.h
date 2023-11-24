@@ -4,6 +4,11 @@
 #include "./task/Task.h"
 #include "./components/pir/PIR.h"
 
+#include <avr/sleep.h>
+
+#include "configs.h"
+
+
 class CarPresenceDetector : public Pir, public Task {
 public:
     CarPresenceDetector(int pin);
@@ -12,13 +17,10 @@ public:
 
     void init();
     void tick();
-    // bool updateAndCheckTime(int millis);
 
 private:
     int myPin = 0;
     bool anyone = false;
-    // unsigned long millis=0;
-    // unsigned long period = 200;
 };
 
 

@@ -3,6 +3,11 @@
 
 #include "./task/Task.h"
 #include "./components/distanceSensor/DistanceSensor.h"
+#include "configs.h"
+
+#ifdef SONAR_DEBUG
+#include <Arduino.h>
+#endif
 
 class CarDistanceDetector : public DistanceSensor, public Task {
 public:

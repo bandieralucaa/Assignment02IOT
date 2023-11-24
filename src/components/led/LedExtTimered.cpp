@@ -4,12 +4,13 @@ LedExtTimered::LedExtTimered(int pin, int delta) {
     this->pin = pin;
     this->delta = delta;
     this->isIncrease = true;
-    this->period = 50;
+    this->period = LED_BLINKING_PERIOD;
 }
 
 void LedExtTimered::setFading(int newDelta){
     this->delta = newDelta;
 }
+
 
 void LedExtTimered::updateIntensity(int toUpdate){
     this->actIntensity = toUpdate;
@@ -55,6 +56,5 @@ void LedExtTimered::setIntensity(int intensity) {
     if (isOn)
     {
         analogWrite(pin, intensity);
-        // Serial.print("\n" + (String)pin + " " + (String)intensity + "\n");
     }
 }

@@ -4,6 +4,8 @@
 #include "./task/Task.h"
 #include "./components/button/Button.h"
 
+#include "configs.h"
+
 class WashingMachineButton : public Button, public Task {
 public:
     WashingMachineButton(int pin);

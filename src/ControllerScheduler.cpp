@@ -1,5 +1,3 @@
-#include "configs.h"
-
 #include "ControllerScheduler.h"
 
 StateName actState;
@@ -51,15 +49,20 @@ ControllerScheduler::ControllerScheduler() {
     myStates[actState]->init();
 }
 
-
+#ifdef SCHEDULER_PERIOD_DEBUG
 unsigned long t1 = 0;
+#endif
 
 bool interuptAppened(void*) {
+
+    #ifdef SCHEDULER_PERIOD_DEBUG
     unsigned long t2 = millis();
     unsigned long t3 = t2 - t1;
     Serial.print(" ");
     Serial.print(t3);
     Serial.print(" <-------------\n");
+    t1 = t2;
+    #endif
 
     int i;
     for(i=0; i < actAmountTask; i++) {
@@ -74,19 +77,26 @@ bool interuptAppened(void*) {
         myStates[actState]->init();
     }
     
-    t1 = t2;
+    
     return true;
 }
 
 void ControllerScheduler::init(unsigned long basePeriod) {
     bPeriod = basePeriod;
+
+    #ifdef SCHEDULER_PERIOD_DEBUG
     Serial.print(timer.size());
+    #endif
+
     timer.every(basePeriod, interuptAppened);
+
+    #ifdef SCHEDULER_PERIOD_DEBUG
     Serial.print(timer.size());
     Serial.print("****** init controller scheduler");
+    #endif
 }
 
 void ControllerScheduler::execute() {
-    timer.tick();   
+    timer.tick();
 }
 

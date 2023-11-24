@@ -3,7 +3,7 @@
 
 WashingMachineButton::WashingMachineButton(int pin){
     this->myPin = pin;
-    this->period = 200;
+    this->period = BUTTON_PERIOD;
     this->pushed = false;
 }
 

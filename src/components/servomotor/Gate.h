@@ -3,8 +3,12 @@
 
 #include "./task/Task.h"
 #include "./components/servomotor/Servomotor.h"
-#include <Arduino.h>
 #include <Servo.h>
+#include "configs.h"
+
+#ifdef SERVO_MOTOR_DEBUG
+#include <Arduino.h>
+#endif
 
 #define MAX_ANGLE 90
 #define MIN_ANGLE 0
@@ -20,7 +24,6 @@ public:
 
     void init();
     void tick();
-    // bool updateAndCheckTime(int millis);
 
 private:
     Servo motor;

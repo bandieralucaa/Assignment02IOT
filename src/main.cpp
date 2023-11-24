@@ -1,6 +1,7 @@
 #include <Arduino.h>
-#include "ControllerScheduler.h"
 #include "configs.h"
+#include "ControllerScheduler.h"
+
 
 ControllerScheduler* myController;
 
@@ -12,5 +13,4 @@ void setup() {
 
 void loop() {
   myController->execute();
-  // Serial.print(" A ");
 }

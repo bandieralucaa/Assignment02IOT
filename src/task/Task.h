@@ -1,7 +1,7 @@
 #ifndef __TASK__
 #define __TASK__
 
-#include "string.h"
+//#include "string.h"
 #include <Arduino.h>
 
 class Task {
@@ -21,7 +21,7 @@ class Task {
     };
 
 protected:
-    unsigned long millis=0;
+    unsigned long millis = 0;
     unsigned long period = 200;
     // String name = "";
 };

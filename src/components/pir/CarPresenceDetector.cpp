@@ -1,15 +1,9 @@
-// #include "PIR.h"
-// #include "./task/Task.h"
-#include <Arduino.h>
-#include <avr/sleep.h>
 #include "CarPresenceDetector.h"
-
 
 CarPresenceDetector::CarPresenceDetector(int pin) {
     this->myPin = pin;
     attachInterrupt(digitalPinToInterrupt(pin),awakeArduino,CHANGE);
-    this->period = 300;
-    // this->name = "PIR";
+    this->period = PIR_PERIOD;
 }
 
 bool CarPresenceDetector::isAnyone(){
@@ -25,16 +19,6 @@ void CarPresenceDetector::tick() {
         anyone = false;
     }
 }
-    
-// bool CarPresenceDetector::updateAndCheckTime(int millis) {
-//     bool res = false;
-//     this->millis += millis;
-//     if (this->millis>period){
-//         res = true;
-//         this->millis = 0;
-//     }
-//     return res;
-// }
 
 void awakeArduino(){
     sleep_disable(); 

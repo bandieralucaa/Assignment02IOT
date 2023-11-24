@@ -1,11 +1,9 @@
 #include "CarDistanceDetector.h"
 
-#include <Arduino.h>
-
 CarDistanceDetector::CarDistanceDetector(int trigPin, int echoPin){
     this->trigPin = trigPin ;
     this->echoPin = echoPin;
-    this->period = 500;
+    this->period = SONAR_PERIOD;
     pinMode(trigPin, OUTPUT);
     pinMode(echoPin, INPUT);  
 }
@@ -27,11 +25,15 @@ double CarDistanceDetector::getDistance(){
     /* Receiving the echo */
 
     float tUS = pulseIn(this->echoPin, HIGH);
-    Serial.println("@\n@" + (String) tUS);
     float t = tUS / 1000.0 / 1000.0 / 2;
     float d = t*vs;
+
+    #ifdef SONAR_DEBUG
+    Serial.println("@\n@" + (String) tUS);
     Serial.print(" ########################## ");
     Serial.println(d);
+    #endif
+    
     return d;
 }
 

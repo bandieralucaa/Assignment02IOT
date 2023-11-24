@@ -1,6 +1,8 @@
 #ifndef __CONTROLLER__
 #define __CONTROLLER__
 
+#include "configs.h"
+
 #include "./components/pir/PIR.h"
 #include "./components/led/Led.h"
 
@@ -11,6 +13,8 @@
 #include "./components/distanceSensor/CarDistanceDetector.h"
 #include "./components/led/LedExtTimered.h"
 #include "./components/button/WashingMachineButton.h"
+
+#include <arduino-timer.h>
 
 #include "./state/impls/SleepState.h"
 #include "./state/impls/WelcomeState.h"
@@ -25,27 +29,11 @@
 #include "./state/impls/LeftingState.h"
 #include "./state/impls/AfterWashingDoneState.h"
 
-
-
-
-#include "configs.h"
-
-#include <arduino-timer.h>
-
-
 class ControllerScheduler{
 public:
     ControllerScheduler();
     void init(unsigned long basePeriod);
     void execute();
-
-// private:
-//     StateName actState;
-//     State** myStates;
-//     Timer<1> timer;
-    
-//     Task** myTasks;
-//     int amountTask;
 };
 
 #endif

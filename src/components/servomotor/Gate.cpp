@@ -5,9 +5,11 @@
 Gate::Gate(int pin, bool isActOpen) {
     this->pin = pin; //VALUTA SE ELIMINARMI
     this->actOpen = isActOpen;
-    this->direction = 0;
+
     this->motor.attach(pin);
-    this->period = 100;
+    this->period = SERVO_MOTOR_PERIOD;
+
+    this->stop();
 }
 
 bool Gate::isOpen() {
@@ -33,9 +35,14 @@ void Gate::stop() {
 
 void Gate::tick(){
     int newGrade = this->actGrade + (this->direction * AMOUNT_MOVE);
+
+    #ifdef SERVO_MOTOR_DEBUG
     Serial.print("£££££ " + (String)newGrade);
+    #endif
+    
     this->motor.write(newGrade);
     this->actGrade = newGrade;
+
     this->actOpen = this->actGrade >= MAX_ANGLE;
     this->actClose = this->actGrade <= MIN_ANGLE;
 }
@@ -46,15 +53,3 @@ void Gate::init(){
     this->actGrade = MIN_ANGLE;
     this->motor.write(this->actGrade);
 };
-
-
-
-// bool Gate::updateAndCheckTime(int millis) {
-//     bool res = false;
-//     this->millis += millis;
-//     if (this->millis>period){
-//         res = true;
-//         this->millis = 0;
-//     }
-//     return res;
-// }

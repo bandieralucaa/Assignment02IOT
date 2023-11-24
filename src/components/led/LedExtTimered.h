@@ -4,6 +4,8 @@
 #include "LightExt.h"
 #include "./task/Task.h"
 
+#include "configs.h"
+
 class LedExtTimered : public Task, public LightExt  {
 
 public:
