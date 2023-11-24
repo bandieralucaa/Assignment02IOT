@@ -4,7 +4,7 @@
 ControllerScheduler* myController;
 
 void setup() {
-  Serial.begin(115200);
+  Serial.begin(9600);
   myController = new ControllerScheduler();
   myController->init(50);
 }
