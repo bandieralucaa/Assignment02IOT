@@ -3,9 +3,11 @@
 #include <Arduino.h>
 
 CarDistanceDetector::CarDistanceDetector(int trigPin, int echoPin){
-    this->trigPin = echoPin;
-    this->echoPin = trigPin;
+    this->trigPin = trigPin ;
+    this->echoPin = echoPin;
     this->period = 500;
+    pinMode(trigPin, OUTPUT);
+    pinMode(echoPin, INPUT);  
 }
 
 double CarDistanceDetector::getDistance(){
