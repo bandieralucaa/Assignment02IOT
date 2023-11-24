@@ -22,10 +22,12 @@ ControllerScheduler::ControllerScheduler() {
 
     CarDistanceDetector* sonar = new CarDistanceDetector(SONAR_TRIG,SONAR_ECHO);
 
-    LedExtTimered* blinkLed = new LedExtTimered(BLINKING_LED, 20);
+    LedExtTimered* blinkLed = new LedExtTimered(BLINKING_LED, 5);
 
     int amountTask = 4;
     myTasks = new Task*[amountTask]{(myPir), myGate, sonar, blinkLed};
+    // int amountTask = 1;
+    // myTasks = new Task*[amountTask]{sonar};
     actAmountTask = amountTask;
 
     State* s1 = new SleepState(out, (myPir));
@@ -44,11 +46,11 @@ ControllerScheduler::ControllerScheduler() {
 unsigned long t1 = 0;
 
 bool interuptAppened(void*) {
-    // unsigned long t2 = millis();
-    // unsigned long t3 = t2 - t1;
-    // Serial.print(" ");
-    // Serial.print(t3);
-    // Serial.print("\n");
+    unsigned long t2 = millis();
+    unsigned long t3 = t2 - t1;
+    Serial.print(" ");
+    Serial.print(t3);
+    Serial.print(" <-------------\n");
 
     int i;
     for(i=0; i < actAmountTask; i++) {
@@ -63,7 +65,7 @@ bool interuptAppened(void*) {
         myStates[actState]->init();
     }
     
-    // t1 = t2;
+    t1 = t2;
     return true;
 }
 

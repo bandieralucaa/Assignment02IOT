@@ -6,6 +6,10 @@
 #define LED1_PIN 13
 #define LED2_PIN 12
 
+
+#define SCHEDULE_BASE_PERIOD 500
+
+
 #define SERVO_MOTOR_PIN 9
 
 #define SONAR_ECHO 8

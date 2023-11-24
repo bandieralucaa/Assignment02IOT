@@ -13,7 +13,7 @@ void LedExtTimered::setFading(int newDelta){
 
 void LedExtTimered::updateIntensity(int toUpdate){
     this->actIntensity = toUpdate;
-    setIntensity(this->actIntensity);
+    this->setIntensity(this->actIntensity);
 }
 
 
@@ -26,10 +26,10 @@ void LedExtTimered::init(){
 void LedExtTimered::tick(){
     int inc = this->isIncrease ? 1 : -1;
     int newInt = this->actIntensity + (inc * this->delta);
-    if (newInt > 255){
+    if (newInt >= 255){
         this->isIncrease = false;
         newInt = 255;
-    } else if (newInt < 0){
+    } else if (newInt <= 0){
         this->isIncrease = true;
         newInt = 255;
     }
@@ -55,5 +55,6 @@ void LedExtTimered::setIntensity(int intensity) {
     if (isOn)
     {
         analogWrite(pin, intensity);
+        // Serial.print("\n" + (String)pin + " " + (String)intensity + "\n");
     }
 }

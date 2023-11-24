@@ -27,20 +27,28 @@ void WaitEnteringState::init() {
     this->blinkLed->setFading(5);
     this->blinkLed->init();
 
-    tt = this->clock->every(N2_TIME, isOverTime1);
+    //tt = this->clock->every(N2_TIME, isOverTime1);
 }
 
 
 void WaitEnteringState::flushTimer(){
-    this->clock->cancel(tt);
+    Serial.print("\n");
+    Serial.print(this->clock->size());
+    Serial.print("\n");
+    //this->clock->cancel(tt);
+    Serial.print(this->clock->size());
+    Serial.print("\n");
 }
 
 
 StateName WaitEnteringState::changeState() {
     if (!this->sonar->isUnderMin()){
+        flushTimer();
         return ENTERING_STATE;
     } else  if (isOver) {
-        return SLEEP_STATE;
+        flushTimer();
+        Serial.print("NON VALE\n");
+        return ENTERING_STATE;
     } else {
         return NONE;
     }
