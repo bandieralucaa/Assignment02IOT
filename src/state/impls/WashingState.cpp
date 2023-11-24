@@ -33,7 +33,7 @@ void WashingState::flushTimer(){
 StateName WashingState::changeState() {
     if (isOver) {
         flushTimer();
-        return NONE;
+        return PRE_WASHING_DONE_STATE;
     } else {
         return NONE;
     }

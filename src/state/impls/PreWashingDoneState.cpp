@@ -1,18 +1,18 @@
 
 #include "./components/pir/PIR.h"
 #include "components/outputComponents/OutputManager.h"
-#include "./PreEnteringWashDoneState.h"
+#include "./PreWashingDoneState.h"
 #include <Arduino.h>
 
-PreEnteringWashDoneState::PreEnteringWashDoneState(Gate* myGate){
+PreWashingDoneState::PreWashingDoneState(Gate* myGate){
     this->myGate = myGate;
 }
 
-void PreEnteringWashDoneState::init() {
+void PreWashingDoneState::init() {
     this->myGate->open();
 }
 
-StateName PreEnteringWashDoneState::changeState() {
+StateName PreWashingDoneState::changeState() {
     if (this->myGate->isOpen()){
         this->myGate->stop();
         return NONE;

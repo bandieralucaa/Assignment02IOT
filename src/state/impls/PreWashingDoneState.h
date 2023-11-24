@@ -1,14 +1,14 @@
 #include "./state/State.h"
 #include "./components/servomotor/Gate.h"
 
-class AfterEnteringWashDoneState : public State{
+class PreWashingDoneState : public State {
+
 public:
-    AfterEnteringWashDoneState(Gate* myGate);
+    PreWashingDoneState(Gate* myGate);
     void init();
     StateName changeState();
 
+
 private:
     Gate* myGate;
-
 };
-
