@@ -22,6 +22,7 @@ void* tt;
 void WelcomeState::init() {
     // Serial.print(this->clock->size());
     o->printOut("HELO\n");
+    o->turnOnLed(LED1_PIN);
     isOver = false;
     tt = this->clock->every(N1_TIME, isOverTime);
     // Serial.print(this->clock->size());
@@ -37,13 +38,15 @@ void WelcomeState::flushTimer(){
 }
 
 StateName WelcomeState::changeState() {
-    if (!myPir->isAnyone()) {
+    /*if (!myPir->isAnyone()) {
         flushTimer();
         return SLEEP_STATE;
     } else if (isOver) {
         flushTimer();
-        return PRE_ENTERING_STATE;
     } else {
         return NONE;
-    }
+    }*/
+    o->turnOffLed(LED1_PIN);
+    return PRE_ENTERING_STATE;
+
 };
