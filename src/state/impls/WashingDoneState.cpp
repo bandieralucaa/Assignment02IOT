@@ -3,14 +3,22 @@
 #include "components/led/Led.h"
 #include "Arduino.h"
 
-void WashingDoneState::ledManage(Led led) {
-    led.switchOff();
+WashingDoneState::WashingDoneState(LedExtTimered* blinkLed, CarDistanceDetector* sonar) {
+    this->blinkLed = blinkLed;
+    this->sonar = sonar;
 }
 
+void WashingDoneState::init() {
+    this->blinkLed->switchOff();
+}
 
 StateName WashingDoneState::changeState() {
-    return NONE;
+    if (this->sonar->isAboveMax()){
+        return AFTER_WASHING_DONE_STATE;
+    } else {
+        return NONE;
+    }
     
-};
+}
 
     

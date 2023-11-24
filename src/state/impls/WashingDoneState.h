@@ -1,13 +1,18 @@
 #include "./state/State.h"
-#include "components/led/Led.h"
+
+#include "./components/distanceSensor/CarDistanceDetector.h"
+#include "./components/led/LedExtTimered.h"
 
 class WashingDoneState : public State {
 
 public:
 
-    void ledManage(Led led);
-    StateName changeState();  
+    WashingDoneState(LedExtTimered* blinkLed, CarDistanceDetector* sonar);
+    void init();
+    StateName changeState();
 
 private:
+    LedExtTimered* blinkLed;
+    CarDistanceDetector* sonar;
 
 };
