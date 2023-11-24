@@ -15,6 +15,8 @@
 #define SONAR_ECHO 8
 #define SONAR_TRIG 7
 
+#define BUTT_PIN 4
+
 #define BLINKING_LED 6
 
 #define N1_TIME 3000

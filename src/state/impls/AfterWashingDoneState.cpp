@@ -15,7 +15,7 @@ void AfterWashingDoneState::init() {
 StateName AfterWashingDoneState::changeState() {
     if (this->myGate->isClose()) {
         this->myGate->stop();
-        return NONE;
+        return SLEEP_STATE;
     } else {
         return NONE;
     }

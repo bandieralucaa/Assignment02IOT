@@ -10,12 +10,23 @@
 #include "./components/pir/CarPresenceDetector.h"
 #include "./components/distanceSensor/CarDistanceDetector.h"
 #include "./components/led/LedExtTimered.h"
+#include "./components/button/WashingMachineButton.h"
 
 #include "./state/impls/SleepState.h"
 #include "./state/impls/WelcomeState.h"
 #include "./state/impls/PreEnteringState.h"
 #include "./state/impls/EnteringState.h"
 #include "./state/impls/WaitEnteringState.h"
+#include "./state/impls/AfterEnteringState.h"
+#include "./state/impls/WaitConfirmState.h"
+#include "./state/impls/WashingState.h"
+#include "./state/impls/PreWashingDoneState.h"
+#include "./state/impls/WashingDoneState.h"
+#include "./state/impls/LeftingState.h"
+#include "./state/impls/AfterWashingDoneState.h"
+
+
+
 
 #include "configs.h"
 

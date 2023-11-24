@@ -39,7 +39,7 @@ StateName LeftingState::changeState() {
         return NONE; //WHASING_DONE_STATE
     } else  if (isOver) {
         flushTimer();
-        return AFTER_ENTERING_STATE; //AFTER_WASHING_DONE_STATE
+        return AFTER_WASHING_DONE_STATE; //AFTER_WASHING_DONE_STATE
     } else {
         return NONE;
     }
