@@ -48,7 +48,7 @@ StateName WaitEnteringState::changeState() {
     } else  if (isOver) {
         flushTimer();
         Serial.print("NON VALE\n");
-        return SLEEP_STATE;
+        return AFTER_ENTERING_STATE;
     } else {
         return NONE;
     }

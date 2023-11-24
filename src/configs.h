@@ -19,5 +19,7 @@
 
 #define N1_TIME 3000
 #define N2_TIME 3000
+#define N3_TIME 3000
+#define N4_TIME 3000
 
 #endif

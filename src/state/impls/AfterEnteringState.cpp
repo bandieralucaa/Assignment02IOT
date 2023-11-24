@@ -15,7 +15,7 @@ void AfterEnteringState::init() {
 StateName AfterEnteringState::changeState() {
     if (this->myGate->isClose()) {
         this->myGate->stop();
-        return WAIT_ENTERING_STATE;
+        return WAIT_CONFIRM_STATE;
     } else {
         return NONE;
     }
