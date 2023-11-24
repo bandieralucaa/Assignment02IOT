@@ -33,7 +33,7 @@ void Gate::stop() {
 
 void Gate::tick(){
     int newGrade = this->actGrade + (this->direction * AMOUNT_MOVE);
-    Serial.print("£££££ " + (String)newGrade);
+  //  Serial.print("£££££ " + (String)newGrade);
     this->motor.write(newGrade);
     this->actGrade = newGrade;
     this->actOpen = this->actGrade >= MAX_ANGLE;

@@ -22,7 +22,7 @@ class Task {
 
 protected:
     unsigned long millis=0;
-    unsigned long period = 200;
+    unsigned long period = 300;
     // String name = "";
 };
 

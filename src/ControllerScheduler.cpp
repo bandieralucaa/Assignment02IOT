@@ -36,7 +36,7 @@ ControllerScheduler::ControllerScheduler() {
 
     myStates = new State*[5]{s1, s2, s3, s4, s5};
     
-    actState = SLEEP_STATE;
+    actState = ENTERING_STATE;
     myStates[actState]->init();
 }
 

@@ -22,6 +22,6 @@ StateName PreEnteringState::changeState() {
         this->myGate->stop();
         return ENTERING_STATE;
     } else {
-        return ENTERING_STATE;
+        return NONE;
     }
 };

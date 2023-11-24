@@ -22,7 +22,7 @@ bool isOverTime1(void*){
 }
 
 void WaitEnteringState::init() {
-    Serial.print("WaitEnteringState");
+  //  Serial.print("WaitEnteringState");
     this->blinkLed->switchOn();
     this->blinkLed->setFading(5);
     this->blinkLed->init();
@@ -40,7 +40,8 @@ StateName WaitEnteringState::changeState() {
     if (!this->sonar->isUnderMin()){
         return ENTERING_STATE;
     } else  if (isOver) {
-        return SLEEP_STATE;
+       // Serial.print("non va");
+        return ENTERING_STATE;
     } else {
         return NONE;
     }

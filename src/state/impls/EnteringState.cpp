@@ -8,7 +8,7 @@ EnteringState::EnteringState(LedExtTimered* blinkLed, CarDistanceDetector* sonar
 }
 
 void EnteringState::init() {
-    Serial.print("EnteringState");
+   // Serial.print("EnteringState");
     this->blinkLed->switchOn();
     this->blinkLed->setFading(5);
     this->blinkLed->init();
