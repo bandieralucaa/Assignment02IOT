@@ -9,7 +9,9 @@ enum StateName {
     WELCOME_STATE,
     PRE_ENTERING_STATE,
     ENTERING_STATE,
-    WAIT_ENTERING_STATE
+    WAIT_ENTERING_STATE,
+    A,
+    WAIT_CONFIRM_STATE
 };
 
 class State {

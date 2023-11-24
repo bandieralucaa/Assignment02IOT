@@ -15,9 +15,6 @@ WelcomeState::WelcomeState(OutputManager* o, Pir* awakePir, Timer<3>* clock){
     myPir = awakePir;
     this->o = o;
     this->clock = clock;
-    // this->clock.at(N1_TIME, isOverTime);
-    // this->cooldown = cooldown;
-    
 }
 
 void* tt;

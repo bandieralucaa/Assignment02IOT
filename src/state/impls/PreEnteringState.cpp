@@ -11,8 +11,7 @@ PreEnteringState::PreEnteringState(Gate* myGate){
 }
 
 void PreEnteringState::init() {
-    // timer->init(3000);
-    Serial.print("AHAHAHAH");
+    Serial.print("ççççç\nPreEnteringState\nççççççççççç");
     this->myGate->open();
 }
 

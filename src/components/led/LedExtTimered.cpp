@@ -31,7 +31,7 @@ void LedExtTimered::tick(){
         newInt = 255;
     } else if (newInt <= 0){
         this->isIncrease = true;
-        newInt = 255;
+        newInt = 0;
     }
     updateIntensity(newInt);
 }

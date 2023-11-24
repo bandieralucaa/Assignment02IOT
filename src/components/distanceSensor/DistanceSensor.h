@@ -2,7 +2,7 @@
 #define __DISTANCE_SENSOR__
 
 #define MIN_DIST 0.1
-#define MAX_DIST 2
+#define MAX_DIST 1
 
 class DistanceSensor {
 public:

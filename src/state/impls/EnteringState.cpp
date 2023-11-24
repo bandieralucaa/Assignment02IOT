@@ -15,8 +15,8 @@ void EnteringState::init() {
 }
 
 StateName EnteringState::changeState() {
-    if (this->sonar->isUnderMin()){
-        return NONE;
+    if (this->sonar->isUnderMin()) {
+        return WAIT_ENTERING_STATE;
     } else {
         return NONE;
     }

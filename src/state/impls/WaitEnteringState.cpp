@@ -27,7 +27,7 @@ void WaitEnteringState::init() {
     this->blinkLed->setFading(5);
     this->blinkLed->init();
 
-    //tt = this->clock->every(N2_TIME, isOverTime1);
+    tt = this->clock->every(N2_TIME, isOverTime1);
 }
 
 
@@ -35,7 +35,7 @@ void WaitEnteringState::flushTimer(){
     Serial.print("\n");
     Serial.print(this->clock->size());
     Serial.print("\n");
-    //this->clock->cancel(tt);
+    this->clock->cancel(tt);
     Serial.print(this->clock->size());
     Serial.print("\n");
 }
@@ -48,7 +48,7 @@ StateName WaitEnteringState::changeState() {
     } else  if (isOver) {
         flushTimer();
         Serial.print("NON VALE\n");
-        return ENTERING_STATE;
+        return SLEEP_STATE;
     } else {
         return NONE;
     }
