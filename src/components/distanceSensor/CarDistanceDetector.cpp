@@ -3,6 +3,8 @@
 #include <Arduino.h>
 
 CarDistanceDetector::CarDistanceDetector(int trigPin, int echoPin){
+    pinMode(trigPin, OUTPUT); 
+    pinMode(echoPin, INPUT); 
     this->trigPin = trigPin;
     this->echoPin = echoPin;
     this->period = 150;
@@ -28,9 +30,8 @@ double CarDistanceDetector::getDistance(){
    // Serial.println(tUS);
     float t = tUS / 1000.0 / 1000.0 / 2;
     float d = t*vs;
-    Serial.print(" ############ ");
-    Serial.println(d);
-    delay(500);
+    // Serial.print(" ############ ");
+    // Serial.println(d);
     return d;
 }
 
