@@ -69,9 +69,9 @@ bool interuptAppened(void*) {
 
 void ControllerScheduler::init(unsigned long basePeriod) {
     bPeriod = basePeriod;
-    Serial.print(timer.size());
+ //   Serial.print(timer.size());
     timer.every(basePeriod, interuptAppened);
-    Serial.print(timer.size());
+ //   Serial.print(timer.size());
     Serial.print("****** init controller scheduler");
 }
 

@@ -25,11 +25,12 @@ double CarDistanceDetector::getDistance(){
     /* Receiving the echo */
 
     float tUS = pulseIn(this->echoPin, HIGH);
-    Serial.println(tUS);
+   // Serial.println(tUS);
     float t = tUS / 1000.0 / 1000.0 / 2;
     float d = t*vs;
     Serial.print(" ############ ");
     Serial.println(d);
+    delay(500);
     return d;
 }
 
