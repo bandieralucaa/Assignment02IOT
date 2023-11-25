@@ -1,22 +1,16 @@
-// #ifndef __COOLDOWN__
-// #define __COOLDOWN__
+#ifndef __COOLDOWN__
+#define __COOLDOWN__
 
-// #include "./task/Timer.h"
 
-// class Cooldown : Timer{
-//     public:
-//         Cooldown(unsigned long clock);
-//         bool isOver();
-//         Cooldown* reset();
-//         Cooldown* format(unsigned long newClock);
-//         void stop();
-//         Cooldown* resume();
+class Cooldown {
+    public:
+        //Cooldown(unsigned long clock);
+        virtual bool isOver() = 0;
+        virtual Cooldown* reset()= 0;
+        virtual Cooldown* format(unsigned long newClock) = 0;
+        virtual void stop() = 0;
+        virtual Cooldown* resume() = 0;
+        virtual int percentageComplete() = 0;
+};
 
-//     private:
-//         unsigned long amountTime;
-//         unsigned long initTime;
-//         unsigned long stopTime;
-//         bool isStopped= false;
-// };
-
-// #endif
+#endif

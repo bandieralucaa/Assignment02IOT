@@ -8,7 +8,7 @@ void WaitConfirmState::init(){};
 
 StateName WaitConfirmState::changeState(){
     if (this->button->isPressed()){
-        return SLEEP_STATE;
+        return WASHING_STATE;
     } else {
         return NONE;
     }

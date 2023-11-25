@@ -14,7 +14,7 @@ void WashingDoneState::init() {
 
 StateName WashingDoneState::changeState() {
     if (this->sonar->isAboveMax()){
-        return AFTER_WASHING_DONE_STATE;
+        return LEFTING_STATE;
     } else {
         return NONE;
     }

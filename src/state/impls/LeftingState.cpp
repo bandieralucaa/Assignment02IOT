@@ -36,7 +36,7 @@ void LeftingState::flushTimer(){
 StateName LeftingState::changeState() {
     if (!this->sonar->isAboveMax()){
         flushTimer();
-        return NONE; //WHASING_DONE_STATE
+        return WASHING_DONE_STATE; //WHASING_DONE_STATE
     } else  if (isOver) {
         flushTimer();
         return AFTER_WASHING_DONE_STATE; //AFTER_WASHING_DONE_STATE

@@ -15,7 +15,7 @@ void PreWashingDoneState::init() {
 StateName PreWashingDoneState::changeState() {
     if (this->myGate->isOpen()){
         this->myGate->stop();
-        return NONE;
+        return WASHING_DONE_STATE;
     } else {
         return NONE;
     }

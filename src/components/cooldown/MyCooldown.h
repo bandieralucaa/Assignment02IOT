@@ -4,6 +4,9 @@
 #include "./components/cooldown/Cooldown.h"
 #include "./task/Task.h"
 
+// #include "./.codespellrc"
+
+
 class MyCooldown : public Task, public Cooldown {
     public:
         MyCooldown(unsigned long clock);

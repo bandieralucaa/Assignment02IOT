@@ -25,7 +25,7 @@
 
 #define N1_TIME 3000
 #define N2_TIME 3000
-#define N3_TIME 3000
+#define N3_TIME 10000
 #define N4_TIME 3000
 
 /* ### ### ### ### ### ### ### ### */
@@ -47,15 +47,15 @@
 
 /* ### DEBUGGING VARIABLE ### */
 
-//#define DEBUG
+#define DEBUG
 #ifdef DEBUG
 
-#define SCHEDULER_INIT_PHASE
-#define SCHEDULER_PERIOD_DEBUG
+//#define SCHEDULER_INIT_PHASE
+//#define SCHEDULER_PERIOD_DEBUG
 
-#define PIR_DEBUG
-#define SERVO_MOTOR_DEBUG
-#define SONAR_DEBUG
+#define PIR_DEBUG //valuta se eliminarmi
+//#define SERVO_MOTOR_DEBUG
+//#define SONAR_DEBUG
 
 #define STATE_CHANGE_DEBUG //TODO
 
