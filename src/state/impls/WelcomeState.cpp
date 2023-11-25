@@ -46,4 +46,5 @@ StateName WelcomeState::changeState() {
     } else {
         return NONE;
     }
+
 };
