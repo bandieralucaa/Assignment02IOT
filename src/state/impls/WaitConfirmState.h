@@ -1,12 +1,12 @@
 #include "./state/State.h"
-#include "./components/button/WashingMachineButton.h"
+#include "./components/button/Button.h"
 
 class WaitConfirmState : public State {
 public:
-    WaitConfirmState(WashingMachineButton* b);
+    WaitConfirmState(Button* b);
     void init();
     StateName changeState();
     
 private:
-    WashingMachineButton* button;
+    Button* button;
 };

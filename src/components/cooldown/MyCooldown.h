@@ -1,7 +1,7 @@
 #ifndef __MY_COOLDOWN__
 #define __MY_COOLDOWN__
 
-#include "./components/cooldown/Cooldown.h"
+#include "./components/cooldown/OLDCooldown.h"
 #include "./task/Task.h"
 
 // #include "./.codespellrc"

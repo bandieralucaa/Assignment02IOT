@@ -11,8 +11,8 @@ bool isOverTime(void*){
     return true;
 }
 
-WelcomeState::WelcomeState(OutputManager* o, Pir* awakePir, Timer<3>* clock){
-    myPir = awakePir;
+WelcomeState::WelcomeState(OutputManager* o, Pir* awakePir, Cooldown* clock){
+    this->myPir = awakePir;
     this->o = o;
     this->clock = clock;
 }
@@ -20,28 +20,33 @@ WelcomeState::WelcomeState(OutputManager* o, Pir* awakePir, Timer<3>* clock){
 void* tt;
 
 void WelcomeState::init() {
-    // Serial.print(this->clock->size());
+    #ifdef STATE_CHANGE_DEBUG
     o->printOut("HELO\n");
-    isOver = false;
-    tt = this->clock->every(N1_TIME, isOverTime);
+    #endif
+
+    this->clock->format(N1_TIME);
+
+    //isOver = false;
+    //tt = this->clock->every(N1_TIME, isOverTime);
     // Serial.print(this->clock->size());
 }
 
-void WelcomeState::flushTimer(){
-    // Serial.print("\n");
-    // Serial.print(this->clock->size());
-    // Serial.print("\n");
-    this->clock->cancel(tt);
-    // Serial.print(this->clock->size());
-    // Serial.print("\n");
-}
+// void WelcomeState::flushTimer(){
+//     // Serial.print("\n");
+//     // Serial.print(this->clock->size());
+//     // Serial.print("\n");
+//     this->clock->cancel(tt);
+//     // Serial.print(this->clock->size());
+//     // Serial.print("\n");
+// }
 
 StateName WelcomeState::changeState() {
     if (!myPir->isAnyone()) {
-        flushTimer();
+        //flushTimer();
         return SLEEP_STATE;
-    } else if (isOver) {
-        flushTimer();
+    } else if (this->clock->isOver()) {
+        //flushTimer();
+        this->clock->pause();
         return PRE_ENTERING_STATE;
     } else {
         return NONE;

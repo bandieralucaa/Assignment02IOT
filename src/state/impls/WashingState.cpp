@@ -4,19 +4,22 @@
 
 static volatile bool isOver;
 
-WashingState::WashingState(Timer<3>* clock){
+WashingState::WashingState(TemperatureSensor* tempSens, Cooldown* clock){
+    this->tempSens = tempSens;
     this->clock = clock;
 }
 
-static void* tt;
+// static void* tt;
 
-bool isOverTime2(void*){
-    isOver = true;
-    return true;
-}
+// bool isOverTime2(void*){
+//     isOver = true;
+//     return true;
+// }
 
 void WashingState::init() {
-    tt = this->clock->every(N3_TIME, isOverTime2);
+    Serial.println("Washing state");
+    this->clock->format(N3_TIME);
+    //tt = this->clock->every(N3_TIME, isOverTime2);
 }
 
 
@@ -24,15 +27,17 @@ void WashingState::flushTimer(){
     // Serial.print("\n");
     // Serial.print(this->clock->size());
     // Serial.print("\n");
-    this->clock->cancel(tt);
+    //this->clock->cancel(tt);
     // Serial.print(this->clock->size());
     // Serial.print("\n");
 }
 
 
 StateName WashingState::changeState() {
-    if (isOver) {
-        flushTimer();
+    if(this->tempSens->isOverHeat()) {
+        return WARNING_STATE;
+    } else if (this->clock->isOver()) {
+        //flushTimer();
         return PRE_WASHING_DONE_STATE;
     } else {
         return NONE;

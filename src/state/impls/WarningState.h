@@ -4,9 +4,9 @@
 #include "./components/cooldown/Cooldown.h"
 //#include <arduino-timer.h>
 
-class WashingState : public State {
+class WarningState : public State {
 public:
-    WashingState(TemperatureSensor* tempSens, Cooldown* clock);
+    WarningState(TemperatureSensor* tempSens, Cooldown* clock);
     void init();
     StateName changeState(); 
 

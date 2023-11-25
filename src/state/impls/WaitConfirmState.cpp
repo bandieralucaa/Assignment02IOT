@@ -1,6 +1,6 @@
 #include "WaitConfirmState.h"
 
-WaitConfirmState::WaitConfirmState(WashingMachineButton* b){
+WaitConfirmState::WaitConfirmState(Button* b){
     this->button = b;
 }
 

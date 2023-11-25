@@ -18,6 +18,8 @@
 
 #define BLINKING_LED 6
 
+#define TEMPERATURE_SENSOR_PIN A0
+
 /* ### ### ### ### ### ### ### ### */
 
 
@@ -55,7 +57,8 @@
 
 #define PIR_DEBUG //valuta se eliminarmi
 //#define SERVO_MOTOR_DEBUG
-//#define SONAR_DEBUG
+#define SONAR_DEBUG
+#define TEMP_DEBUG
 
 #define STATE_CHANGE_DEBUG //TODO
 

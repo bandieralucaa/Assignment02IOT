@@ -13,8 +13,13 @@
 #include "./components/distanceSensor/CarDistanceDetector.h"
 #include "./components/led/LedExtTimered.h"
 #include "./components/button/WashingMachineButton.h"
+#include "./components/temperature/TemperatureSensor.h"
+#include "./components/cooldown/Cooldown.h"
 
-#include <arduino-timer.h>
+
+//#include <arduino-timer.h>
+
+
 
 #include "./state/impls/SleepState.h"
 #include "./state/impls/WelcomeState.h"
@@ -28,6 +33,9 @@
 #include "./state/impls/WashingDoneState.h"
 #include "./state/impls/LeftingState.h"
 #include "./state/impls/AfterWashingDoneState.h"
+
+#include "./state/impls/WarningState.h"
+#include "./state/impls/HotState.h"
 
 class ControllerScheduler{
 public:
