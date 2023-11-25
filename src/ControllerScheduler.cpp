@@ -35,6 +35,8 @@ ControllerScheduler::ControllerScheduler() {
 
     Cooldown* washingCooldown = new Cooldown(N3_TIME);
 
+    Cooldown* globalCooldown = new Cooldown(N1_TIME);
+
     int amountTask = 5;
     myTasks = new Task*[amountTask]{(myPir), myGate, sonar, blinkLed, butt};
     // int amountTask = 1;
@@ -43,18 +45,18 @@ ControllerScheduler::ControllerScheduler() {
 
     State* s1 = new SleepState(out, (myPir));
     //State* s2 = new WelcomeState(out, (myPir), &timer);
-    State* s2 = new WelcomeState(out, myPir, washingCooldown);
+    State* s2 = new WelcomeState(out, myPir, globalCooldown);
     State* s3 = new PreEnteringState(myGate);
     State* s4 = new EnteringState(blinkLed,sonar);
-    State* s5 = new WaitEnteringState(blinkLed, sonar, washingCooldown);
+    State* s5 = new WaitEnteringState(blinkLed, sonar, globalCooldown);
     State* s6 = new AfterEnteringState(myGate);
     State* s7 = new WaitConfirmState(butt);
     State* s8 = new WashingState(tS, washingCooldown);
     State* s9 = new PreWashingDoneState(myGate);
     State* s10 = new WashingDoneState(blinkLed, sonar);
-    State* s11 = new LeftingState(sonar, washingCooldown);
+    State* s11 = new LeftingState(sonar, globalCooldown);
     State* s12 = new AfterWashingDoneState(myGate);
-    State* s13 = new WarningState(tS, washingCooldown);
+    State* s13 = new WarningState(tS, globalCooldown);
     State* s14 = new HotState(butt);
 
     myStates = new State*[14]{s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, s11, s12, s13, s14};

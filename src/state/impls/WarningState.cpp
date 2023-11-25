@@ -40,7 +40,7 @@ StateName WarningState::changeState() {
     if (!this->tempSens->isOverHeat()){
         //flushTimer();
         return WASHING_STATE;
-    } else  if (this->clock->isOver()) {
+    } else if (this->clock->isOver()) {
         //flushTimer();
         return HOT_STATE;
     } else {

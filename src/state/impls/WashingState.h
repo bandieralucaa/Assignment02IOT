@@ -13,5 +13,5 @@ public:
 private:
     TemperatureSensor* tempSens;
     Cooldown* clock;
-    void flushTimer();
+    bool startNewWash;
 };

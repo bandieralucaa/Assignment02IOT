@@ -57,7 +57,7 @@
 
 #define PIR_DEBUG //valuta se eliminarmi
 //#define SERVO_MOTOR_DEBUG
-#define SONAR_DEBUG
+//#define SONAR_DEBUG
 #define TEMP_DEBUG
 
 #define STATE_CHANGE_DEBUG //TODO
