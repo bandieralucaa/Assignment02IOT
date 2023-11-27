@@ -11,15 +11,18 @@ bool isOverTime(void*){
     return true;
 }
 
-WelcomeState::WelcomeState(OutputManager* o, Pir* awakePir, Cooldown* clock){
+WelcomeState::WelcomeState(OutputManager* o, Pir* awakePir, Cooldown* clock, LcdMonitor* lcd){
     this->myPir = awakePir;
     this->o = o;
     this->clock = clock;
+    this->lcd = lcd;
 }
 
 void* tt;
 
 void WelcomeState::init() {
+    
+    this->lcd->writeOnLcd(WELCOME_STRING);
     #ifdef STATE_CHANGE_DEBUG
     o->printOut("HELO\n");
     #endif
@@ -43,9 +46,11 @@ void WelcomeState::init() {
 StateName WelcomeState::changeState() {
     if (!myPir->isAnyone()) {
         //flushTimer();
+        this->lcd->clear();
         return SLEEP_STATE;
     } else if (this->clock->isOver()) {
         //flushTimer();
+        this->lcd->clear();
         this->clock->pause();
         return PRE_ENTERING_STATE;
     } else {

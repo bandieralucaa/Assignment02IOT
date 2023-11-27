@@ -26,11 +26,35 @@ void initProgBar(){
 }
 
 MyLcdMonitor::MyLcdMonitor(){
+    this->lcd.begin(AMOUNT_COLS, 2);
+    initProgBar();
+    this->lcd.display();
+    //Serial.print("ONE");
     this->goBackNormal();
+    //Serial.print("TWO");
+}
+
+void MyLcdMonitor::myPrint(){
+    int i,j;
+    for (i = 0; i<AMOUNT_ROWS; i++){
+        for(j=0; j<AMOUNT_COLS; j++){
+            char c = this->actString[i*(AMOUNT_COLS)+j];
+            if (c != '\0'){
+                this->lcd.setCursor(j,i);
+                this->lcd.print(c);
+            } else {
+                i=AMOUNT_ROWS;
+                j=AMOUNT_COLS;
+            }
+        }
+    }
 }
 
 void MyLcdMonitor::writeOnLcd(char* toWrite){
     this->actString = toWrite;
+    this->lcd.setCursor(0,0);
+    this->myPrint();
+    //this->lcd.print(toWrite);
     ///////
 }
 
@@ -55,8 +79,9 @@ void MyLcdMonitor::goBackNormal(){
     this->lcd.setRGB(0,255,0);
 }
 
-void MyLcdMonitor::printProgBar(int percentage){
-    int amount = percentage * AMOUNT_BARS / MAX_VALUE;
+void MyLcdMonitor::printProgBar(int percentage) {
+    this->lcd.setCursor(PROG_BAR_COLS, PROG_BAR_ROW);
+    int amount = -(int) ((percentage *1.0)  * (((AMOUNT_BARS)*1.0) / ((MAX_VALUE)*1.0)));
     int i; 
     for (i = START_BAR_INDEX; i<=amount; i++){
         progressBar[i] = FULL_CHAR;
@@ -64,4 +89,6 @@ void MyLcdMonitor::printProgBar(int percentage){
     for (i = amount+1; i< (AMOUNT_BARS + START_BAR_INDEX); i++){
         progressBar[i] = EMPTY_CHAR;
     }
+    this->lcd.print(progressBar);
+    delay(50);
 }

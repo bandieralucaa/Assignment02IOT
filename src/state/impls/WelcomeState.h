@@ -3,18 +3,20 @@
 #include "./components/pir/PIR.h"
 #include "./components/outputComponents/OutputManager.h"
 #include "./components/cooldown/Cooldown.h"
+#include "./components/lcd/LcdMonitor.h"
 //#include <arduino-timer.h>
 #include "configs.h"
 
 class WelcomeState : public State {
 public:
-    WelcomeState(OutputManager* o, Pir* awakePir, Cooldown* clock);
+    WelcomeState(OutputManager* o, Pir* awakePir, Cooldown* clock, LcdMonitor* lcd);
     void init();
     StateName changeState();
 private:
     Pir* myPir;
     OutputManager* o;
     Cooldown* clock;
+    LcdMonitor* lcd;
     //void flushTimer();
     // Timer<1> clock;
     // Timer* cooldown;

@@ -37,6 +37,9 @@ ControllerScheduler::ControllerScheduler() {
 
     Cooldown* globalCooldown = new Cooldown(N1_TIME);
 
+    Led* l1 = new Led(LED1_PIN);
+    Led* l2 = new Led(LED2_PIN);
+
 
     MyLcdMonitor* lcd = new MyLcdMonitor();
     //lcd->turnOn();
@@ -49,7 +52,7 @@ ControllerScheduler::ControllerScheduler() {
 
     State* s1 = new SleepState(out, (myPir));
     //State* s2 = new WelcomeState(out, (myPir), &timer);
-    State* s2 = new WelcomeState(out, myPir, globalCooldown);
+    State* s2 = new WelcomeState(out, myPir, globalCooldown, lcd);
     State* s3 = new PreEnteringState(myGate);
     State* s4 = new EnteringState(blinkLed,sonar);
     State* s5 = new WaitEnteringState(blinkLed, sonar, globalCooldown);

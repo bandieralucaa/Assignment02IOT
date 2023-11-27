@@ -2,8 +2,6 @@
 #define __LCD__
 
 #define MAX_VALUE 100
-#define PROG_BAR_ROW 1
-#define PRG_BAR_COLS 0
 
 class LcdMonitor{
 public:

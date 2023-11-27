@@ -4,7 +4,7 @@
 
 static volatile bool isOver;
 
-WashingState::WashingState(TemperatureSensor* tempSens, Cooldown* clock, MyLcdMonitor* lcd){
+WashingState::WashingState(TemperatureSensor* tempSens, Cooldown* clock, LcdMonitor* lcd){
     this->tempSens = tempSens;
     this->clock = clock;
     this->lcd = lcd;
@@ -53,4 +53,5 @@ StateName WashingState::changeState() {
         #endif
         return NONE;
     }
+    delay(1000);
 };

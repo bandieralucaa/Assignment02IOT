@@ -38,12 +38,16 @@ void LeftingState::flushTimer(){
 
 StateName LeftingState::changeState() {
     if (!this->sonar->isAboveMax()){
+        
         //flushTimer();
         return WASHING_DONE_STATE; //WHASING_DONE_STATE
     } else  if (this->clock->isOver()) {
         //flushTimer();
         return AFTER_WASHING_DONE_STATE; //AFTER_WASHING_DONE_STATE
     } else {
+        #ifdef SONAR_DEBUG_LEFTING
+        Serial.println("---> " + (String) this->sonar->getDistance());
+        #endif
         return NONE;
     }
 };

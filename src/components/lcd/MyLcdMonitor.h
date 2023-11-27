@@ -5,6 +5,9 @@
 #include "./task/Task.h"
 #include "rgb_lcd.h"
 
+#define PROG_BAR_ROW 1
+#define PROG_BAR_COLS 0
+
 class MyLcdMonitor : public LcdMonitor{
 public:
 
@@ -21,6 +24,7 @@ public:
     void printProgBar(int percentage);
 
 private:
+    void myPrint();
     char* actString;
     rgb_lcd lcd;
 

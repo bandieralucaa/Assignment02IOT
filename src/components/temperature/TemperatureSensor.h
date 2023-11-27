@@ -4,7 +4,7 @@
 
 #include <Arduino.h>
 
-#define DANGEROUS_TEMP 25.0
+#define DANGEROUS_TEMP 30.0
 
 class TemperatureSensor{
 public:

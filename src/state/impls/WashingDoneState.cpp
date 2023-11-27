@@ -16,6 +16,9 @@ StateName WashingDoneState::changeState() {
     if (this->sonar->isAboveMax()){
         return LEFTING_STATE;
     } else {
+        #ifdef SONAR_DEBUG_LEFTING
+        Serial.println("---> " + (String) this->sonar->getDistance());
+        #endif
         return NONE;
     }
     
