@@ -5,9 +5,11 @@
 
 static volatile bool isOver;
 
-WarningState::WarningState(TemperatureSensor* tSens, Cooldown* clock){
-    this->tempSens = tSens;
-    this->clock = clock;
+WarningState::WarningState(TemperatureSensor* tempSens, Cooldown* globalClock, Cooldown* washingClock){
+    this->tempSens = tempSens;
+    this->globalClock = globalClock;
+    this->washingClock = washingClock;
+
 }
 
 // static void* tt;
@@ -21,7 +23,7 @@ void WarningState::init() {
     #ifdef STATE_CHANGE_DEBUG
     Serial.print("WarningState");
     #endif
-    this->clock->format(N4_TIME);
+    this->globalClock->format(N4_TIME);
     //tt = this->clock->every(N2_TIME, isOverTime1);
 }
 
@@ -40,8 +42,9 @@ StateName WarningState::changeState() {
     if (!this->tempSens->isOverHeat()){
         //flushTimer();
         return WASHING_STATE;
-    } else if (this->clock->isOver()) {
+    } else if (this->globalClock->isOver()) {
         //flushTimer();
+        this->washingClock->pause();
         return HOT_STATE;
     } else {
         return NONE;

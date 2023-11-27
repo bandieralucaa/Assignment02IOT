@@ -2,19 +2,19 @@
 
 #include "Arduino.h"
 
-static volatile bool isOver;
+// static volatile bool isOver;
 
 LeftingState::LeftingState(CarDistanceDetector* sonar, Cooldown* clock){
     this->sonar = sonar;
     this->clock = clock;
 }
 
-static void* tt;
+// static void* tt;
 
-bool isOverTime3(void*){
-    isOver = true;
-    return true;
-}
+// bool isOverTime3(void*){
+//     isOver = true;
+//     return true;
+// }
 
 void LeftingState::init() {
     #ifdef STATE_CHANGE_DEBUG

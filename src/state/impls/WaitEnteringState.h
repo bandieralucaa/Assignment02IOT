@@ -8,12 +8,11 @@
 
 class WaitEnteringState : public State {
 public:
-    WaitEnteringState(LedExtTimered* blinkLed, CarDistanceDetector* sonar, Cooldown* clock);
+    WaitEnteringState(CarDistanceDetector* sonar, Cooldown* clock);
     void init();
     StateName changeState(); 
 
 private:
-    LedExtTimered* blinkLed;
     CarDistanceDetector* sonar;
     Cooldown* clock;
     void flushTimer();

@@ -25,18 +25,26 @@ void LedExtTimered::init(){
 
 
 void LedExtTimered::tick(){
+    if (!this->isBlinking){
+        return;
+    }
     int inc = this->isIncrease ? 1 : -1;
     int newInt = this->actIntensity + (inc * this->delta);
-    if (newInt >= 255){
+    if (newInt >= MAX_INTENSITY){
         this->isIncrease = false;
-        newInt = 255;
-    } else if (newInt <= 0){
+        newInt = MAX_INTENSITY;
+    } else if (newInt <= MIN_INTENSITY){
         this->isIncrease = true;
-        newInt = 0;
+        newInt = MIN_INTENSITY;
     }
     updateIntensity(newInt);
 }
     
+
+
+void LedExtTimered::canBlink(bool canBlink){
+    this->isBlinking = canBlink;
+}
 
 
 
@@ -45,6 +53,8 @@ void LedExtTimered::tick(){
 void LedExtTimered::switchOn() {
     digitalWrite(pin, HIGH);
     isOn = true;
+    this->setIntensity(MAX_INTENSITY);
+    this->isIncrease = false;
 }
 
 void LedExtTimered::switchOff() {

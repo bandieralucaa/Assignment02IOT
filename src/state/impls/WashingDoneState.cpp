@@ -1,7 +1,9 @@
-#include "components/outputComponents/OutputManager.h"
 #include "./WashingDoneState.h"
 #include "components/led/Led.h"
+
+#ifdef DEBUG
 #include "Arduino.h"
+#endif
 
 WashingDoneState::WashingDoneState(LedExtTimered* blinkLed, CarDistanceDetector* sonar) {
     this->blinkLed = blinkLed;
@@ -9,6 +11,9 @@ WashingDoneState::WashingDoneState(LedExtTimered* blinkLed, CarDistanceDetector*
 }
 
 void WashingDoneState::init() {
+    #ifdef STATE_CHANGE_DEBUG
+    Serial.println("WashingDoneState");
+    #endif
     this->blinkLed->switchOff();
 }
 

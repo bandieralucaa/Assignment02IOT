@@ -8,7 +8,6 @@
 
 #include "./task/Task.h"
 #include "./state/State.h"
-#include "./components/outputComponents/OutputManager.h"
 #include "./components/pir/CarPresenceDetector.h"
 #include "./components/distanceSensor/CarDistanceDetector.h"
 #include "./components/led/LedExtTimered.h"

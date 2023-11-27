@@ -1,33 +1,28 @@
-
-
-
-#include "components/outputComponents/OutputManager.h"
 #include "./state/impls/WaitEnteringState.h"
 
 #include "Arduino.h"
 
-static volatile bool isOver;
+// static volatile bool isOver;
 
-WaitEnteringState::WaitEnteringState(LedExtTimered* blinkLed, CarDistanceDetector* sonar, Cooldown* clock){
-    this->blinkLed = blinkLed;
+WaitEnteringState::WaitEnteringState(CarDistanceDetector* sonar, Cooldown* clock){
     this->sonar = sonar;
     this->clock = clock;
 }
 
-static void* tt;
+// static void* tt;
 
-bool isOverTime1(void*){
-    isOver = true;
-    return true;
-}
+// bool isOverTime1(void*){
+//     isOver = true;
+//     return true;
+// }
 
 void WaitEnteringState::init() {
     #ifdef STATE_CHANGE_DEBUG
     Serial.print("WaitEnteringState");
     #endif
-    this->blinkLed->switchOn();
-    this->blinkLed->setFading(5);
-    this->blinkLed->init();
+    // this->blinkLed->switchOn();
+    // this->blinkLed->setFading(5);
+    // this->blinkLed->init();
 
     this->clock->format(N2_TIME);
     //tt = this->clock->every(N2_TIME, isOverTime1);

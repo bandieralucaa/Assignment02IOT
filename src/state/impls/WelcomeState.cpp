@@ -1,6 +1,6 @@
 
 #include "./components/pir/PIR.h"
-#include "components/outputComponents/OutputManager.h"
+#include "components/led/Led.h"
 #include "./state/impls/WelcomeState.h"
 #include <Arduino.h>
 
@@ -11,9 +11,9 @@ bool isOverTime(void*){
     return true;
 }
 
-WelcomeState::WelcomeState(OutputManager* o, Pir* awakePir, Cooldown* clock, LcdMonitor* lcd){
+WelcomeState::WelcomeState(Pir* awakePir, Cooldown* clock, LcdMonitor* lcd, Led* l1){
     this->myPir = awakePir;
-    this->o = o;
+    this->l1 = l1;
     this->clock = clock;
     this->lcd = lcd;
 }
@@ -21,10 +21,12 @@ WelcomeState::WelcomeState(OutputManager* o, Pir* awakePir, Cooldown* clock, Lcd
 void* tt;
 
 void WelcomeState::init() {
-    
+    this->lcd->turnOn();
     this->lcd->writeOnLcd(WELCOME_STRING);
+    l1->switchOn();
+
     #ifdef STATE_CHANGE_DEBUG
-    o->printOut("HELO\n");
+    Serial.println("WelcomeState ");
     #endif
 
     this->clock->format(N1_TIME);

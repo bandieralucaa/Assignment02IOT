@@ -1,15 +1,20 @@
-#include "./components/pir/PIR.h"
-#include "./components/outputComponents/OutputManager.h"
 #include "./AfterWashingDoneState.h"
-#include <Arduino.h>
 
-AfterWashingDoneState::AfterWashingDoneState(Gate* myGate) {
+#ifdef DEBUG
+#include <Arduino.h>
+#endif
+
+AfterWashingDoneState::AfterWashingDoneState(Gate* myGate, Light* l2) {
     this->myGate = myGate;
+    this->l2 = l2;
 }
 
 void AfterWashingDoneState::init() {
-    Serial.println("CHIUDI GATE");
+    #ifdef STATE_CHANGE_DEBUG
+    Serial.println("AfterWashingDoneState");
+    #endif
     this->myGate->close();
+    this->l2->switchOff();
 }
 
 StateName AfterWashingDoneState::changeState() {

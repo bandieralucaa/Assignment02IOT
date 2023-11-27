@@ -1,13 +1,16 @@
 #include "WashingState.h"
 
+#ifdef DEBUG
 #include "Arduino.h"
+#endif
 
-static volatile bool isOver;
+//static volatile bool isOver;
 
-WashingState::WashingState(TemperatureSensor* tempSens, Cooldown* clock, LcdMonitor* lcd){
+WashingState::WashingState(TemperatureSensor* tempSens, Cooldown* clock, LcdMonitor* lcd, LedExtTimered* blink){
     this->tempSens = tempSens;
     this->clock = clock;
     this->lcd = lcd;
+    this->blink = blink;
 }
 
 // static void* tt;
@@ -18,9 +21,14 @@ WashingState::WashingState(TemperatureSensor* tempSens, Cooldown* clock, LcdMoni
 // }
 
 void WashingState::init() {
+    #ifdef STATE_CHANGE_DEBUG
     Serial.println("Washing state");
+    #endif
     startNewWash ? this->clock->format(N3_TIME) : this->clock->resume();
     startNewWash = false;
+    this->blink->canBlink(true);
+    this->blink->setFading(BLINK_DELTA_2);
+    this->lcd->clear();
     //tt = this->clock->every(N3_TIME, isOverTime2);
 }
 
@@ -53,5 +61,5 @@ StateName WashingState::changeState() {
         #endif
         return NONE;
     }
-    delay(1000);
+    //delay(1000);
 };

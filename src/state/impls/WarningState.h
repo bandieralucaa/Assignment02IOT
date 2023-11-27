@@ -6,12 +6,13 @@
 
 class WarningState : public State {
 public:
-    WarningState(TemperatureSensor* tempSens, Cooldown* clock);
+    WarningState(TemperatureSensor* tempSens, Cooldown* globalClock, Cooldown* washingClock);
     void init();
     StateName changeState(); 
 
 private:
     TemperatureSensor* tempSens;
-    Cooldown* clock;
+    Cooldown* globalClock;
+    Cooldown* washingClock;
     void flushTimer();
 };

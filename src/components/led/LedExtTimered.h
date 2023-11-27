@@ -6,6 +6,9 @@
 
 #include "configs.h"
 
+#define MAX_INTENSITY 255
+#define MIN_INTENSITY 0
+
 class LedExtTimered : public Task, public LightExt  {
 
 public:
@@ -19,12 +22,15 @@ public:
     void switchOff();
 
     void setIntensity(int intensity);
+
+    void canBlink(bool canBlink);
     
 private:
     void updateIntensity(int toUpdate);
     int delta;
     bool isIncrease;
     int actIntensity;
+    bool isBlinking;
 
     bool isOn;
     int pin;
