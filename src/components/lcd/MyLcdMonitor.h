@@ -18,7 +18,7 @@ public:
     void raiseError();
     void goBackNormal();
 
-    virtual void printProgBar(int percentage) = 0;
+    void printProgBar(int percentage);
 
 private:
     char* actString;

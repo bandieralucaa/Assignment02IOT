@@ -55,7 +55,7 @@ void MyLcdMonitor::goBackNormal(){
     this->lcd.setRGB(0,255,0);
 }
 
-void printProgBar(int percentage){
+void MyLcdMonitor::printProgBar(int percentage){
     int amount = percentage * AMOUNT_BARS / MAX_VALUE;
     int i; 
     for (i = START_BAR_INDEX; i<=amount; i++){

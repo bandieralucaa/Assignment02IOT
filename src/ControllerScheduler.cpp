@@ -37,6 +37,10 @@ ControllerScheduler::ControllerScheduler() {
 
     Cooldown* globalCooldown = new Cooldown(N1_TIME);
 
+
+    MyLcdMonitor* lcd = new MyLcdMonitor();
+    //lcd->turnOn();
+
     int amountTask = 5;
     myTasks = new Task*[amountTask]{(myPir), myGate, sonar, blinkLed, butt};
     // int amountTask = 1;
@@ -51,7 +55,7 @@ ControllerScheduler::ControllerScheduler() {
     State* s5 = new WaitEnteringState(blinkLed, sonar, globalCooldown);
     State* s6 = new AfterEnteringState(myGate);
     State* s7 = new WaitConfirmState(butt);
-    State* s8 = new WashingState(tS, washingCooldown);
+    State* s8 = new WashingState(tS, washingCooldown, lcd);
     State* s9 = new PreWashingDoneState(myGate);
     State* s10 = new WashingDoneState(blinkLed, sonar);
     State* s11 = new LeftingState(sonar, globalCooldown);

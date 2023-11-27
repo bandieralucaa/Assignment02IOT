@@ -21,6 +21,7 @@ double TemperatureSensor::senseTemperature(){
 }
 
 bool TemperatureSensor::isOverHeat(){
+    //return false;
     return this->senseTemperature() > DANGEROUS_TEMP;
 }
 

@@ -26,7 +26,7 @@ void Cooldown::reset(){
 } //resetta il timer e lo fa ripartire subito
 
 int Cooldown::percentageComplete(){
-    return this->isOver() ? 100 : ((int) ((this->t.read())/(this->amountTime)));
+    return this->isOver() ? 100 : ((int) (((this->t.read()*1.0)/(this->amountTime*1.0))*100.0));
 }
 
 void Cooldown::format(unsigned long newClock){

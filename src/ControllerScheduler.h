@@ -15,7 +15,7 @@
 #include "./components/button/WashingMachineButton.h"
 #include "./components/temperature/TemperatureSensor.h"
 #include "./components/cooldown/Cooldown.h"
-
+#include "./components/lcd/MyLcdMonitor.h"
 
 //#include <arduino-timer.h>
 

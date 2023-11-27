@@ -4,9 +4,10 @@
 
 static volatile bool isOver;
 
-WashingState::WashingState(TemperatureSensor* tempSens, Cooldown* clock){
+WashingState::WashingState(TemperatureSensor* tempSens, Cooldown* clock, MyLcdMonitor* lcd){
     this->tempSens = tempSens;
     this->clock = clock;
+    this->lcd = lcd;
 }
 
 // static void* tt;
@@ -46,6 +47,10 @@ StateName WashingState::changeState() {
         startNewWash = true;
         return PRE_WASHING_DONE_STATE;
     } else {
+        this->lcd->printProgBar(this->clock->percentageComplete());
+        #ifdef LCD_DEBUG
+        Serial.println(this->clock->percentageComplete());
+        #endif
         return NONE;
     }
 };
