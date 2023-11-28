@@ -1,6 +1,8 @@
 #ifndef __MY_LCD__
 #define __MY_LCD__
 
+#include "configs.h"
+
 #include "LcdMonitor.h"
 #include "./task/Task.h"
 #include "rgb_lcd.h"
@@ -21,7 +23,9 @@ public:
     void raiseError();
     void goBackNormal();
 
-    void printProgBar(int percentage);
+    void initProgBar();
+    void printProgBar();
+    bool changeProgBar(int percentage);
 
 private:
     void myPrint();

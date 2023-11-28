@@ -26,7 +26,7 @@
 
 #define N1_TIME 3000
 #define N2_TIME 3000
-#define N3_TIME 5000
+#define N3_TIME 10000
 #define N4_TIME 3000
 
 /* ### ### ### ### ### ### ### ### */
@@ -39,7 +39,7 @@
 #define PIR_PERIOD (SCHEDULE_BASE_PERIOD * 4)
 #define LED_BLINKING_PERIOD SCHEDULE_BASE_PERIOD
 #define SERVO_MOTOR_PERIOD SCHEDULE_BASE_PERIOD
-#define BUTTON_PERIOD (SCHEDULE_BASE_PERIOD * 2)
+#define BUTTON_PERIOD (SCHEDULE_BASE_PERIOD)
 #define SONAR_PERIOD (SCHEDULE_BASE_PERIOD * 2)
 
 #define BLINK_DELTA_1 (BLINK_DELTA_2*5)
@@ -75,9 +75,9 @@
 #define TEMP_DEBUG
 #define LCD_DEBUG
 
-#define SONAR_DEBUG_LEFTING
+//#define SONAR_DEBUG_LEFTING
 
-#define STATE_CHANGE_DEBUG //TODO, quasi
+//#define STATE_CHANGE_DEBUG //TODO, quasi
 
 #endif
 

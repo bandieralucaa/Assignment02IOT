@@ -13,7 +13,9 @@ public:
     virtual void raiseError() = 0;
     virtual void goBackNormal() = 0;
 
-    virtual void printProgBar(int percentage) = 0;
+    virtual void initProgBar() = 0;
+    virtual void printProgBar() = 0;
+    virtual bool changeProgBar(int percentage) = 0;
 };
 
 #endif

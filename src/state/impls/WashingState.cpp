@@ -29,6 +29,7 @@ void WashingState::init() {
     this->blink->canBlink(true);
     this->blink->setFading(BLINK_DELTA_2);
     this->lcd->clear();
+    this->lcd->initProgBar();
     //tt = this->clock->every(N3_TIME, isOverTime2);
 }
 
@@ -55,7 +56,9 @@ StateName WashingState::changeState() {
         startNewWash = true;
         return PRE_WASHING_DONE_STATE;
     } else {
-        this->lcd->printProgBar(this->clock->percentageComplete());
+        if (this->lcd->changeProgBar(this->clock->percentageComplete())){
+            this->lcd->printProgBar();
+        }
         #ifdef LCD_DEBUG
         Serial.println(this->clock->percentageComplete());
         #endif
