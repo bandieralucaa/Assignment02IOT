@@ -2,7 +2,7 @@
 
 CarPresenceDetector::CarPresenceDetector(int pin) {
     this->myPin = pin;
-    attachInterrupt(digitalPinToInterrupt(pin),awakeArduino,CHANGE);
+    attachInterrupt(digitalPinToInterrupt(pin),awakeArduino,RISING);
     this->period = PIR_PERIOD;
 }
 
