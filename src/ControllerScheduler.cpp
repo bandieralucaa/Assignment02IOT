@@ -19,6 +19,7 @@ unsigned long bPeriod;
 
 ControllerScheduler::ControllerScheduler() {
 
+
     CarPresenceDetector* myPir = new CarPresenceDetector(PIR_PIN);
 
 
@@ -41,6 +42,8 @@ ControllerScheduler::ControllerScheduler() {
 
     TemperatureSensor* tS = new TemperatureSensor(TEMPERATURE_SENSOR_PIN);
 
+    SerialManager* sm = new SerialManager(tS);
+
     Cooldown* washingCooldown = new Cooldown(N3_TIME);
 
     Cooldown* globalCooldown = new Cooldown(N1_TIME);    
@@ -49,8 +52,8 @@ ControllerScheduler::ControllerScheduler() {
     MyLcdMonitor* lcd = new MyLcdMonitor();
     lcd->turnOff();
 
-    int amountTask = 5;
-    myTasks = new Task*[amountTask]{(myPir), myGate, sonar, blinkLed, butt};
+    int amountTask = 6;
+    myTasks = new Task*[amountTask]{(myPir), myGate, sonar, blinkLed, butt, sm};
     // int amountTask = 1;
     // myTasks = new Task*[amountTask]{sonar};
     actAmountTask = amountTask;
