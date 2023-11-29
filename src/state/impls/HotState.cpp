@@ -1,8 +1,9 @@
 #include "HotState.h"
 
-HotState::HotState(Button* butt, LcdMonitor* lcd){
+HotState::HotState(Button* butt, LcdMonitor* lcd, InReceiver* in){
     this->button = butt;
     this->lcd = lcd;
+    this->in = in;
 }
 
 void HotState::init(){
@@ -14,7 +15,7 @@ void HotState::init(){
 }
 
 StateName HotState::changeState(){
-    if (this->button->isPressed()){
+    if (this->button->isPressed() || this->in->checkIfOk()){
         this->lcd->goBackNormal();
         return WASHING_STATE;
     } else {

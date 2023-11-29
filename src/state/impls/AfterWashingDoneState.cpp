@@ -4,9 +4,10 @@
 #include <Arduino.h>
 #endif
 
-AfterWashingDoneState::AfterWashingDoneState(Gate* myGate, Light* l2) {
+AfterWashingDoneState::AfterWashingDoneState(Gate* myGate, Light* l2, OutSender* out) {
     this->myGate = myGate;
     this->l2 = l2;
+    this->out = out;
 }
 
 void AfterWashingDoneState::init() {
@@ -20,6 +21,7 @@ void AfterWashingDoneState::init() {
 StateName AfterWashingDoneState::changeState() {
     if (this->myGate->isClose()) {
         this->myGate->stop();
+        this->out->increaseWashedCar();
         return SLEEP_STATE;
     } else {
         return NONE;
