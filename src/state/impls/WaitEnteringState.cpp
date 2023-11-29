@@ -1,53 +1,50 @@
-
-
-
-#include "components/outputComponents/OutputManager.h"
 #include "./state/impls/WaitEnteringState.h"
 
 #include "Arduino.h"
 
-static volatile bool isOver;
+// static volatile bool isOver;
 
-WaitEnteringState::WaitEnteringState(LedExtTimered* blinkLed, CarDistanceDetector* sonar, Timer<3>* clock){
-    this->blinkLed = blinkLed;
+WaitEnteringState::WaitEnteringState(CarDistanceDetector* sonar, Cooldown* clock){
     this->sonar = sonar;
     this->clock = clock;
 }
 
-static void* tt;
+// static void* tt;
 
-bool isOverTime1(void*){
-    isOver = true;
-    return true;
-}
+// bool isOverTime1(void*){
+//     isOver = true;
+//     return true;
+// }
 
 void WaitEnteringState::init() {
+    #ifdef STATE_CHANGE_DEBUG
     Serial.print("WaitEnteringState");
-    this->blinkLed->switchOn();
-    this->blinkLed->setFading(5);
-    this->blinkLed->init();
+    #endif
+    // this->blinkLed->switchOn();
+    // this->blinkLed->setFading(5);
+    // this->blinkLed->init();
 
-    tt = this->clock->every(N2_TIME, isOverTime1);
+    this->clock->format(N2_TIME);
+    //tt = this->clock->every(N2_TIME, isOverTime1);
 }
 
 
-void WaitEnteringState::flushTimer(){
-    Serial.print("\n");
-    Serial.print(this->clock->size());
-    Serial.print("\n");
-    this->clock->cancel(tt);
-    Serial.print(this->clock->size());
-    Serial.print("\n");
-}
+// void WaitEnteringState::flushTimer(){
+//     Serial.print("\n");
+//     Serial.print(this->clock->size());
+//     Serial.print("\n");
+//     this->clock->cancel(tt);
+//     Serial.print(this->clock->size());
+//     Serial.print("\n");
+// }
 
 
 StateName WaitEnteringState::changeState() {
     if (!this->sonar->isUnderMin()){
-        flushTimer();
+        //flushTimer();
         return ENTERING_STATE;
-    } else  if (isOver) {
-        flushTimer();
-        Serial.print("NON VALE\n");
+    } else  if (this->clock->isOver()) {
+        //flushTimer();
         return AFTER_ENTERING_STATE;
     } else {
         return NONE;

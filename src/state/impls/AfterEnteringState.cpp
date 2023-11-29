@@ -1,15 +1,22 @@
 #include "./components/pir/PIR.h"
-#include "./components/outputComponents/OutputManager.h"
 #include "./state/impls/AfterEnteringState.h"
-#include <Arduino.h>
 
-AfterEnteringState::AfterEnteringState(Gate* myGate) {
+#ifdef DEBUG
+#include <Arduino.h>
+#endif
+
+AfterEnteringState::AfterEnteringState(Gate* myGate, LedExtTimered* blink) {
     this->myGate = myGate;
+    this->blink = blink;
 }
 
 void AfterEnteringState::init() {
+    #ifdef STATE_CHANGE_DEBUG
     Serial.println("CHIUDI GATEEEEE");
+    #endif
     this->myGate->close();
+    this->blink->canBlink(false);
+    this->blink->switchOn();
 }
 
 StateName AfterEnteringState::changeState() {

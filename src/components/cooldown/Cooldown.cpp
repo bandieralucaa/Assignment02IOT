@@ -1,30 +1,35 @@
-#ifndef __MY_COOLDOWN__
-#define __MY_COOLDOWN__
+#include "Cooldown.h"
 
-#include "./components/cooldown/Cooldown.h"
-#include "./task/Task.h"
+Cooldown::Cooldown(unsigned long amountTime) {
+    this->amountTime = amountTime;
+}
 
-class MyCooldown : public Task, public Cooldown {
-    public:
-        MyCooldown(unsigned long clock);
+void Cooldown::init() {
+    this->t.start();
+}
 
+bool Cooldown::isOver(){
+    return this->t.read() > amountTime;
+}
 
-        void init();
-        void tick();
+void Cooldown::pause(){
+    this->t.pause();
+}
 
+void Cooldown::resume(){
+    this->t.resume();
+}
 
-        bool isOver() = 0;
-        Cooldown* reset();
-        Cooldown* format(unsigned long newClock);
-        void stop();
-        Cooldown* resume();
-        int percentageComplete() = 0;
+void Cooldown::reset(){
+    this->t.stop();
+    this->t.start();
+} //resetta il timer e lo fa ripartire subito
 
-    private:
-        unsigned long amountTime;
-        unsigned long initTime;
-        unsigned long stopTime;
-        bool isStopped= false;
-};
+int Cooldown::percentageComplete(){
+    return this->isOver() ? 100 : ((int) (((this->t.read()*1.0)/(this->amountTime*1.0))*100.0));
+}
 
-#endif
+void Cooldown::format(unsigned long newClock){
+    this->amountTime = newClock;
+    this->reset();
+}

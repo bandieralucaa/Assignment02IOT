@@ -14,13 +14,10 @@ public:
 
     void init();
     void tick();
-    // bool updateAndCheckTime(int millis);
 
 private:
     int myPin = 0;
     bool pushed = false;
-    // unsigned long millis=0;
-    // unsigned long period = 200;
 };
 
 

@@ -1,6 +1,6 @@
 
 #include "./components/pir/PIR.h"
-#include "components/outputComponents/OutputManager.h"
+#include "components/led/Led.h"
 #include "./state/impls/WelcomeState.h"
 #include <Arduino.h>
 
@@ -11,37 +11,49 @@ bool isOverTime(void*){
     return true;
 }
 
-WelcomeState::WelcomeState(OutputManager* o, Pir* awakePir, Timer<3>* clock){
-    myPir = awakePir;
-    this->o = o;
+WelcomeState::WelcomeState(Pir* awakePir, Cooldown* clock, LcdMonitor* lcd, Led* l1){
+    this->myPir = awakePir;
+    this->l1 = l1;
     this->clock = clock;
+    this->lcd = lcd;
 }
 
 void* tt;
 
 void WelcomeState::init() {
-    // Serial.print(this->clock->size());
-    o->printOut("HELO\n");
-    isOver = false;
-    tt = this->clock->every(N1_TIME, isOverTime);
+    this->lcd->turnOn();
+    this->lcd->writeOnLcd(WELCOME_STRING);
+    l1->switchOn();
+
+    #ifdef STATE_CHANGE_DEBUG
+    Serial.println("WelcomeState ");
+    #endif
+
+    this->clock->format(N1_TIME);
+
+    //isOver = false;
+    //tt = this->clock->every(N1_TIME, isOverTime);
     // Serial.print(this->clock->size());
 }
 
-void WelcomeState::flushTimer(){
-    // Serial.print("\n");
-    // Serial.print(this->clock->size());
-    // Serial.print("\n");
-    this->clock->cancel(tt);
-    // Serial.print(this->clock->size());
-    // Serial.print("\n");
-}
+// void WelcomeState::flushTimer(){
+//     // Serial.print("\n");
+//     // Serial.print(this->clock->size());
+//     // Serial.print("\n");
+//     this->clock->cancel(tt);
+//     // Serial.print(this->clock->size());
+//     // Serial.print("\n");
+// }
 
 StateName WelcomeState::changeState() {
     if (!myPir->isAnyone()) {
-        flushTimer();
+        //flushTimer();
+        this->lcd->clear();
         return SLEEP_STATE;
-    } else if (isOver) {
-        flushTimer();
+    } else if (this->clock->isOver()) {
+        //flushTimer();
+        this->lcd->clear();
+        this->clock->pause();
         return PRE_ENTERING_STATE;
     } else {
         return NONE;

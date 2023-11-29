@@ -2,45 +2,34 @@
 
 #include "Arduino.h"
 
-static volatile bool isOver;
+// static volatile bool isOver;
 
-LeftingState::LeftingState(CarDistanceDetector* sonar, Timer<3>* clock){
+LeftingState::LeftingState(CarDistanceDetector* sonar, Cooldown* clock){
     this->sonar = sonar;
     this->clock = clock;
 }
 
-static void* tt;
-
-bool isOverTime3(void*){
-    isOver = true;
-    return true;
-}
-
 void LeftingState::init() {
+    #ifdef STATE_CHANGE_DEBUG
     Serial.print("LeftingState");
+    #endif
+    this->clock->format(N2_TIME);
 
-    tt = this->clock->every(N2_TIME, isOverTime3);
+    // tt = this->clock->every(N2_TIME, isOverTime3);
 }
-
-
-void LeftingState::flushTimer(){
-    Serial.print("\n");
-    Serial.print(this->clock->size());
-    Serial.print("\n");
-    this->clock->cancel(tt);
-    Serial.print(this->clock->size());
-    Serial.print("\n");
-}
-
 
 StateName LeftingState::changeState() {
     if (!this->sonar->isAboveMax()){
-        flushTimer();
+        
+        //flushTimer();
         return WASHING_DONE_STATE; //WHASING_DONE_STATE
-    } else  if (isOver) {
-        flushTimer();
+    } else  if (this->clock->isOver()) {
+        //flushTimer();
         return AFTER_WASHING_DONE_STATE; //AFTER_WASHING_DONE_STATE
     } else {
+        #ifdef SONAR_DEBUG_LEFTING
+        Serial.println("---> " + (String) this->sonar->getDistance());
+        #endif
         return NONE;
     }
 };

@@ -1,17 +1,23 @@
-
-#include "components/outputComponents/OutputManager.h"
 #include "./state/impls/EnteringState.h"
 
-EnteringState::EnteringState(LedExtTimered* blinkLed, CarDistanceDetector* sonar){
-    this->blinkLed = blinkLed;
+// EnteringState::EnteringState(LedExtTimered* blinkLed, CarDistanceDetector* sonar){
+//     this->blinkLed = blinkLed;
+//     this->sonar = sonar;
+// }
+
+EnteringState::EnteringState(CarDistanceDetector* sonar){
+    //this->blinkLed = blinkLed;
     this->sonar = sonar;
 }
 
+
 void EnteringState::init() {
+    #ifdef STATE_CHANGE_DEBUG
     Serial.print("EnteringState");
-    this->blinkLed->switchOn();
-    this->blinkLed->setFading(5);
-    this->blinkLed->init();
+    #endif
+    // this->blinkLed->switchOn();
+    // this->blinkLed->setFading(5);
+    // this->blinkLed->init();
 }
 
 StateName EnteringState::changeState() {

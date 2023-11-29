@@ -1,14 +1,16 @@
 #include "./state/State.h"
 #include "./components/pir/PIR.h"
-#include "./components/outputComponents/OutputManager.h"
+#include "./components/led/Light.h"
+#include "./components/lcd/LcdMonitor.h"
 
 class SleepState : public State {
 public:
-    SleepState(OutputManager* o, Pir* awakePir);
+    SleepState(Pir* awakePir, Light* l1, LcdMonitor* lcd);
     void init();
     StateName changeState();
     
 private:
     Pir* myPir;
-    OutputManager* o;
+    Light* l1;
+    LcdMonitor* lcd;
 };

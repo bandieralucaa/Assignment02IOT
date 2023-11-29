@@ -1,5 +1,4 @@
 #include "WashingMachineButton.h"
-#include "Arduino.h"
 
 WashingMachineButton::WashingMachineButton(int pin){
     this->myPin = pin;
