@@ -5,7 +5,7 @@ SerialManager::SerialManager(TemperatureSensor* tS){
     this->amountCarWashed = 0;
     this->actState = "";
     this->isSolvedProblem = false;
-    this->ioManager = new IOSerialManager(this);
+    this->ioManager = new IOSerialManager();
 
     this->period = IOMAN_PERIOD;
 }
@@ -52,4 +52,6 @@ void SerialManager::tick(){
 }
 
 
-
+bool SerialManager::checkIfOk(){
+    return this->isSolvedProblem;
+}

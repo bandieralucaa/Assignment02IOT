@@ -1,6 +1,5 @@
 #include "IOSerialManager.h"
 
-
 static String lastRead;
 static bool somethingAppened = false;
 
@@ -18,11 +17,11 @@ void serialEvent() {
     }
 }
 
-IOSerialManager::IOSerialManager(SerialManager* toNotify){
+IOSerialManager::IOSerialManager(){
     this->isInMsgReady = false;
     this->lastInCommand.reserve(32);
     this->lastInCommand = "";
-    this->notifier = toNotify;
+    //this->notifier = toNotify;
 }
 
 void IOSerialManager::boardSendMsg(String toSend){

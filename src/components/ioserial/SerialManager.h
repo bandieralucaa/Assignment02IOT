@@ -11,11 +11,8 @@
 #include "./components/temperature/TemperatureSensor.h"
 #include "IOSerialManager.h"
 
-
-
-#ifdef DEBUG
 #include <Arduino.h>
-#endif
+
 
 class SerialManager: public Task, public OutSender, public InReceiver{
 public:

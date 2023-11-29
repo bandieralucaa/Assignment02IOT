@@ -17,7 +17,4 @@ private:
     Cooldown* clock;
     LcdMonitor* lcd;
     Led* l1;
-    //void flushTimer();
-    // Timer<1> clock;
-    // Timer* cooldown;
 };

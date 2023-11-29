@@ -64,7 +64,7 @@
 
 /* ### DEBUGGING VARIABLE ### */
 
-#define DEBUG
+//#define DEBUG
 #ifdef DEBUG
 
 //#define SCHEDULER_INIT_PHASE

@@ -7,7 +7,7 @@ Textfield stateInput;
 Button solveButton;
 
 void settings() {
-  size(int(displayWidth * 0.75), displayHeight);
+  size(int(displayWidth * 0.75 * 0.75), int(displatHeight * 0.75 * 0.75));
 }
 
 void setup() {
@@ -69,7 +69,7 @@ void controlEvent(ControlEvent event) {
     println(inputName + ": " + inputValue);
   } else if (event.isAssignableFrom(Button.class)) {
     if (event.getName().equals("Problem solved")) {
-      println("Problem solved button pressed");
+      println("o-");
     }
   }
 }
