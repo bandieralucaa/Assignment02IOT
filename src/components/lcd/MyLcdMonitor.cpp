@@ -59,7 +59,7 @@ void MyLcdMonitor::myPrint(){
     }
 }
 
-void MyLcdMonitor::writeOnLcd(char* toWrite){
+void MyLcdMonitor::writeOnLcd(String toWrite){
     this->lcd.clear();
     this->actString = toWrite;
     this->lcd.setCursor(0,0);

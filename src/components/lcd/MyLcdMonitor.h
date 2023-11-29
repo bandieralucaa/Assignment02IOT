@@ -7,6 +7,8 @@
 #include "./task/Task.h"
 #include "rgb_lcd.h"
 
+#include "Arduino.h"
+
 #define PROG_BAR_ROW 1
 #define PROG_BAR_COLS 0
 
@@ -15,7 +17,7 @@ public:
 
     MyLcdMonitor();
 
-    void writeOnLcd(char* toWrite);
+    void writeOnLcd(String toWrite);
     void clear();
     void turnOn();
     void turnOff();
@@ -29,7 +31,7 @@ public:
 
 private:
     void myPrint();
-    char* actString;
+    String actString;
     rgb_lcd lcd;
 
 };

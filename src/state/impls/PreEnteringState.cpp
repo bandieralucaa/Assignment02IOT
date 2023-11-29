@@ -4,8 +4,7 @@
 #ifdef DEBUG
 #include <Arduino.h>
 #endif
-// #include "./task/TimerScheduler.h"
-// TimerScheduler* timer;
+
 
 PreEnteringState::PreEnteringState(Gate* myGate, LedExtTimered* blinkLed, LcdMonitor* lcd){
     this->myGate = myGate;

@@ -2,10 +2,11 @@
 #define __LCD__
 
 #define MAX_VALUE 100
+#include "Arduino.h"
 
 class LcdMonitor{
 public:
-    virtual void writeOnLcd(char* toWrite) = 0;
+    virtual void writeOnLcd(String toWrite) = 0;
     virtual void clear() = 0;
     virtual void turnOn() = 0;
     virtual void turnOff() = 0;

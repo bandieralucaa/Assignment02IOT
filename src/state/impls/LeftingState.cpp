@@ -9,13 +9,6 @@ LeftingState::LeftingState(CarDistanceDetector* sonar, Cooldown* clock){
     this->clock = clock;
 }
 
-// static void* tt;
-
-// bool isOverTime3(void*){
-//     isOver = true;
-//     return true;
-// }
-
 void LeftingState::init() {
     #ifdef STATE_CHANGE_DEBUG
     Serial.print("LeftingState");
@@ -24,17 +17,6 @@ void LeftingState::init() {
 
     // tt = this->clock->every(N2_TIME, isOverTime3);
 }
-
-
-void LeftingState::flushTimer(){
-    // Serial.print("\n");
-    // Serial.print(this->clock->size());
-    // Serial.print("\n");
-    // this->clock->cancel(tt);
-    // Serial.print(this->clock->size());
-    // Serial.print("\n");
-}
-
 
 StateName LeftingState::changeState() {
     if (!this->sonar->isAboveMax()){

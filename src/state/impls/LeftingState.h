@@ -13,5 +13,4 @@ public:
 private:
     CarDistanceDetector* sonar;
     Cooldown* clock;
-    void flushTimer();
 };
