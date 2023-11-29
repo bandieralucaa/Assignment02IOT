@@ -1,4 +1,5 @@
 import controlP5.*;
+import processing.serial.*;
 
 ControlP5 cp5;
 Textfield amountInput;
@@ -6,8 +7,11 @@ Textfield temperatureInput;
 Textfield stateInput;
 Button solveButton;
 
+Serial myPort;
+
 void settings() {
-  size(int(displayWidth * 0.75 * 0.75), int(displatHeight * 0.75 * 0.75));
+  size(int(displayWidth * 0.75 ), int(displayHeight * 0.75 * 0.75) );
+  myPort = new Serial(this, Serial.list()[0], 9600);
 }
 
 void setup() {
@@ -56,6 +60,8 @@ void setup() {
   solveButton = cp5.addButton("Problem solved")
                     .setPosition(width / 2 - 60, height * 0.5)
                     .setSize(int(width * 0.25), int(height * 0.08));
+  
+  printArray(Serial.list());
 }
 
 void draw() {
@@ -69,7 +75,9 @@ void controlEvent(ControlEvent event) {
     println(inputName + ": " + inputValue);
   } else if (event.isAssignableFrom(Button.class)) {
     if (event.getName().equals("Problem solved")) {
-      println("o-");
+      myPort.write("o-\n");
+      //println("o-");
+      
     }
   }
 }
