@@ -1,4 +1,3 @@
-// Button.cpp
 #include "Button.h"
 
 Button::Button(int pin) {
@@ -6,23 +5,14 @@ Button::Button(int pin) {
   pinMode(buttonPin, INPUT);
   lastButtonState = LOW;
   buttonState = LOW;
-  lastDebounceTime = 0;
-  debounceDelay = 500; // Aumentato il periodo di debounce a 500 millisecondi
 }
 
 void Button::update() {
   int reading = digitalRead(buttonPin);
 
   if (reading != lastButtonState) {
-    lastDebounceTime = millis();
-  }
-
-  if ((millis() - lastDebounceTime) > debounceDelay) {
-    if (reading != buttonState) {
-      buttonState = reading;
-
-    
-    }
+    // Cambiamento di stato rilevato
+    buttonState = reading;
   }
 
   lastButtonState = reading;
