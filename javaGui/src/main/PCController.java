@@ -1,9 +1,9 @@
 package main;
 import comm.CommChannel;
 import comm.SerialCommChannel;
-import main.View;
-import main.Gui;
-import main.EasyControllerObserver;
+// import main.View;
+// import main.Gui;
+// import main.EasyControllerObserver;
 
 public class PCController implements EasyControllerObserver{
 
@@ -46,11 +46,13 @@ public class PCController implements EasyControllerObserver{
 
     @Override
     public void notifySolvedProblem() {
+        System.out.println("AHAH");
         channel.sendMsg("o-");
     }
 
     private void byStringToCommand(String input){
-        String argument = input.substring(2);
+        if(input.length()>=2){
+            String argument = input.substring(2);
         switch (input.charAt(0)) {
             case 'c':
                 this.myView.updateCars(Integer.parseInt(argument));
@@ -66,6 +68,8 @@ public class PCController implements EasyControllerObserver{
             
             default:
                 break;
+        }
+
         }
     }
 }

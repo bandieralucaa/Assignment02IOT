@@ -5,7 +5,7 @@ SerialManager::SerialManager(TemperatureSensor* tS){
     this->amountCarWashed = 0;
     this->actState = "";
     this->isSolvedProblem = false;
-    this->ioManager = new IOSerialManager();
+    //this->ioManager = new IOSerialManager();
 
     this->period = IOMAN_PERIOD;
 }
@@ -39,14 +39,23 @@ void SerialManager::init(){
 }
 
 void SerialManager::tick(){
-    this->ioManager->boardSendMsg(trasdutter("s-", this->actState));
-    this->ioManager->boardSendMsg(trasdutter("c-", (String)this->amountCarWashed));
-    this->ioManager->boardSendMsg(trasdutter("t-", (String)this->tS->senseTemperature()));
+    // this->ioManager->boardSendMsg(trasdutter("s-", this->actState));
+    // this->ioManager->boardSendMsg(trasdutter("c-", (String)this->amountCarWashed));
+    // this->ioManager->boardSendMsg(trasdutter("t-", (String)this->tS->senseTemperature()));
+
+    MsgService.sendMsg(trasdutter("s-", this->actState));
+    MsgService.sendMsg(trasdutter("c-", (String)this->amountCarWashed));
+    MsgService.sendMsg(trasdutter("t-", (String)this->tS->senseTemperature()));
 
     this->isSolvedProblem = false;
 
-    if (this->ioManager->boardIsMsgAvaiable()){
-        String tmp = this->ioManager->boardReceiveMsg();
+    // if (this->ioManager->boardIsMsgAvaiable()){
+    //     String tmp = this->ioManager->boardReceiveMsg();
+    //     Serial.print(tmp);
+    //     executeCommand(tmp);
+    // }
+    if (MsgService.isMsgAvailable()){
+        String tmp = MsgService.receiveMsg()->getContent();//->ioManager->boardReceiveMsg();
         Serial.print(tmp);
         executeCommand(tmp);
     }

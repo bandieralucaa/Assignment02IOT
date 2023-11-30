@@ -39,6 +39,7 @@ public class Gui extends JFrame implements View {
         add(button);
 
         button.addActionListener(e -> {
+            System.out.println("BHBH");
             c.notifySolvedProblem();
         });        
 
@@ -84,11 +85,11 @@ public void updateTemp(double newTemp){
 }
 
 public void updateCars(int newAmount){
-    this.temp.setText(Integer.toString(newAmount));
+    this.cars.setText(Integer.toString(newAmount));
 }
 
 public void updateState(String newState){
-    this.temp.setText(newState);
+    this.state.setText(newState);
 }
 
 public void refresh(){}
