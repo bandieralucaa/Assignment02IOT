@@ -9,7 +9,8 @@
 
 
 #include "./components/temperature/TemperatureSensor.h"
-#include "IOSerialManager.h"
+//#include "IOSerialManager.h"
+#include "MsgService.h"
 
 #include <Arduino.h>
 
@@ -28,7 +29,7 @@ public:
 
 private:
 
-    IOSerialManager* ioManager;
+    //IOSerialManager* ioManager;
     TemperatureSensor* tS;
     int amountCarWashed;
     bool isSolvedProblem;

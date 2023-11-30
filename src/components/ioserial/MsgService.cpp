@@ -33,18 +33,18 @@ void MsgServiceClass::sendMsg(const String& msg){
   Serial.println(msg);  
 }
 
-// void serialEvent() {
-//   /* reading the content */
-//   while (Serial.available()) {
-//     char ch = (char) Serial.read();
-//     if (ch == '\n'){
-//       MsgService.currentMsg = new Msg(content);
-//       MsgService.msgAvailable = true;      
-//     } else {
-//       content += ch;      
-//     }
-//   }
-// }
+void serialEvent() {
+  /* reading the content */
+  while (Serial.available()) {
+    char ch = (char) Serial.read();
+    if (ch == '\n'){
+      MsgService.currentMsg = new Msg(content);
+      MsgService.msgAvailable = true;      
+    } else {
+      content += ch;      
+    }
+  }
+}
 
 bool MsgServiceClass::isMsgAvailable(Pattern& pattern){
   return (msgAvailable && pattern.match(*currentMsg));
