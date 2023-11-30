@@ -7,6 +7,7 @@ public class ConsoleView implements View {
     private double temp;
     private int cars;
     private String state;
+    private String msg;
 
     @Override
     public void setController(EasyControllerObserver c) {
@@ -33,10 +34,16 @@ public class ConsoleView implements View {
         System.out.println(this.state);
         System.out.println(this.cars);
         System.out.println(this.temp);
+        System.out.println(this.msg);
     }
 
     public void send(){
         this.c.notifySolvedProblem();
+    }
+
+    @Override
+    public void printMessage(String msg) {
+        this.msg = msg;
     }
     
 }

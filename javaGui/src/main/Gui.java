@@ -16,6 +16,8 @@ public class Gui extends JFrame implements View {
     private JTextField temp;
     private JTextField state;
 
+    private JTextArea messageArea;
+
     public Gui() {
         setTitle("Car Washing Machine");
 
@@ -38,6 +40,12 @@ public class Gui extends JFrame implements View {
         add(Box.createVerticalGlue());  
         add(button);
 
+        messageArea.setFont(new Font("Arial", Font.PLAIN, 20));
+        messageArea.setEditable(false);
+        add(messageArea);
+
+
+
         button.addActionListener(e -> {
             c.notifySolvedProblem();
         });        
@@ -57,6 +65,8 @@ public class Gui extends JFrame implements View {
         JTextField textField = new JTextField(15);
         textField.setFont(new Font("Arial", Font.PLAIN, 20));
         textField.setEditable(false);
+
+
 
         panel.add(label);
         panel.add(textField);
@@ -92,5 +102,10 @@ public void updateState(String newState){
 }
 
 public void refresh(){}
+
+
+public void printMessage(String msg) {
+    this.messageArea.append(msg + "\n");
+}
 
 }

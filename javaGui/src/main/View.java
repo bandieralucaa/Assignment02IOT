@@ -14,4 +14,6 @@ public interface View {
 
     void refresh();
 
+    void printMessage(String msg);
+
 }
