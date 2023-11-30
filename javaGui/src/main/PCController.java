@@ -46,7 +46,7 @@ public class PCController implements EasyControllerObserver{
 
     @Override
     public void notifySolvedProblem() {
-        channel.sendMsg(null);
+        channel.sendMsg("o-");
     }
 
     private void byStringToCommand(String input){

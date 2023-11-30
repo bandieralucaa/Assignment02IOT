@@ -38,6 +38,10 @@ public class Gui extends JFrame implements View {
         add(Box.createVerticalGlue());  
         add(button);
 
+        button.addActionListener(e -> {
+            c.notifySolvedProblem();
+        });        
+
         setLocationRelativeTo(null); 
         setVisible(true);
     }
