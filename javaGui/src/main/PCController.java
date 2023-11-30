@@ -28,11 +28,11 @@ public class PCController implements EasyControllerObserver{
 			//System.out.println("Sending ping");
 			//channel.sendMsg("ping");
 
-            while (this.channel.isMsgAvailable() && i<AMOUNT) {
+            /*while (this.channel.isMsgAvailable() && i<AMOUNT) {
                 byStringToCommand(this.channel.receiveMsg());
                 i++;
-            }
-
+            }*/
+            this.executeCommand(this.channel.receiveMsg());
 			//String msg = channel.receiveMsg();
 			//System.out.println("Received: "+msg);	
             //if (msg.equals("pong")){
@@ -49,10 +49,10 @@ public class PCController implements EasyControllerObserver{
         channel.sendMsg("o-");
     }
 
-    private void byStringToCommand(String input){
-        if (input.length() > 2) {
-            String argument = input.substring(2);
-            switch (input.charAt(0)) {
+    private void byStringToCommand(String command, String argument){
+       // if (input.length() > 2) {
+          //  String argument = input.substring(2);
+            switch (command.charAt(0)) {
                 case 'c':
                     this.myView.updateCars(Integer.parseInt(argument));
                     break;
@@ -74,6 +74,28 @@ public class PCController implements EasyControllerObserver{
                 default:
                     break;
             }
-        }
+      //  }
     }
+
+
+    public void executeCommand(String command) {
+        String[] singleCommand = command.split("$");
+        String[] singleMessage;
+
+        for (String string : singleCommand) {
+            singleMessage = string.split("\\.");
+
+            byStringToCommand(singleMessage[0], singleMessage[1]);
+
+
+        }
+
+    
+        
+       
+    }
+
+    
+
+
 }
