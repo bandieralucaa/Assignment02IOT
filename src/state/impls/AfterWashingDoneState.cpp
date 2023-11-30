@@ -16,12 +16,12 @@ void AfterWashingDoneState::init() {
     #endif
     this->myGate->close();
     this->l2->switchOff();
+    this->out->increaseWashedCar();
 }
 
 StateName AfterWashingDoneState::changeState() {
     if (this->myGate->isClose()) {
         this->myGate->stop();
-        this->out->increaseWashedCar();
         return SLEEP_STATE;
     } else {
         return NONE;

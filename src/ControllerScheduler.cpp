@@ -72,7 +72,7 @@ ControllerScheduler::ControllerScheduler() {
     State* s9 = new PreWashingDoneState(myGate,lcd,blinkLed,l2);
     State* s10 = new WashingDoneState(blinkLed, sonar);
     State* s11 = new LeftingState(sonar, globalCooldown);
-    State* s12 = new AfterWashingDoneState(myGate,l2, sm);
+    State* s12 = new AfterWashingDoneState(myGate, l2, sm);
     State* s13 = new WarningState(tS,globalCooldown,washingCooldown);
     State* s14 = new HotState(butt,lcd, sm);
 

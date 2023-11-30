@@ -75,7 +75,8 @@ void controlEvent(ControlEvent event) {
     println(inputName + ": " + inputValue);
   } else if (event.isAssignableFrom(Button.class)) {
     if (event.getName().equals("Problem solved")) {
-      myPort.write("o-\n");
+      String comm = "o-\n";
+      myPort.write(comm);
       //println("o-");
       
     }

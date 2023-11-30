@@ -25,7 +25,7 @@ IOSerialManager::IOSerialManager(){
 }
 
 void IOSerialManager::boardSendMsg(String toSend){
-    Serial.println(toSend);
+    Serial.write(toSend.c_str());
 }
 
 String IOSerialManager::boardReceiveMsg(){

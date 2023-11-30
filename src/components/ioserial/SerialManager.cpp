@@ -47,6 +47,7 @@ void SerialManager::tick(){
 
     if (this->ioManager->boardIsMsgAvaiable()){
         String tmp = this->ioManager->boardReceiveMsg();
+        Serial.print(tmp);
         executeCommand(tmp);
     }
 }
