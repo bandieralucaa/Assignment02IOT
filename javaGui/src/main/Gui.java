@@ -15,8 +15,7 @@ public class Gui extends JFrame implements View {
     private JTextField cars;
     private JTextField temp;
     private JTextField state;
-
-    private JTextArea messageArea;
+    private JTextField message;
 
     public Gui() {
         setTitle("Car Washing Machine");
@@ -34,15 +33,15 @@ public class Gui extends JFrame implements View {
         add(createLabeledTextField("Amount car washed:"));
         add(createLabeledTextField("Temperature value:"));
         add(createLabeledTextField("Actual state of car washing machine:"));
+        add(createLabeledTextField("Message:"));
 
+
+    
         button = new JButton("Problem solved");
         button.setFont(new Font("Arial", Font.PLAIN, 20));
         add(Box.createVerticalGlue());  
         add(button);
-
-        messageArea.setFont(new Font("Arial", Font.PLAIN, 20));
-        messageArea.setEditable(false);
-        add(messageArea);
+      
 
 
 
@@ -72,12 +71,25 @@ public class Gui extends JFrame implements View {
         panel.add(label);
         panel.add(textField);
 
-        if(index==0){
-            cars = textField;
-        } else if(index == 1){
-            temp = textField;
-        } else {
-            state = textField;
+        switch (index) {
+            case 0:
+                this.cars = textField;
+                break;
+            
+            case 1:
+                this.temp = textField;
+                break;
+        
+            case 2:
+                this.state = textField;
+                break;
+
+            case 3:
+                this.message = textField;
+                break;
+        
+            default:
+                break;
         }
 
         index++;
@@ -106,7 +118,7 @@ public void refresh(){}
 
 
 public void printMessage(String msg) {
-    this.messageArea.append(msg + "\n");
+    this.message.setText(msg);
 }
 
 }
