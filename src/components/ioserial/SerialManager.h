@@ -30,19 +30,20 @@ public:
 
 private:
 
-    //IOSerialManager* ioManager;
     TemperatureSensor* tS;
     int amountCarWashed;
-    bool isSolvedProblem;
     String actState;
     String actMessage;
     
-    void executeCommand(String comm);
+    bool isSolvedProblem;
+    
+    void executeCommands(String comm);
+    void executeCommandByGui(String comm, String value);
 
+    bool isNewTemp = true;
     bool isNewAmount = false;
     bool isNewState = false;
-    bool isNewMessage = false;
-    bool isErrorMessage = false;
+    bool isNewMessage = false; bool isErrorMessage = false;
 };
 
 

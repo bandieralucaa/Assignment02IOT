@@ -28,7 +28,7 @@ public class PCController implements EasyControllerObserver{
 			//System.out.println("Sending ping");
 			//channel.sendMsg("ping");
 
-            while (this.channel.isMsgAvailable() && i<AMOUNT) {
+            while (this.channel.isMsgAvailable()) {
                 byStringToCommand(this.channel.receiveMsg());
                 i++;
             }

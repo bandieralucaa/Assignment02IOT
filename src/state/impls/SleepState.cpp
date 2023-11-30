@@ -21,7 +21,7 @@ void SleepState::init() {
     this->lcd->turnOff();
     this->out->updateState(STATE1);
     this->out->updateMessage(MESS1,false);
-    delay(100); //giving time to serial port
+    delay(1000); //giving time to serial port
 
     set_sleep_mode(SLEEP_MODE_PWR_DOWN); 
     sleep_enable(); 

@@ -22,17 +22,9 @@
 /* ### ### ### ### ### ### ### ### */
 
 
-/* ### REQUEST VARIABLE ### */
-
-#define N1_TIME 3000
-#define N2_TIME 3000
-#define N3_TIME 3000
-#define N4_TIME 3000
-
-/* ### ### ### ### ### ### ### ### */
-
-
 /* ### TASK VARIABLE ### */
+
+#define IDEALLY_TIME (100)
 
 #define SCHEDULE_BASE_PERIOD (100)
 
@@ -45,6 +37,15 @@
 
 #define BLINK_DELTA_1 (BLINK_DELTA_2*5)
 #define BLINK_DELTA_2 (25)
+
+/* ### ### ### ### ### ### ### ### */
+
+/* ### REQUEST VARIABLE ### */
+
+#define N1_TIME (3000 * (SCHEDULE_BASE_PERIOD / IDEALLY_TIME))
+#define N2_TIME (3000 * (SCHEDULE_BASE_PERIOD / IDEALLY_TIME))
+#define N3_TIME (3000 * (SCHEDULE_BASE_PERIOD / IDEALLY_TIME))
+#define N4_TIME (3000 * (SCHEDULE_BASE_PERIOD / IDEALLY_TIME))
 
 /* ### ### ### ### ### ### ### ### */
 
