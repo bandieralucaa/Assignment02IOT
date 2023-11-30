@@ -45,5 +45,11 @@ public class ConsoleView implements View {
     public void printMessage(String msg) {
         this.msg = msg;
     }
+
+    @Override
+    public void printError(String error) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'printError'");
+    }
     
 }

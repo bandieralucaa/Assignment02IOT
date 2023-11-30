@@ -32,7 +32,8 @@ void WashingState::init() {
     this->lcd->clear();
     this->lcd->initProgBar();
 
-    this->out->updateMessage(STATE4, false);
+    this->out->updateState(STATE4);
+    this->out->updateMessage(MESS4, false);
     
     //tt = this->clock->every(N3_TIME, isOverTime2);
 }

@@ -21,7 +21,8 @@ void PreWashingDoneState::init() {
     this->lcd->writeOnLcd(PRE_WASHING_DONE_STRING);
     this->blink->switchOff();
     this->l2->switchOn();
-    this->out->updateMessage(STATE6,false);
+    this->out->updateState(STATE6);
+    this->out->updateMessage(MESS6,false);
 }
 
 StateName PreWashingDoneState::changeState() {

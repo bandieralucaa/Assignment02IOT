@@ -27,7 +27,9 @@ void PreEnteringState::init() {
     this->blinkLed->init();
 
     this->lcd->writeOnLcd(PRE_ENTERING_STRING);
-    this->out->updateMessage(STATE2, false);
+    this->out->updateState(STATE2);
+    this->out->updateMessage(MESS2, false);
+    
 }
 
 StateName PreEnteringState::changeState() {

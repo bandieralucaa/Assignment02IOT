@@ -41,14 +41,13 @@ public class Gui extends JFrame implements View {
         button.setFont(new Font("Arial", Font.PLAIN, 20));
         add(Box.createVerticalGlue());  
         add(button);
-      
-
-
 
         button.addActionListener(e -> {
             System.out.println("BHBH");
             c.notifySolvedProblem();
+            this.button.setEnabled(false);
         });        
+        button.setEnabled(false);
 
         setLocationRelativeTo(null); 
         setVisible(true);
@@ -119,6 +118,13 @@ public void refresh(){}
 
 public void printMessage(String msg) {
     this.message.setText(msg);
+}
+
+
+@Override
+public void printError(String error) {
+    printMessage(error);
+    this.button.setEnabled(true);
 }
 
 }

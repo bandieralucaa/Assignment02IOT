@@ -50,25 +50,30 @@ public class PCController implements EasyControllerObserver{
     }
 
     private void byStringToCommand(String input){
-        String argument = input.substring(2);
-        switch (input.charAt(0)) {
-            case 'c':
-                this.myView.updateCars(Integer.parseInt(argument));
-                break;
+        if (input.length() > 2) {
+            String argument = input.substring(2);
+            switch (input.charAt(0)) {
+                case 'c':
+                    this.myView.updateCars(Integer.parseInt(argument));
+                    break;
+                
+                case 's':
+                    this.myView.updateState(argument);
+                    break;
             
-            case 's':
-                this.myView.updateState(argument);
-                break;
-        
-            case 't':
-                this.myView.updateTemp(Double.parseDouble(argument));
-                break;
+                case 't':
+                    this.myView.updateTemp(Double.parseDouble(argument));
+                    break;
 
-            case 'e':
-                this.myView.printMessage(argument);
-            
-            default:
-                break;
+                case 'e':
+                    this.myView.printError(argument);
+
+                case 'm':
+                    this.myView.printMessage(argument);
+                
+                default:
+                    break;
+            }
         }
     }
 }

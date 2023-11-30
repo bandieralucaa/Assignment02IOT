@@ -15,7 +15,8 @@ void WaitConfirmState::init(){
     Serial.println("WaitingState");
     #endif
     this->lcd->writeOnLcd(WAITING_STRING);
-    this->out->updateMessage(STATE3, false);
+    this->out->updateState(STATE3);
+    this->out->updateMessage(MESS3, false);
 };
 
 StateName WaitConfirmState::changeState(){
