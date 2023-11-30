@@ -43,7 +43,8 @@ ControllerScheduler::ControllerScheduler() {
     TemperatureSensor* tS = new TemperatureSensor(TEMPERATURE_SENSOR_PIN);
 
     SerialManager* sm = new SerialManager(tS);
-
+    sm->init();
+    
     Cooldown* washingCooldown = new Cooldown(N3_TIME);
 
     Cooldown* globalCooldown = new Cooldown(N1_TIME);    
