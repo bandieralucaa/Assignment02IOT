@@ -3,6 +3,8 @@
 #include <Arduino.h>
 #define AMOUNT_COMM 4
 
+#define COMMAND_CHAR '?'
+#define ARGUMENT_CHAR '#'
 
 SerialManager::SerialManager(TemperatureSensor* tS){
     this->tS = tS;
@@ -52,7 +54,7 @@ void SerialManager::updateMessage(String newMessage, bool isErrorMessage){
 // }
 
 String trasdutter2(char command, String value){
-    return "$" + ((String)command) + "#" + value;
+    return ((String)COMMAND_CHAR) + ((String)command) + ((String)ARGUMENT_CHAR) + value;
 }
 
 
@@ -92,7 +94,7 @@ void SerialManager::executeCommands(String comm){
         char c = comm.charAt(i);
         switch (c)
         {
-        case '$':
+        case COMMAND_CHAR:
             if(command.length() > 0){
                 executeCommandByGui(command, argument);
             }
@@ -101,7 +103,7 @@ void SerialManager::executeCommands(String comm){
             parsingCommand = true;
             break;
         
-        case '#':
+        case ARGUMENT_CHAR:
             parsingCommand = false;
             break;
 

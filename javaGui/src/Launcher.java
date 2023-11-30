@@ -1,9 +1,21 @@
+import java.util.Arrays;
+
 import main.PCController;
 
 public class Launcher{
     
 	public static void main(String[] args) throws Exception {
-		new PCController(args[0], 9600);
+		//Double f[] = {4.4, 5.5, 6.6 , 7.7, 8.8};
+		//System.out.println(f.toString());
+		
+		String tmp = "$r$rt$rty";
+		String[] r = tmp.split("$");
+		Arrays.stream(r).forEach(null);
+		
+		//new PCController(args[0], 9600);
+		
+		
+		
 		// channel = new SerialCommChannel(args[0],9600);	
 		// // CommChannel channel = new SerialCommChannel("/dev/cu.usbmodem1411",9600);	
 		// // CommChannel channel = new SerialCommChannel("/dev/cu.isi00-DevB",9600);	
