@@ -11,10 +11,15 @@ Serial myPort;
 
 void settings() {
   size(int(displayWidth * 0.75 ), int(displayHeight * 0.75 * 0.75) );
-  myPort = new Serial(this, Serial.list()[0], 9600);
+  //myPort = new Serial(this, Serial.list()[0], 9600);
+
 }
 
 void setup() {
+
+  String portName = "COM4";
+  myPort = new Serial(this, portName, 9600);
+
   textAlign(CENTER, CENTER);
   cp5 = new ControlP5(this);
 
