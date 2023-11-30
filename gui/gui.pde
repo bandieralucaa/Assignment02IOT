@@ -1,6 +1,10 @@
 import controlP5.*;
 import processing.serial.*;
 
+static int size1 = 40;
+static int size2 = 20;
+
+
 ControlP5 cp5;
 Textfield amountInput;
 Textfield temperatureInput;
@@ -22,18 +26,18 @@ void setup() {
 
   textAlign(CENTER, CENTER);
   cp5 = new ControlP5(this);
-
+  
   cp5.addTextlabel("title")
      .setText("Car Washing Machine")
      .setPosition(width / 2 - 100, height * 0.1)
      .setColorValue(color(0)) 
-     .setFont(createFont("Arial", 20)); 
+     .setFont(createFont("Arial", size1)); 
 
   cp5.addTextlabel("amountLabel")
      .setText("Amount car washed")
-     .setPosition(width / 2 - 200, height * 0.2)
+     .setPosition(width / 2 - (width / 4), height * 0.2)
      .setColorValue(color(0))
-     .setFont(createFont("Arial", 16));
+     .setFont(createFont("Arial", size2));
      
   amountInput = cp5.addTextfield("amountInput")
                    .setPosition(width / 2, height * 0.2)
@@ -42,25 +46,25 @@ void setup() {
 
   cp5.addTextlabel("temperatureLabel")
      .setText("Temperature value")
-     .setPosition(width / 2 - 200, height * 0.3)
+     .setPosition(width / 2 - (width / 4), height * 0.3)
      .setColorValue(color(0))
-     .setFont(createFont("Arial", 16));
+     .setFont(createFont("Arial", size2));
      
   temperatureInput = cp5.addTextfield("temperatureInput")
                         .setPosition(width / 2, height * 0.3)
                         .setSize(int(width * 0.2), int(height * 0.04))
-                        .setFont(createFont("Arial", 16));
+                        .setFont(createFont("Arial", size2));
 
   cp5.addTextlabel("stateLabel")
      .setText("Actual state of car washing")
      .setPosition(width / 2 - 200, height * 0.4)
      .setColorValue(color(0))
-     .setFont(createFont("Arial", 16));
+     .setFont(createFont("Arial", size2));
      
   stateInput = cp5.addTextfield("stateInput")
                   .setPosition(width / 2, height * 0.4)
                   .setSize(int(width * 0.2), int(height * 0.04))
-                  .setFont(createFont("Arial", 16));
+                  .setFont(createFont("Arial", size2));
 
   solveButton = cp5.addButton("Problem solved")
                     .setPosition(width / 2 - 60, height * 0.5)
@@ -81,7 +85,7 @@ void controlEvent(ControlEvent event) {
   } else if (event.isAssignableFrom(Button.class)) {
     if (event.getName().equals("Problem solved")) {
       String comm = "o-\n";
-      myPort.write(comm);
+      this.myPort.write(comm);
       //println("o-");
       
     }
