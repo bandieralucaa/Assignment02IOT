@@ -47,7 +47,7 @@ public class PCController implements EasyControllerObserver{
 
     @Override
     public void notifySolvedProblem() {
-        channel.sendMsg("o-");
+        channel.sendMsg("$o/l");
     }
 
     private void byStringToCommand(String command, String argument){
@@ -84,10 +84,10 @@ public class PCController implements EasyControllerObserver{
         String[] singleMessage;
 
         for (String string : singleCommand) {
-            singleMessage = string.split("\\.");
+            System.out.println(string);
+            singleMessage = string.split("/");
 
             byStringToCommand(singleMessage[0], singleMessage[1]);
-
 
         }
 
