@@ -6,11 +6,12 @@
 
 //static volatile bool isOver;
 
-WashingState::WashingState(TemperatureSensor* tempSens, Cooldown* clock, LcdMonitor* lcd, LedExtTimered* blink){
+WashingState::WashingState(TemperatureSensor* tempSens, Cooldown* clock, LcdMonitor* lcd, LedExtTimered* blink, OutSender* out){
     this->tempSens = tempSens;
     this->clock = clock;
     this->lcd = lcd;
     this->blink = blink;
+    this->out = out;
 }
 
 // static void* tt;
@@ -30,6 +31,9 @@ void WashingState::init() {
     this->blink->setFading(BLINK_DELTA_2);
     this->lcd->clear();
     this->lcd->initProgBar();
+
+    this->out->updateMessage(STATE4, false);
+    
     //tt = this->clock->every(N3_TIME, isOverTime2);
 }
 

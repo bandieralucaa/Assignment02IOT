@@ -4,9 +4,10 @@
 #include <Arduino.h>
 #endif
 
-WaitConfirmState::WaitConfirmState(Button* b, LcdMonitor* lcd){
+WaitConfirmState::WaitConfirmState(Button* b, LcdMonitor* lcd, OutSender* out){
     this->button = b;
     this->lcd = lcd;
+    this->out = out;
 }
 
 void WaitConfirmState::init(){
@@ -14,6 +15,7 @@ void WaitConfirmState::init(){
     Serial.println("WaitingState");
     #endif
     this->lcd->writeOnLcd(WAITING_STRING);
+    this->out->updateMessage(STATE3, false);
 };
 
 StateName WaitConfirmState::changeState(){

@@ -60,21 +60,21 @@ ControllerScheduler::ControllerScheduler() {
 
 
 
-    State* s1 = new SleepState(myPir, l1, lcd);
+    State* s1 = new SleepState(myPir, l1, lcd, sm);
     //State* s2 = new WelcomeState(out, (myPir), &timer);
     State* s2 = new WelcomeState(myPir, globalCooldown, lcd, l1);
-    State* s3 = new PreEnteringState(myGate,blinkLed,lcd);
+    State* s3 = new PreEnteringState(myGate,blinkLed,lcd, sm);
     State* s4 = new EnteringState(sonar);
     State* s5 = new WaitEnteringState(sonar, globalCooldown);
     State* s6 = new AfterEnteringState(myGate,blinkLed);
-    State* s7 = new WaitConfirmState(butt,lcd);
-    State* s8 = new WashingState(tS, washingCooldown,lcd, blinkLed);
-    State* s9 = new PreWashingDoneState(myGate,lcd,blinkLed,l2);
+    State* s7 = new WaitConfirmState(butt,lcd, sm);
+    State* s8 = new WashingState(tS, washingCooldown,lcd, blinkLed, sm);
+    State* s9 = new PreWashingDoneState(myGate,lcd,blinkLed,l2, sm);
     State* s10 = new WashingDoneState(blinkLed, sonar);
     State* s11 = new LeftingState(sonar, globalCooldown);
     State* s12 = new AfterWashingDoneState(myGate, l2, sm);
     State* s13 = new WarningState(tS,globalCooldown,washingCooldown);
-    State* s14 = new HotState(butt,lcd, sm);
+    State* s14 = new HotState(butt,lcd, sm, sm);
 
     myStates = new State*[14]{s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, s11, s12, s13, s14};
     

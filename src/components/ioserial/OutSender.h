@@ -11,6 +11,7 @@ class OutSender{
 public:
     virtual void increaseWashedCar() = 0;
     virtual void updateState(String newState) = 0;
+    virtual void updateMessage(String newMessage, bool isErrorMessage) = 0;
 
 };
 

@@ -5,11 +5,12 @@
 #include <Arduino.h>
 #endif
 
-PreWashingDoneState::PreWashingDoneState(Gate* myGate, LcdMonitor* lcd, LedExtTimered* blink, Light* l2){
+PreWashingDoneState::PreWashingDoneState(Gate* myGate, LcdMonitor* lcd, LedExtTimered* blink, Light* l2, OutSender* out){
     this->myGate = myGate;
     this->lcd = lcd;
     this->blink = blink;
     this->l2 = l2;
+    this->out = out;
 }
 
 void PreWashingDoneState::init() {
@@ -20,6 +21,7 @@ void PreWashingDoneState::init() {
     this->lcd->writeOnLcd(PRE_WASHING_DONE_STRING);
     this->blink->switchOff();
     this->l2->switchOn();
+    this->out->updateMessage(STATE6,false);
 }
 
 StateName PreWashingDoneState::changeState() {

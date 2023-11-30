@@ -4,11 +4,12 @@
 #include "./components/cooldown/Cooldown.h"
 #include "./components/lcd/LcdMonitor.h"
 #include "./components/led/LedExtTimered.h"
+#include "./components/ioserial/OutSender.h"
 //#include <arduino-timer.h>
 
 class WashingState : public State {
 public:
-    WashingState(TemperatureSensor* tempSens, Cooldown* clock, LcdMonitor* lcd, LedExtTimered* blink);
+    WashingState(TemperatureSensor* tempSens, Cooldown* clock, LcdMonitor* lcd, LedExtTimered* blink, OutSender* out);
     void init();
     StateName changeState(); 
 
@@ -17,5 +18,6 @@ private:
     Cooldown* clock;
     LcdMonitor* lcd;
     LedExtTimered* blink;
+    OutSender* out;
     bool startNewWash;
 };

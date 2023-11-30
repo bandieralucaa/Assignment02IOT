@@ -6,10 +6,11 @@
 #endif
 
 
-PreEnteringState::PreEnteringState(Gate* myGate, LedExtTimered* blinkLed, LcdMonitor* lcd){
+PreEnteringState::PreEnteringState(Gate* myGate, LedExtTimered* blinkLed, LcdMonitor* lcd, OutSender* out){
     this->myGate = myGate;
     this->blinkLed = blinkLed;
     this->lcd = lcd;
+    this->out = out;
 }
 
 void PreEnteringState::init() {
@@ -26,6 +27,7 @@ void PreEnteringState::init() {
     this->blinkLed->init();
 
     this->lcd->writeOnLcd(PRE_ENTERING_STRING);
+    this->out->updateMessage(STATE2, false);
 }
 
 StateName PreEnteringState::changeState() {

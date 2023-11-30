@@ -60,6 +60,16 @@
 
 /* ### ### ### ### ### ### ### ### */
 
+/* ### STRING TO GUI ### */
+
+#define STATE1 "Empty - waiting a new car"
+#define STATE2 "A new car is entering"
+#define STATE3 "Wait user input"
+#define STATE4 "Washing car"
+#define STATE5 ERROR_STRING
+#define STATE6 "Car is washed, left the machine"
+
+/* ### ### ### ### ### ### ### ### */
 
 
 /* ### DEBUGGING VARIABLE ### */

@@ -21,6 +21,7 @@ public:
 
     void increaseWashedCar();
     void updateState(String newState);
+    void updateMessage(String newMessage, bool isErrorMessage);
 
     bool checkIfOk();
 
@@ -34,8 +35,14 @@ private:
     int amountCarWashed;
     bool isSolvedProblem;
     String actState;
+    String actMessage;
     
     void executeCommand(String comm);
+
+    bool isNewAmount = false;
+    bool isNewState = false;
+    bool isNewMessage = false;
+    bool isErrorMessage = false;
 };
 
 

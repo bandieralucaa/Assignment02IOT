@@ -1,9 +1,10 @@
 #include "HotState.h"
 
-HotState::HotState(Button* butt, LcdMonitor* lcd, InReceiver* in){
+HotState::HotState(Button* butt, LcdMonitor* lcd, InReceiver* in, OutSender* out){
     this->button = butt;
     this->lcd = lcd;
     this->in = in;
+    this->out = out;
 }
 
 void HotState::init(){
@@ -12,6 +13,7 @@ void HotState::init(){
     #endif
     this->lcd->raiseError();
     this->lcd->writeOnLcd(ERROR_STRING);
+    this->out->updateMessage(STATE5,true);
 }
 
 StateName HotState::changeState(){

@@ -6,10 +6,11 @@
 #endif
 #include <avr/sleep.h>
 
-SleepState::SleepState(Pir* awakePir, Light* l1, LcdMonitor* lcd){
+SleepState::SleepState(Pir* awakePir, Light* l1, LcdMonitor* lcd, OutSender* out){
     this->myPir = awakePir;
     this->l1 = l1;
     this->lcd = lcd;
+    this->out = out;
 }
 
 void SleepState::init() {
@@ -18,7 +19,9 @@ void SleepState::init() {
     #endif
     this->l1->switchOff();
     this->lcd->turnOff();
-    
+    this->out->updateMessage(STATE1,false);
+    delay(100); //giving time to serial port
+
     set_sleep_mode(SLEEP_MODE_PWR_DOWN); 
     sleep_enable(); 
     sleep_mode();
