@@ -116,14 +116,15 @@ public void updateState(String newState){
 public void refresh(){}
 
 
-public void printMessage(String msg) {
+public void printMessage(String state, String msg) {
     this.message.setText(msg);
+    this.state.setText(state);
 }
 
 
 @Override
-public void printError(String error) {
-    printMessage(error);
+public void printError(String state, String error) {
+    printMessage(state, error);
     this.button.setEnabled(true);
 }
 
