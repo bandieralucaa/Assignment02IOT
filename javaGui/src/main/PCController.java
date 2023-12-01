@@ -70,7 +70,7 @@ public class PCController implements EasyControllerObserver{
 
     @Override
     public void notifySolvedProblem() {
-        channel.sendMsg("$o#l");
+        channel.sendMsg("_o:l");
     }
 
     private void byStringToCommand(String command, String argument){
