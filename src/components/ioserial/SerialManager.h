@@ -20,8 +20,9 @@ public:
     SerialManager(TemperatureSensor* tS);
 
     void increaseWashedCar();
-    void updateState(String newState);
-    void updateMessage(String newMessage, bool isErrorMessage);
+    void updateState(String newState, bool isErrorState);
+    //void updateState(String newState);
+    //void updateMessage(String newMessage, bool isErrorMessage);
 
     bool checkIfOk();
 
@@ -33,7 +34,7 @@ private:
     TemperatureSensor* tS;
     int amountCarWashed;
     String actState;
-    String actMessage;
+    //String actMessage;
     
     bool isSolvedProblem;
     
@@ -42,8 +43,8 @@ private:
 
     bool isNewTemp = true;
     bool isNewAmount = false;
-    bool isNewState = false;
-    bool isNewMessage = false; bool isErrorMessage = false;
+    bool isNewState = false; bool isErrorMessage = false;
+    // bool isNewMessage = false; 
 };
 
 
