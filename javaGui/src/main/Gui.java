@@ -61,7 +61,7 @@ public class Gui extends JFrame implements View {
         JLabel label = new JLabel(labelText);
         label.setFont(new Font("Arial", Font.PLAIN, 20));
 
-        JTextField textField = new JTextField(15);
+        JTextField textField = new JTextField(25);
         textField.setFont(new Font("Arial", Font.PLAIN, 20));
         textField.setEditable(false);
 
