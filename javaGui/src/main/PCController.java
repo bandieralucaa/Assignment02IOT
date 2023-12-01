@@ -93,7 +93,7 @@ public class PCController implements EasyControllerObserver{
         String[] singleMessage;
 
         for (String string : singleCommand) {
-            if(!string.isEmpty()){
+            if(!string.isEmpty() && string.contains(":")){
                 System.out.println(string);
                 singleMessage = string.split(":");
                 Arrays.stream(singleMessage).forEach(s -> System.out.println("-> " + s));
