@@ -18,7 +18,7 @@ MsgServiceClass* m;
 
 
 void setup() {
-  Serial.begin(9600);
+  //Serial.begin(9600);
   #ifdef PROG
   myController = new ControllerScheduler();
   myController->init(SCHEDULE_BASE_PERIOD);

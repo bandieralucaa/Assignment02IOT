@@ -1,4 +1,6 @@
 package main;
+import java.util.Arrays;
+
 import comm.CommChannel;
 import comm.SerialCommChannel;
 import main.View;
@@ -22,7 +24,7 @@ public class PCController implements EasyControllerObserver{
 		Thread.sleep(4000);
 		System.out.println("Ready.");		
 
-        int i = 0;
+       // int i = 0;
 		
 		while (true){
 			//System.out.println("Sending ping");
@@ -33,15 +35,17 @@ public class PCController implements EasyControllerObserver{
                 byStringToCommand(this.channel.receiveMsg());
                 i++;
             }*/
-            this.executeCommand(this.channel.receiveMsg());
+            if(this.channel.isMsgAvailable()){
+                this.executeCommand(this.channel.receiveMsg());
+            }
 			//String msg = channel.receiveMsg();
 			//System.out.println("Received: "+msg);	
             //if (msg.equals("pong")){
             //    System.out.println("\n\n\n");
             //}	
             this.myView.refresh();
-			Thread.sleep(500);
-            i = 0;
+			Thread.sleep(200);
+            //i = 0;
 		}
     }
 
@@ -80,20 +84,25 @@ public class PCController implements EasyControllerObserver{
 
 
     public void executeCommand(String command) {
-        String[] singleCommand = command.split("$");
+        if (!command.contains("_")){
+            return;
+        }
+        System.out.println("## " + command);
+        String[] singleCommand = command.split("_");
+        Arrays.stream(singleCommand).forEach(s -> System.out.println(s));
         String[] singleMessage;
 
         for (String string : singleCommand) {
-            System.out.println(string);
-            singleMessage = string.split("#");
-
-            byStringToCommand(singleMessage[0], singleMessage[1]);
+            if(!string.isEmpty()){
+                System.out.println(string);
+                singleMessage = string.split(":");
+                Arrays.stream(singleMessage).forEach(s -> System.out.println("-> " + s));
+                byStringToCommand(singleMessage[0], singleMessage[1]);
+                System.out.println();
+            }
 
         }
 
-    
-        
-       
     }
 
     

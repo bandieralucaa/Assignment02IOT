@@ -8,11 +8,17 @@ public class Launcher{
 		//Double f[] = {4.4, 5.5, 6.6 , 7.7, 8.8};
 		//System.out.println(f.toString());
 		
-		String tmp = "$r$rt$rty";
-		String[] r = tmp.split("$");
-		Arrays.stream(r).forEach(null);
+		// String sep = ":";
+		// String arg = "_";
+
+		// String tmp = ":r:rt:rty";
+		// String[] r = tmp.split(sep);
+		// Arrays.stream(r).forEach(s -> {
+		// 	System.out.println(s);
+		// });
 		
-		//new PCController(args[0], 9600);
+		
+		new PCController(args[0], 9600);
 		
 		
 		

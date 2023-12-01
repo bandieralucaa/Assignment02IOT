@@ -2,9 +2,10 @@
 
 #include <Arduino.h>
 #define AMOUNT_COMM 4
+#define S_DEBUG
 
-#define COMMAND_CHAR '?'
-#define ARGUMENT_CHAR '#'
+#define COMMAND_CHAR '_'
+#define ARGUMENT_CHAR ':'
 
 SerialManager::SerialManager(TemperatureSensor* tS){
     this->tS = tS;
@@ -12,15 +13,16 @@ SerialManager::SerialManager(TemperatureSensor* tS){
     this->actState = "";
     this->actMessage = "";
     this->isSolvedProblem = false;
-    
+    //MsgService.init();
     this->period = IOMAN_PERIOD;
+    Serial.begin(9600);
 }
 
 
 void SerialManager::increaseWashedCar(){
     this->amountCarWashed++;
     #ifdef S_DEBUG
-    Serial.print((String)this->amountCarWashed);
+    Serial.println((String)this->amountCarWashed);
     #endif
     this->isNewAmount = true;
 }
@@ -29,9 +31,12 @@ void SerialManager::increaseWashedCar(){
 void SerialManager::updateState(String newState){
     this->actState = newState;
     #ifdef S_DEBUG
-    Serial.print(newState)
+    Serial.println(newState);
     #endif
     this->isNewState = true;
+    String tmp = ((String)COMMAND_CHAR) + ((String)'s') + ((String)ARGUMENT_CHAR) + this->actState;
+    MsgService.sendMsg(tmp);
+
 }
 
 
@@ -40,9 +45,14 @@ void SerialManager::updateMessage(String newMessage, bool isErrorMessage){
     this->isErrorMessage = isErrorMessage;
     this->isSolvedProblem = !isErrorMessage;
     #ifdef S_DEBUG
-    Serial.print(newMessage + " " + (String)isErrorMessage);
+    Serial.println(newMessage + " " + (String)isErrorMessage);
     #endif
     this->isNewMessage = true;
+
+    String c = this->isErrorMessage ? ((String)'e') : ((String)'m');
+    String tmp = ((String)COMMAND_CHAR) + c + ((String)ARGUMENT_CHAR) + this->actMessage;
+    MsgService.sendMsg(tmp);
+    //MsgService.sendMsg();
 }
 
 
@@ -135,24 +145,40 @@ void SerialManager::executeCommands(String comm){
 
 void SerialManager::tick(){
     String comm = "";
-    comm += trasdutter2('t', (String)this->tS->senseTemperature());
-    //if(this->isNewState){
-        comm += trasdutter2('s', this->actState);
-    //}
-    if (this->isNewAmount){
-        comm += trasdutter2('c', (String)this->amountCarWashed);
-    }
-    //if(this->isNewMessage){
-    char com;
-    if (this->isErrorMessage){
-        com = 'e';
-    } else {
-        com = 'm';
-    }
-        comm += trasdutter2(com , this->actMessage);
+
+    comm += ((String)COMMAND_CHAR) + ((String)'t') + ((String)ARGUMENT_CHAR) + this->tS->senseTemperature();
+    comm += ((String)COMMAND_CHAR) + ((String)'c') + ((String)ARGUMENT_CHAR) + (String)this->amountCarWashed;
+    //comm += ((String)COMMAND_CHAR) + ((String)'s') + ((String)ARGUMENT_CHAR) + this->actState;
+    //comm += ((String)COMMAND_CHAR) + this->isErrorMessage ? ((String)'e') : ((String)'m') + ((String)ARGUMENT_CHAR) + this->actMessage;
+
+
+
+
+
+
+
+    // // // // comm += trasdutter2('t', (String)this->tS->senseTemperature());
+    // // // // //if(this->isNewState){
+    // // // //     Serial.println("--------->" + this->actState);
+    // // // //     Serial.println("---->>>" + trasdutter2('s', this->actState));
+    // // // //     comm += trasdutter2('s', this->actState);
+    // // // // //}
+    // // // // if (this->isNewAmount){
+    // // // //     comm += trasdutter2('c', (String)this->amountCarWashed);
+    // // // // }
+    // // // // //if(this->isNewMessage){
+    // // // // char com;
+    // // // // if (this->isErrorMessage){
+    // // // //     com = 'e';
+    // // // // } else {
+    // // // //     com = 'm';
+    // // // // }
+    // // // //     Serial.println("--------->" + this->actMessage);
+    // // // //     Serial.println("---->>>" + trasdutter2('s', this->actMessage));
+    // // // //     comm += trasdutter2(com , this->actMessage);
     //}
     MsgService.sendMsg(comm);
-    Serial.println((String) this->isNewState + (String)this->isNewAmount + (String)this->isNewMessage);
+    // // // // Serial.println((String) this->isNewState + (String)this->isNewAmount + (String)this->isNewMessage);
     // this->ioManager->boardSendMsg(trasdutter("s-", this->actState));
     // this->ioManager->boardSendMsg(trasdutter("c-", (String)this->amountCarWashed));
     // this->ioManager->boardSendMsg(trasdutter("t-", (String)this->tS->senseTemperature()));
