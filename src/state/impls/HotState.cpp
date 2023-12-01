@@ -13,8 +13,8 @@ void HotState::init(){
     #endif
     this->lcd->raiseError();
     this->lcd->writeOnLcd(ERROR_STRING);
-    this->out->updateState(STATE5);
-    this->out->updateMessage(MESS5,true);
+    this->out->updateState(STATE5, true);
+    // this->out->updateMessage(MESS5,true);
 }
 
 StateName HotState::changeState(){

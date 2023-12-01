@@ -3,14 +3,14 @@
 #include <Arduino.h>
 #define AMOUNT_COMM 4
 
-#define COMMAND_CHAR '?'
-#define ARGUMENT_CHAR '#'
+#define COMMAND_CHAR '_'
+#define ARGUMENT_CHAR ':'
 
 SerialManager::SerialManager(TemperatureSensor* tS){
     this->tS = tS;
     this->amountCarWashed = 0;
     this->actState = "";
-    this->actMessage = "";
+    // this->actMessage = "";
     this->isSolvedProblem = false;
     
     this->period = IOMAN_PERIOD;
@@ -25,25 +25,32 @@ void SerialManager::increaseWashedCar(){
     this->isNewAmount = true;
 }
 
-
-void SerialManager::updateState(String newState){
+// virtual void updateState(String newState, bool isErrorState) = 0;
+void SerialManager::updateState(String newState, bool isErrorState){
     this->actState = newState;
-    #ifdef S_DEBUG
-    Serial.print(newState)
-    #endif
-    this->isNewState = true;
-}
-
-
-void SerialManager::updateMessage(String newMessage, bool isErrorMessage){
-    this->actMessage = newMessage;
     this->isErrorMessage = isErrorMessage;
     this->isSolvedProblem = !isErrorMessage;
     #ifdef S_DEBUG
     Serial.print(newMessage + " " + (String)isErrorMessage);
     #endif
-    this->isNewMessage = true;
+    this->isNewState = true;
+    // this->actState = newState;
+    // #ifdef S_DEBUG
+    // Serial.print(newState)
+    // #endif
+    // this->isNewState = true;
 }
+
+
+// void SerialManager::updateMessage(String newMessage, bool isErrorMessage){
+//     this->actMessage = newMessage;
+//     this->isErrorMessage = isErrorMessage;
+//     this->isSolvedProblem = !isErrorMessage;
+//     #ifdef S_DEBUG
+//     Serial.print(newMessage + " " + (String)isErrorMessage);
+//     #endif
+//     this->isNewMessage = true;
+// }
 
 
 
@@ -61,9 +68,9 @@ String trasdutter2(char command, String value){
 void SerialManager::init(){
     String comm = "";
     comm += trasdutter2('t', (String)this->tS->senseTemperature());
-    comm += trasdutter2('s', "Powering up");
+    // comm += trasdutter2('s', "Powering up");
     comm += trasdutter2('c', "0");
-    comm += trasdutter2('m' , "Powering up");
+    comm += trasdutter2('m' , "1");
     MsgService.sendMsg(comm);
     // MsgService.sendMsg(trasdutter("s-", "Powering up"));
     // MsgService.sendMsg(trasdutter("m-", "Powering up"));
@@ -137,7 +144,7 @@ void SerialManager::tick(){
     String comm = "";
     comm += trasdutter2('t', (String)this->tS->senseTemperature());
     //if(this->isNewState){
-        comm += trasdutter2('s', this->actState);
+        // comm += trasdutter2('s', this->actState);
     //}
     if (this->isNewAmount){
         comm += trasdutter2('c', (String)this->amountCarWashed);
@@ -149,10 +156,11 @@ void SerialManager::tick(){
     } else {
         com = 'm';
     }
-        comm += trasdutter2(com , this->actMessage);
+        // comm += trasdutter2(com , this->actMessage);
+    comm += trasdutter2(com , this->actState);
     //}
     MsgService.sendMsg(comm);
-    Serial.println((String) this->isNewState + (String)this->isNewAmount + (String)this->isNewMessage);
+    //Serial.println((String) this->isNewState + (String)this->isNewAmount + (String)this->isNewMessage);
     // this->ioManager->boardSendMsg(trasdutter("s-", this->actState));
     // this->ioManager->boardSendMsg(trasdutter("c-", (String)this->amountCarWashed));
     // this->ioManager->boardSendMsg(trasdutter("t-", (String)this->tS->senseTemperature()));
@@ -164,7 +172,7 @@ void SerialManager::tick(){
 
     this->isNewState = false;
     this->isNewAmount = false;
-    this->isNewMessage = false;
+    //this->isNewMessage = false;
 
     // if (this->ioManager->boardIsMsgAvaiable()){
     //     String tmp = this->ioManager->boardReceiveMsg();

@@ -63,20 +63,20 @@
 
 /* ### STRING TO GUI ### */
 
-#define STATE1 "Empty state"
-#define STATE2 "Entering state"
-#define STATE3 "Confirm state"
-#define STATE4 "Washing state"
-#define STATE5 "Error state"
-#define STATE6 "Lefting state"
+#define STATE1 "1"
+#define STATE2 "2"
+#define STATE3 "3"
+#define STATE4 "4"
+#define STATE5 "5"
+#define STATE6 "6"
 
 
-#define MESS1 "Empty - no car is in washing machine"
-#define MESS2 "A new car is entering"
-#define MESS3 "Wait user input"
-#define MESS4 "Washing car"
-#define MESS5 "Maintenance required"
-#define MESS6 "Car is washed, left the machine"
+// #define MESS1 "Empty - no car is in washing machine"
+// #define MESS2 "A new car is entering"
+// #define MESS3 "Wait user input"
+// #define MESS4 "Washing car"
+// #define MESS5 "Maintenance required"
+// #define MESS6 "Car is washed, left the machine"
 
 /* ### ### ### ### ### ### ### ### */
 
