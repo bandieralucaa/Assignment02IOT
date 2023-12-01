@@ -1,5 +1,6 @@
 package main;
 import java.util.Arrays;
+import java.util.Map;
 
 import comm.CommChannel;
 import comm.SerialCommChannel;
@@ -13,6 +14,24 @@ public class PCController implements EasyControllerObserver{
     
     private CommChannel channel;
     private View myView;
+    private Map<String, String> states = Map.of(
+        "1", "Empty state",
+        "2", "Entering state",
+        "3", "Confirm state",
+        "4", "Washing state",
+        "5", "Error state",
+        "6", "Lefting state"
+    );;
+    private Map<String, String> messages = Map.of(
+        "1", "Empty - no car is in washing machine",
+        "2", "A new car is entering",
+        "3", "Wait user input",
+        "4", "Washing car",
+        "5", "Maintenance required",
+        "6", "Car is washed, left the machine"
+    );;
+    
+    
 
     public PCController(String protName, int baudRate) throws Exception {
         channel = new SerialCommChannel(protName, baudRate);
@@ -57,24 +76,26 @@ public class PCController implements EasyControllerObserver{
     private void byStringToCommand(String command, String argument){
        // if (input.length() > 2) {
           //  String argument = input.substring(2);
+
             switch (command.charAt(0)) {
                 case 'c':
                     this.myView.updateCars(Integer.parseInt(argument));
                     break;
                 
-                case 's':
-                    this.myView.updateState(argument);
-                    break;
+                // case 's':
+                //     this.myView.updateState(argument);
+                //     break;
             
                 case 't':
                     this.myView.updateTemp(Double.parseDouble(argument));
                     break;
 
                 case 'e':
-                    this.myView.printError(argument);
+                    this.myView.printError(states.get(argument), messages.get(argument));
+                    
 
                 case 'm':
-                    this.myView.printMessage(argument);
+                    this.myView.printMessage(states.get(argument), messages.get(argument));
                 
                 default:
                     break;

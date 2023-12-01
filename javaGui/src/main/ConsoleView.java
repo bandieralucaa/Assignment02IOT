@@ -1,7 +1,7 @@
 package main;
 
 
-public class ConsoleView implements View {
+public class ConsoleView {
 
     private EasyControllerObserver c;
     private double temp;
@@ -9,27 +9,27 @@ public class ConsoleView implements View {
     private String state;
     private String msg;
 
-    @Override
+    
     public void setController(EasyControllerObserver c) {
         this.c = c;
     }
 
-    @Override
+   
     public void updateTemp(double newTemp) {
         this.temp = newTemp;
     }
 
-    @Override
+
     public void updateCars(int newAmount) {
         this.cars = newAmount;
     }
 
-    @Override
+  
     public void updateState(String newState) {
         this.state = newState;
     }
 
-    @Override
+    
     public void refresh() {
         System.out.println(this.state);
         System.out.println(this.cars);
@@ -41,12 +41,12 @@ public class ConsoleView implements View {
         this.c.notifySolvedProblem();
     }
 
-    @Override
+    
     public void printMessage(String msg) {
         this.msg = msg;
     }
 
-    @Override
+    
     public void printError(String error) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'printError'");

@@ -14,8 +14,8 @@ public interface View {
 
     void refresh();
 
-    void printMessage(String msg);
+    void printMessage(String state, String msg);
 
-    void printError(String error);
+    void printError(String state, String error);
 
 }
