@@ -63,7 +63,7 @@ public class PCController implements EasyControllerObserver{
             //    System.out.println("\n\n\n");
             //}	
             this.myView.refresh();
-			Thread.sleep(200);
+			Thread.sleep(990);
             //i = 0;
 		}
     }
