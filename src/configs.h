@@ -75,11 +75,11 @@
 
 /* ### DEBUGGING VARIABLE ### */
 
-#define DEBUG
+//#define DEBUG
 #ifdef DEBUG
 
 //#define SCHEDULER_INIT_PHASE
-//#define SCHEDULER_PERIOD_DEBUG
+//#define SCHEDULER_PERIOD_DEBUG 
 
 //#define PIR_DEBUG //valuta se eliminarmi
 //#define SERVO_MOTOR_DEBUG

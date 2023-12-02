@@ -9,7 +9,7 @@ AfterEnteringState::AfterEnteringState(Gate* myGate, LedExtTimered* blink) {
 
 void AfterEnteringState::init() {
     #ifdef STATE_CHANGE_DEBUG
-    Serial.println("CHIUDI GATEEEEE");
+    Serial.println("AfterEnteringState");
     #endif
 
     this->blink->start();
