@@ -3,7 +3,6 @@
 #include "./state/impls/WelcomeState.h"
 #include <Arduino.h>
 
-volatile bool isOver;
 
 WelcomeState::WelcomeState(CarPresenceDetector* awakePir, Cooldown* clock, LcdMonitor* lcd, Led* l1){
     this->myPir = awakePir;
@@ -11,8 +10,6 @@ WelcomeState::WelcomeState(CarPresenceDetector* awakePir, Cooldown* clock, LcdMo
     this->clock = clock;
     this->lcd = lcd;
 }
-
-void* tt;
 
 void WelcomeState::init() {
     this->lcd->turnOn();
