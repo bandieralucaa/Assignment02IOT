@@ -1,15 +1,16 @@
 
-#include "./state/impls/WarningState.h"
+#include "WarningState.h"
 
 #include "Arduino.h"
 
 static volatile bool isOver;
 
-WarningState::WarningState(TemperatureSensor* tempSens, Cooldown* globalClock, Cooldown* washingClock, LcdMonitor* lcd){
+WarningState::WarningState(TemperatureSensor* tempSens, Cooldown* globalClock, Cooldown* washingClock, LcdMonitor* lcd, OutSender* out){
     this->tempSens = tempSens;
     this->globalClock = globalClock;
     this->washingClock = washingClock;
     this->lcd = lcd;
+    this->out = out;
 
 }
 
@@ -33,6 +34,7 @@ StateName WarningState::changeState() {
         if (this->lcd->changeProgBar(this->washingClock->percentageComplete())){
             this->lcd->printProgBar();
         }
+        this->out->sendTemperature();
         return NONE;
     }
 };

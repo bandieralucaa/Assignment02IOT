@@ -27,6 +27,7 @@ void WashingState::init() {
     #endif
     this->lcd->clear();
     this->lcd->initProgBar();
+
     if(startNewWash){
         this->clock->format(N3_TIME);
     } else {
@@ -54,7 +55,6 @@ void WashingState::init() {
     // Serial.print("\n");
 // }
 
-
 StateName WashingState::changeState() {
     #ifdef TEMP_DEBUG
     Serial.println("oooooooo: " + (String)this->tempSens->senseTemperature());
@@ -70,6 +70,7 @@ StateName WashingState::changeState() {
         if (this->lcd->changeProgBar(this->clock->percentageComplete())){
             this->lcd->printProgBar();
         }
+        this->out->sendTemperature();
         #ifdef LCD_DEBUG
         Serial.println(this->clock->percentageComplete());
         #endif
