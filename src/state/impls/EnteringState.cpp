@@ -1,9 +1,12 @@
 #include "./state/impls/EnteringState.h"
 
+#ifdef DEBUG
+#include "Arduino.h"
+#endif
+
 EnteringState::EnteringState(CarDistanceDetector* sonar){
     this->sonar = sonar;
 }
-
 
 void EnteringState::init() {
     #ifdef STATE_CHANGE_DEBUG

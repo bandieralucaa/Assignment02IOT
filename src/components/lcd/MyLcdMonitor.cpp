@@ -102,8 +102,7 @@ bool MyLcdMonitor::changeProgBar(int percentage){
 
 void MyLcdMonitor::printProgBar() {
     this->lcd.setCursor(PROG_BAR_COLS + START_BAR_INDEX, PROG_BAR_ROW);
-    //this->lcd.print(progressBar);
-    int i=0;
+    int i;
     for (i=0; i<AMOUNT_BARS; i++){
         this->lcd.print(progressBar[i]);
     }

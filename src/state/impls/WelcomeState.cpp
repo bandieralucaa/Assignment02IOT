@@ -20,7 +20,7 @@ void WelcomeState::init() {
     l1->switchOn();
 
     #ifdef STATE_CHANGE_DEBUG
-    Serial.println("WelcomeState ");
+    Serial.println("WelcomeState");
     #endif
 
     this->myPir->start();

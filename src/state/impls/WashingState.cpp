@@ -35,7 +35,7 @@ void WashingState::init() {
 
 StateName WashingState::changeState() {
     #ifdef TEMP_DEBUG
-    Serial.println("oooooooo: " + (String)this->tempSens->senseTemperature());
+    Serial.println(" -- " + (String)this->tempSens->senseTemperature() + " -- ");
     #endif
     if(this->clock->isOver()) {
         startNewWash = true;

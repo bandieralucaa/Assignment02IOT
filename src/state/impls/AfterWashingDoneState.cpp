@@ -1,8 +1,5 @@
 #include "./AfterWashingDoneState.h"
 
-#ifdef DEBUG
-#include <Arduino.h>
-#endif
 
 AfterWashingDoneState::AfterWashingDoneState(Gate* myGate, Light* l2, OutSender* out) {
     this->myGate = myGate;
