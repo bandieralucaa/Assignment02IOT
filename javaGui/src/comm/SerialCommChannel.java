@@ -1,5 +1,6 @@
 package comm;
 
+import java.util.Arrays;
 import java.util.concurrent.*;
 import jssc.*;
 
@@ -35,14 +36,15 @@ public class SerialCommChannel implements CommChannel, SerialPortEventListener {
 
 	@Override
 	public void sendMsg(String msg) {
-		char[] array = (msg+"\n").toCharArray();
-		byte[] bytes = new byte[array.length];
-		for (int i = 0; i < array.length; i++){
-			bytes[i] = (byte) array[i];
-		}
+		// char[] array = (msg+"\n").toCharArray();
+		// byte[] bytes = new byte[array.length];
+		// for (int i = 0; i < array.length; i++){
+		// 	bytes[i] = (byte) array[i];
+		// }
 		try {
 			synchronized (serialPort) {
-				serialPort.writeBytes(bytes);
+				//serialPort.riteBytes(bytes);
+				serialPort.writeString(msg);
 			}
 		} catch(Exception ex){
 			ex.printStackTrace();

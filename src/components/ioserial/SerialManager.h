@@ -36,7 +36,7 @@ private:
     String actState;
     //String actMessage;
     
-    bool isSolvedProblem;
+    bool isSolvedProblem = false;
     
     void executeCommands(String comm);
     void executeCommandByGui(String comm, String value);

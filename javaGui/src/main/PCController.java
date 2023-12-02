@@ -63,14 +63,15 @@ public class PCController implements EasyControllerObserver{
             //    System.out.println("\n\n\n");
             //}	
             this.myView.refresh();
-			Thread.sleep(990);
+			Thread.sleep(490);
             //i = 0;
 		}
     }
 
     @Override
     public void notifySolvedProblem() {
-        channel.sendMsg("_o:l");
+        System.out.println("BHBH");
+        this.channel.sendMsg("_o:l");
     }
 
     private void byStringToCommand(String command, String argument){

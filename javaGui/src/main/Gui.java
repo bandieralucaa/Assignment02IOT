@@ -43,7 +43,7 @@ public class Gui extends JFrame implements View {
         add(button);
 
         button.addActionListener(e -> {
-            System.out.println("BHBH");
+            
             c.notifySolvedProblem();
             this.button.setEnabled(false);
         });        

@@ -18,7 +18,8 @@ void HotState::init(){
 }
 
 StateName HotState::changeState(){
-    if (this->button->isPressed() || this->in->checkIfOk()){
+    //if (this->in->checkIfOk()){
+    if(this->button->isPressed() || this->in->checkIfOk()){
         this->lcd->goBackNormal();
         return WASHING_STATE;
     } else {

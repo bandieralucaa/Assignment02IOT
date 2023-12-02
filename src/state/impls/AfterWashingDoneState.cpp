@@ -17,6 +17,7 @@ void AfterWashingDoneState::init() {
     this->myGate->close();
     this->l2->switchOff();
     this->out->increaseWashedCar();
+    this->out->updateState(STATE1, false);
 }
 
 StateName AfterWashingDoneState::changeState() {
