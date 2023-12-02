@@ -87,10 +87,7 @@ void SerialManager::updateState(String newState, bool isErrorState){
 
 
 
-<<<<<<< HEAD
 
-=======
->>>>>>> 50281dacf457c6b60823f776a73345a578bcce35
 
 
 void SerialManager::init(){
