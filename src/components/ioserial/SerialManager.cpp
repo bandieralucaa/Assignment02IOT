@@ -16,11 +16,6 @@ SerialManager::SerialManager(TemperatureSensor* tS){
     //MsgService.init();
     this->period = IOMAN_PERIOD;
     Serial.begin(9600);
-    Serial.setTimeout(1000);
-}
-
-String trasdutter2(char command, String value){
-    return ((String)COMMAND_CHAR) + ((String)command) + ((String)ARGUMENT_CHAR) + value;
 }
 
 // String trasdutter(String codec, String value){
