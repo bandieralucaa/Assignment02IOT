@@ -70,14 +70,6 @@
 #define STATE5 "5"
 #define STATE6 "6"
 
-
-// #define MESS1 "Empty - no car is in washing machine"
-// #define MESS2 "A new car is entering"
-// #define MESS3 "Wait user input"
-// #define MESS4 "Washing car"
-// #define MESS5 "Maintenance required"
-// #define MESS6 "Car is washed, left the machine"
-
 /* ### ### ### ### ### ### ### ### */
 
 
@@ -91,7 +83,7 @@
 
 //#define PIR_DEBUG //valuta se eliminarmi
 //#define SERVO_MOTOR_DEBUG
-#define SONAR_DEBUG
+//#define SONAR_DEBUG
 //#define TEMP_DEBUG
 //#define LCD_DEBUG
 

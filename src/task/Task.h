@@ -1,9 +1,6 @@
 #ifndef __TASK__
 #define __TASK__
 
-//#include "string.h"
-#include <Arduino.h>
-
 class Task {
     public:
     virtual void init();
@@ -34,8 +31,7 @@ class Task {
 protected:
     bool isRunning = false;
     unsigned long millis = 0;
-    unsigned long period = 200;
-    // String name = "";
+    unsigned long period = 0; //RICORDAMI di settarmi
 };
 
 #endif

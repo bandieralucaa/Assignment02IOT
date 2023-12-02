@@ -3,7 +3,6 @@
 #define AMOUNT_MOVE 30
 
 Gate::Gate(int pin, bool isActOpen) {
-    this->pin = pin; //VALUTA SE ELIMINARMI
     this->actOpen = isActOpen;
 
     this->motor.attach(pin);
@@ -37,7 +36,7 @@ void Gate::tick(){
     int newGrade = this->actGrade + (this->direction * AMOUNT_MOVE);
 
     #ifdef SERVO_MOTOR_DEBUG
-    Serial.print("£££££ " + (String)newGrade);
+    Serial.print("Servo motor grade: " + (String)newGrade);
     #endif
     
     this->motor.write(newGrade);

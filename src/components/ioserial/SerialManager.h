@@ -9,7 +9,6 @@
 
 
 #include "./components/temperature/TemperatureSensor.h"
-//#include "IOSerialManager.h"
 #include "MsgService.h"
 
 #include <Arduino.h>
@@ -19,13 +18,10 @@ class SerialManager: public Task, public OutSender, public InReceiver{
 public:
     SerialManager(TemperatureSensor* tS);
 
+    void sendTemperature();
     void increaseWashedCar();
     void updateState(String newState, bool isErrorState);
-
-    void sendTemperature();
-    //void updateState(String newState);
-    //void updateMessage(String newMessage, bool isErrorMessage);
-
+    
     bool checkIfOk();
 
     void init();
@@ -34,7 +30,7 @@ public:
     bool updateAndCheckTime(int millis){
         bool res = false;
         this->millis += millis;
-        if (this->millis > this->period){
+        if (this->millis >= this->period){
             res = true;
             this->millis = 0;
         }
@@ -43,11 +39,9 @@ public:
 
 
 private:
-
     TemperatureSensor* tS;
     int amountCarWashed;
     String actState;
-    //String actMessage;
     
     bool isSolvedProblem = false;
     
@@ -57,7 +51,6 @@ private:
     bool isNewTemp = true;
     bool isNewAmount = false;
     bool isNewState = false; bool isErrorMessage = false;
-    // bool isNewMessage = false; 
 };
 
 

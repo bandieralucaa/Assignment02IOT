@@ -4,9 +4,9 @@
 
 #include <Arduino.h>
 
-#define DANGEROUS_TEMP 60.0
+#define DANGEROUS_TEMP 80.0
 
-class TemperatureSensor{
+class TemperatureSensor {
 public:
     TemperatureSensor(int pin);
     double senseTemperature();

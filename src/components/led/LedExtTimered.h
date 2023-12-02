@@ -5,6 +5,7 @@
 #include "./task/Task.h"
 
 #include "configs.h"
+#include "Arduino.h"
 
 #define MAX_INTENSITY 255
 #define MIN_INTENSITY 0
@@ -28,7 +29,7 @@ public:
     bool updateAndCheckTime(int millis){
         bool res = false;
         this->millis += millis;
-        if (this->millis > this->period){
+        if (this->millis >= this->period){
             res = true;
             this->millis = 0;
         }

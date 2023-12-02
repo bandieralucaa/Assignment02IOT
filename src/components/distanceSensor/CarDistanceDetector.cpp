@@ -1,5 +1,5 @@
 #include "CarDistanceDetector.h"
-#define TIMEOUT_SONAR (100000) //(SONAR_PERIOD / 2)
+#define TIMEOUT_SONAR (100000)
 
 CarDistanceDetector::CarDistanceDetector(int trigPin, int echoPin){
     this->trigPin = trigPin ;
@@ -26,12 +26,11 @@ void CarDistanceDetector::init(){
 }
 
 void CarDistanceDetector::measure(){
-    float temperature = 20; // SENSORE_TEMP?
+    float temperature = 20; 
 
     float vs = 331.45 + 0.62*temperature;
 
     /* Triggering stage: sending the impulse */
-
     digitalWrite(this->trigPin,LOW);
     delayMicroseconds(3);
     digitalWrite(this->trigPin,HIGH);
@@ -62,6 +61,5 @@ void CarDistanceDetector::measure(){
 }
 
 void CarDistanceDetector::tick(){
-    //this->lastRead = this->getDistance();
     this->measure();
 }

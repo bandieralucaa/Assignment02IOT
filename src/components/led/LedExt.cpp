@@ -1,5 +1,4 @@
 #include "LedExt.h"
-#include <Arduino.h>
 
 LedExt::LedExt(int pin) : Led(pin) {
     pinMode(pin, OUTPUT);

@@ -27,7 +27,6 @@ public:
 
 private:
     Servo motor;
-    int pin;
     bool actOpen;
     bool actClose;
     int actGrade;

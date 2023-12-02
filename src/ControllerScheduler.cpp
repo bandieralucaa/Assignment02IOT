@@ -1,15 +1,9 @@
 #include "ControllerScheduler.h"
 
-
-//#define OLD_TIMER
-#define INTERESTING_TIMER
-
 StateName actState;
 State** myStates;
-//Timer<3> timer;
-#ifdef INTERESTING_TIMER
+
 Cooldown* scheduleCooldown;
-#endif
 
 Task** myTasks;
 int actAmountTask;
@@ -19,21 +13,16 @@ unsigned long bPeriod;
 
 ControllerScheduler::ControllerScheduler() {
 
-
     CarPresenceDetector* myPir = new CarPresenceDetector(PIR_PIN);
-
 
     Gate* myGate = new Gate(SERVO_MOTOR_PIN, false);
     myGate->init();
 
-
     CarDistanceDetector* sonar = new CarDistanceDetector(SONAR_TRIG,SONAR_ECHO);
-
 
     LedExtTimered* blinkLed = new LedExtTimered(BLINKING_LED, 5);
     Led* l1 = new Led(LED1_PIN);
     Led* l2 = new Led(LED2_PIN);
-
     blinkLed->switchOff();
     l1->switchOff();
     l2->switchOff();
@@ -49,7 +38,6 @@ ControllerScheduler::ControllerScheduler() {
 
     Cooldown* globalCooldown = new Cooldown(N1_TIME);    
 
-
     MyLcdMonitor* lcd = new MyLcdMonitor();
     lcd->turnOff();
 
@@ -59,10 +47,7 @@ ControllerScheduler::ControllerScheduler() {
     // myTasks = new Task*[amountTask]{sonar};
     actAmountTask = amountTask;
 
-
-
     State* s1 = new SleepState(myPir, l1, lcd, sm);
-    //State* s2 = new WelcomeState(out, (myPir), &timer);
     State* s2 = new WelcomeState(myPir, globalCooldown, lcd, l1);
     State* s3 = new PreEnteringState(myGate,blinkLed,lcd, sm);
     State* s4 = new EnteringState(sonar);
@@ -87,35 +72,7 @@ ControllerScheduler::ControllerScheduler() {
 unsigned long t1 = 0;
 #endif
 
-bool interuptAppened(void*) {
-
-    #ifdef SCHEDULER_PERIOD_DEBUG
-    unsigned long t2 = millis();
-    unsigned long t3 = t2 - t1;
-    Serial.print(" ");
-    Serial.print(t3);
-    Serial.print(" <-------------\n");
-    t1 = t2;
-    #endif
-
-    int i;
-    for(i=0; i < actAmountTask; i++) {
-        if (myTasks[i]->updateAndCheckTime(bPeriod)){
-            myTasks[i]->tick();
-        }
-    }
-
-    StateName newState = myStates[actState]->changeState();
-    if (newState != NONE) {
-        actState = newState;
-        myStates[actState]->init();
-    }
-    
-    
-    return true;
-}
-
-bool interuptAppened2() {
+bool interuptAppened() {
 
     #ifdef SCHEDULER_PERIOD_DEBUG
     unsigned long t2 = millis();
@@ -142,7 +99,6 @@ bool interuptAppened2() {
         myStates[actState]->init();
     }
     
-    
     return true;
 }
 
@@ -150,30 +106,12 @@ void ControllerScheduler::init(unsigned long basePeriod) {
     bPeriod = basePeriod;
     scheduleCooldown = new Cooldown(bPeriod);
     scheduleCooldown->init();
-
-    #ifdef SCHEDULER_PERIOD_DEBUG
-    #ifdef OLD_TIMER
-    Serial.print(timer.size());  
-    timer.every(basePeriod, interuptAppened);
-    #endif
-    #endif
-    #ifdef SCHEDULER_PERIOD_DEBUG
-    #ifdef OLD_TIMER
-    Serial.print(timer.size());
-    Serial.print("****** init controller scheduler");
-    #endif
-    #endif
 }
 
 void ControllerScheduler::execute() {
-    #ifdef OLD_TIMER
-    timer.tick();
-    #endif
-
     if (scheduleCooldown->isOver()){
-        interuptAppened2();
+        interuptAppened();
         scheduleCooldown->reset();
     }
-    
 }
 

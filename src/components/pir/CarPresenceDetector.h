@@ -8,6 +8,7 @@
 
 #include "configs.h"
 
+#include "Arduino.h"
 
 class CarPresenceDetector : public Pir, public Task {
 public:
@@ -19,7 +20,7 @@ public:
     void tick();
 
 private:
-    int myPin = 0;
+    int myPin;
     bool anyone = false;
 };
 

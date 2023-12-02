@@ -1,10 +1,12 @@
 #ifndef __WM_BUTT__
 #define __WM_BUTT__
 
+#include "configs.h"
+
 #include "./task/Task.h"
 #include "./components/button/Button.h"
 
-#include "configs.h"
+#include "Arduino.h"
 
 class WashingMachineButton : public Button, public Task {
 public:
@@ -18,7 +20,7 @@ public:
     bool updateAndCheckTime(int millis){
         bool res = false;
         this->millis += millis;
-        if (this->millis > this->period){
+        if (this->millis >= this->period){
             res = true;
             this->millis = 0;
         }

@@ -6,5 +6,4 @@ public:
     virtual bool isAnyone() = 0;
 };
 
-
 #endif

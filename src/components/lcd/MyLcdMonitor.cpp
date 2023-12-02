@@ -23,12 +23,6 @@ void initProgBar(){
     int i;
     for (i=0; i<AMOUNT_BARS;i++){
       char c = EMPTY_CHAR;
-    //   if (i == 0){
-    //     c = INIT_BAR;
-    //   }
-    //   if (i == (AMOUNT_BARS-1)){
-    //     c = FINISH_BAR;
-    //   }
       progressBar[i] = c;
     }
 }
@@ -37,9 +31,7 @@ MyLcdMonitor::MyLcdMonitor(){
     this->lcd.begin(AMOUNT_COLS, 2);
     initProgBar();
     this->lcd.display();
-    //Serial.print("ONE");
     this->goBackNormal();
-    //Serial.print("TWO");
 }
 
 void MyLcdMonitor::myPrint(){
@@ -49,7 +41,6 @@ void MyLcdMonitor::myPrint(){
         for(j=0; j<AMOUNT_COLS; j++){
             char c = this->actString[i*(AMOUNT_COLS)+j];
             if (c != '\0'){
-                //this->lcd.setCursor(j,i);
                 this->lcd.print(c);
             } else {
                 i=AMOUNT_ROWS;
@@ -64,8 +55,6 @@ void MyLcdMonitor::writeOnLcd(String toWrite){
     this->actString = toWrite;
     this->lcd.setCursor(0,0);
     this->myPrint();
-    //this->lcd.print(toWrite);
-    ///////
 }
 
 void MyLcdMonitor::clear(){
@@ -81,11 +70,9 @@ void MyLcdMonitor::turnOff(){
 
 void MyLcdMonitor::raiseError(){
     this->lcd.setRGB(255,0,0); //ColorR, colorG, colorB
-    //this->writeOnLcd("TOO HOT");
 }
 
 void MyLcdMonitor::goBackNormal(){
-    //this->clear();
     this->lcd.setRGB(0,255,0);
 }
 
@@ -93,7 +80,7 @@ int lastIndex = 0;
 
 bool MyLcdMonitor::changeProgBar(int percentage){
     bool res = false;
-    int amount = (int) ((percentage *1.0)  * (((AMOUNT_BARS)*1.0) / ((MAX_VALUE)*1.0)));
+    int amount = (int) ((percentage *1.0)  * (((AMOUNT_BARS)*1.0) / ((MAX_VALUE_PERCENTAGE_BAR)*1.0)));
     #ifdef LCD_DEBUG
     Serial.print(" " + (String) amount + " / ");
     #endif
@@ -115,12 +102,6 @@ bool MyLcdMonitor::changeProgBar(int percentage){
 
 void MyLcdMonitor::printProgBar() {
     this->lcd.setCursor(PROG_BAR_COLS + START_BAR_INDEX, PROG_BAR_ROW);
-    // int start = START_BAR_INDEX;
-    // int len = AMOUNT_BARS;
-
-    // char cc[AMOUNT_BARS];
-    // printf("%.*s\n", len, progressBar + start);
-    // Serial.print(cc);
     this->lcd.print(progressBar);
 }
 
