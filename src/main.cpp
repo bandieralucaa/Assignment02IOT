@@ -30,14 +30,6 @@ void setup() {
   #endif
 }
 
-int counter = 0;
-
-String a(int value){
-  int amount = log10(value)+1;
-  Serial.print(amount);
-  return "\n";
-}
-
 #ifndef PROG
 bool swit = false;
 #endif
