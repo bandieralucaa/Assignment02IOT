@@ -10,8 +10,10 @@ class Cooldown {
         void init();
         bool isOver();
         void pause();
-        void resume(); 
-        void reset(); //resetta il timer e lo fa ripartire subito
+        void resume();
+
+        //resetta il timer e lo fa ripartire subito 
+        void reset(); 
 
         int percentageComplete();
 
