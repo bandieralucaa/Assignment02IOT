@@ -1,6 +1,6 @@
 #include "Gate.h"
 
-#define AMOUNT_MOVE 10
+#define AMOUNT_MOVE 20
 
 Gate::Gate(int pin, bool isActOpen) {
     this->pin = pin; //VALUTA SE ELIMINARMI
