@@ -116,7 +116,8 @@ public class Gui extends JFrame implements View {
 
     public void refresh(){}
 
-
+    
+    @Override
     public void printMessage(String state, String msg) {
         this.message.setText(msg);
         this.state.setText(state);

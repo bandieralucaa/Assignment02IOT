@@ -1,8 +1,6 @@
 #include "SerialManager.h"
 
 #include <Arduino.h>
-#define AMOUNT_COMM 4
-//#define S_DEBUG
 
 #define COMMAND_CHAR '_'
 #define ARGUMENT_CHAR ':'
@@ -15,7 +13,7 @@ SerialManager::SerialManager(TemperatureSensor* tS){
     this->period = IOMAN_PERIOD;
     MsgService.init();
     //Serial.begin(9600);
-    //Serial.setTimeout(100);
+    Serial.setTimeout(100);
 }
 
 String trasdutter(char command, String value){
@@ -25,6 +23,7 @@ String trasdutter(char command, String value){
 void SerialManager::increaseWashedCar(){
     this->amountCarWashed++;
     this->isNewAmount = true;
+
     #ifdef S_DEBUG
     Serial.println((String)this->amountCarWashed);
     #endif
@@ -45,13 +44,13 @@ void SerialManager::updateState(String newState, bool isErrorState){
     this->isNewState = true;
 
     char com;
-    if (this->isErrorMessage){
+    if (isErrorState){
         com = 'e';
     } else {
         com = 'm';
     }
 
-    String comm = trasdutter(com , this->actState);
+    String comm = trasdutter(com , newState);
     MsgService.sendMsg(comm);
 }
 
@@ -60,7 +59,7 @@ void SerialManager::updateState(String newState, bool isErrorState){
 
 void SerialManager::init(){
     String comm = "";
-    //comm += trasdutter2('t', (String)this->tS->senseTemperature());
+    comm += trasdutter('t', (String)this->tS->senseTemperature());
     comm += trasdutter('c', "0");
     comm += trasdutter('m' , STATE1);
     MsgService.sendMsg(comm);
@@ -79,18 +78,12 @@ void SerialManager::executeCommandByGui(String command, String value){
     }
 }
 
-static int i = 0;
-#define UPGRADE_RATIO (((int) (((IOMAN_PERIOD)*1.0) / ((SCHEDULE_BASE_PERIOD)*1.0)))+1)
 
 void SerialManager::sendTemperature() {
     String comm = "";
     comm += trasdutter('t', (String)this->tS->senseTemperature());
-    i++;
-   // if(i == (UPGRADE_RATIO)){
-        MsgService.sendMsg(comm);
-        i=0;
-   // }
-    
+
+    MsgService.sendMsg(comm);
 }
 
 
@@ -100,7 +93,9 @@ void SerialManager::executeCommands(String comm){
     String command = "";
     String argument = "";
     bool parsingCommand = true;
+    #ifdef DEBUG_IOMAN_WITHOUT_CONSOLE
     Serial.print(comm);
+    #endif
     while(i<a || comm.charAt(i) != '\n') {
         char c = comm.charAt(i);
         switch (c)
@@ -125,7 +120,6 @@ void SerialManager::executeCommands(String comm){
         i++;
 
     }
-
 }
 
 

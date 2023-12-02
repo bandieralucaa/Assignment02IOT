@@ -1,7 +1,8 @@
 package main;
 
+import java.util.Map;
 
-public class ConsoleView {
+public class ConsoleView implements View {
 
     private EasyControllerObserver c;
     private double temp;
@@ -41,15 +42,18 @@ public class ConsoleView {
         this.c.notifySolvedProblem();
     }
 
-    
-    public void printMessage(String msg) {
+
+    @Override
+    public void printMessage(String state, String msg) {
         this.msg = msg;
+        this.state = state;
     }
 
-    
-    public void printError(String error) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'printError'");
+
+    @Override
+    public void printError(String state, String error) {
+        printMessage(state, error);
+        //sistema che abilita un sistema di avviso ad Arduino che è stato risolto il problema
     }
     
 }
