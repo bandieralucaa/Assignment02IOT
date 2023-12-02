@@ -107,6 +107,7 @@ public void updateTemp(double newTemp){
 
 public void updateCars(int newAmount){
     this.cars.setText(Integer.toString(newAmount));
+    this.temp.setText("--.--");
 }
 
 public void updateState(String newState){
