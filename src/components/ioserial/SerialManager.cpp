@@ -11,43 +11,37 @@ SerialManager::SerialManager(TemperatureSensor* tS){
     this->tS = tS;
     this->amountCarWashed = 0;
     this->actState = "";
-    // this->actMessage = "";
-    this->isSolvedProblem = false;
-    //MsgService.init();
+    this->isSolvedProblem = true;
     this->period = IOMAN_PERIOD;
-    Serial.begin(9600);
-    Serial.setTimeout(100);
+    MsgService.init();
+    //Serial.begin(9600);
+    //Serial.setTimeout(100);
 }
 
-// String trasdutter(String codec, String value){
-//     return codec + value + "\n";
-// }
-
-String trasdutter2(char command, String value){
+String trasdutter(char command, String value){
     return ((String)COMMAND_CHAR) + ((String)command) + ((String)ARGUMENT_CHAR) + value;
 }
 
 void SerialManager::increaseWashedCar(){
     this->amountCarWashed++;
+    this->isNewAmount = true;
     #ifdef S_DEBUG
     Serial.println((String)this->amountCarWashed);
     #endif
-    this->isNewAmount = true;
 
-
-    String comm = trasdutter2('c', (String) this->amountCarWashed);
-
+    String comm = trasdutter('c', (String) this->amountCarWashed);
     MsgService.sendMsg(comm);
 }
 
-// virtual void updateState(String newState, bool isErrorState) = 0;
 void SerialManager::updateState(String newState, bool isErrorState){
     this->actState = newState;
     this->isErrorMessage = isErrorState;
     this->isSolvedProblem = !isErrorState;
+
     #ifdef S_DEBUG
     Serial.println(newMessage + " " + (String)isErrorMessage);
     #endif
+
     this->isNewState = true;
 
     char com;
@@ -56,47 +50,20 @@ void SerialManager::updateState(String newState, bool isErrorState){
     } else {
         com = 'm';
     }
-        // comm += trasdutter2(com , this->actMessage);
-    String comm = trasdutter2(com , this->actState);
 
+    String comm = trasdutter(com , this->actState);
     MsgService.sendMsg(comm);
-    // this->actState = newState;
-    // #ifdef S_DEBUG
-    // Serial.print(newState)
-    // #endif
-    // this->isNewState = true;
 }
-
-
-// void SerialManager::updateMessage(String newMessage, bool isErrorMessage){
-//     this->actMessage = newMessage;
-//     this->isErrorMessage = isErrorMessage;
-//     this->isSolvedProblem = !isErrorMessage;
-//     #ifdef S_DEBUG
-//     Serial.print(newMessage + " " + (String)isErrorMessage);
-//     #endif
-//     this->isNewMessage = true;
-// }
-
-
-
-
-
 
 
 
 
 void SerialManager::init(){
     String comm = "";
-    comm += trasdutter2('t', (String)this->tS->senseTemperature());
-    // comm += trasdutter2('s', "Powering up");
-    comm += trasdutter2('c', "0");
-    comm += trasdutter2('m' , STATE1);
+    //comm += trasdutter2('t', (String)this->tS->senseTemperature());
+    comm += trasdutter('c', "0");
+    comm += trasdutter('m' , STATE1);
     MsgService.sendMsg(comm);
-    // MsgService.sendMsg(trasdutter("s-", "Powering up"));
-    // MsgService.sendMsg(trasdutter("m-", "Powering up"));
-    // MsgService.sendMsg(trasdutter("c-", "0"));
-    // MsgService.sendMsg(trasdutter("t-", "0"));
 }
 
 void SerialManager::executeCommandByGui(String command, String value){
@@ -117,7 +84,7 @@ static int i = 0;
 
 void SerialManager::sendTemperature() {
     String comm = "";
-    comm += trasdutter2('t', (String)this->tS->senseTemperature());
+    comm += trasdutter('t', (String)this->tS->senseTemperature());
     i++;
    // if(i == (UPGRADE_RATIO)){
         MsgService.sendMsg(comm);
@@ -133,7 +100,7 @@ void SerialManager::executeCommands(String comm){
     String command = "";
     String argument = "";
     bool parsingCommand = true;
-    Serial.print(comm + "<-----------------------------------");
+    Serial.print(comm);
     while(i<a || comm.charAt(i) != '\n') {
         char c = comm.charAt(i);
         switch (c)
@@ -162,50 +129,21 @@ void SerialManager::executeCommands(String comm){
 }
 
 
-//void SerialManager::manageMsg() {
-    //String comm = "";
-    
-        // comm += trasdutter2('s', this->actState);
-    //}
-    // if (this->isNewAmount){
-    //     comm += trasdutter2('c', (String)this->amountCarWashed);
-    // }
-    
-    //MsgService.sendMsg(comm);
-    //Serial.println((String) this->isNewState + (String)this->isNewAmount + (String)this->isNewMessage);
-    // this->ioManager->boardSendMsg(trasdutter("s-", this->actState));
-    // this->ioManager->boardSendMsg(trasdutter("c-", (String)this->amountCarWashed));
-    // this->ioManager->boardSendMsg(trasdutter("t-", (String)this->tS->senseTemperature()));
-    // send(this->isNewState, trasdutter("s-", this->actState));
-    // send(true, trasdutter("t-", (String)this->tS->senseTemperature()));
-    // send(this->isNewAmount, trasdutter("c-", (String)this->amountCarWashed));
-    // sendMessage(this->isNewMessage, this->isErrorMessage, this->actMessage);
-    //MsgService.sendMsg();
-
-    //this->isNewState = false;
-    //this->isNewAmount = false;
-    //this->isNewMessage = false;
-
-    // if (this->ioManager->boardIsMsgAvaiable()){
-    //     String tmp = this->ioManager->boardReceiveMsg();
-    //     Serial.print(tmp);
-    //     executeCommand(tmp);
-    // }
-    
-//}
-
-
-
 void SerialManager::tick(){
-    //Serial.println("")
     if (MsgService.isMsgAvailable()){           
         Msg* msg = MsgService.receiveMsg();    
-        delay(100);
+        //delay(100);
         if (msg->getContent().length() > 0) {
-            //delay(500);
-            //Serial.println(msg->getContent());
-            this->executeCommands(msg->getContent());
-            //this->isSolvedProblem = true;
+            #ifdef DEBUG_IOMAN_WITHOUT_CONSOLE
+            Serial.println(msg->getContent());
+            #endif
+            this->isSolvedProblem = true;
+
+            /* Abbiamo provato a gestire l'input della gui "in modo dinamico" (ovvero parsando
+            la stringa di ingresso ricevuta e gestendo tutte le eventuali chiamate a funzione nella funzione apposita
+            executeCommands()), ma senza successo.
+            Essendo che la Gui doveva assolvere solo una funzione, abbiamo deciso di gestire direttamente questa casistica*/
+            //this->executeCommands(msg->getContent());
         }
         delete msg;
     }   

@@ -75,7 +75,7 @@
 
 /* ### DEBUGGING VARIABLE ### */
 
-//#define DEBUG
+#define DEBUG
 #ifdef DEBUG
 
 //#define SCHEDULER_INIT_PHASE
@@ -86,6 +86,8 @@
 //#define SONAR_DEBUG
 //#define TEMP_DEBUG
 //#define LCD_DEBUG
+
+#define DEBUG_IOMAN_WITHOUT_CONSOLE
 
 //#define SONAR_DEBUG_LEFTING
 
