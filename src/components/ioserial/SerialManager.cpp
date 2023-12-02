@@ -16,6 +16,7 @@ SerialManager::SerialManager(TemperatureSensor* tS){
     //MsgService.init();
     this->period = IOMAN_PERIOD;
     Serial.begin(9600);
+    Serial.setTimeout(100);
 }
 
 // String trasdutter(String codec, String value){
@@ -118,7 +119,7 @@ void SerialManager::sendTemperature() {
     String comm = "";
     comm += trasdutter2('t', (String)this->tS->senseTemperature());
     i++;
-    if(i == (UPGRADE_RATIO*4)){
+    if(i == (UPGRADE_RATIO)){
         MsgService.sendMsg(comm);
         i=0;
     }
@@ -133,7 +134,7 @@ void SerialManager::executeCommands(String comm){
     String argument = "";
     bool parsingCommand = true;
     Serial.print(comm);
-    while(i<a) {
+    while(i<a || comm.charAt(i) != '\n') {
         char c = comm.charAt(i);
         switch (c)
         {
@@ -195,6 +196,7 @@ void SerialManager::executeCommands(String comm){
 
 
 void SerialManager::tick(){
+    //Serial.println("")
     if (MsgService.isMsgAvailable()){           
         Msg* msg = MsgService.receiveMsg();    
         delay(100);

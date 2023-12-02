@@ -30,7 +30,4 @@ private:
     bool pushed = false;
 };
 
-
-void awakeArduino();
-
 #endif

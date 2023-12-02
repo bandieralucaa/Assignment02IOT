@@ -21,6 +21,7 @@ public:
     void tick();
 
 private:
+    void measure();
     int trigPin;
     int echoPin;
     double lastRead;

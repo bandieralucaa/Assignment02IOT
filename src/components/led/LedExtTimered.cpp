@@ -7,6 +7,7 @@ LedExtTimered::LedExtTimered(int pin, int delta) {
     this->period = LED_BLINKING_PERIOD;
 }
 
+
 void LedExtTimered::setFading(int newDelta){
     this->delta = newDelta;
 }
@@ -45,8 +46,6 @@ void LedExtTimered::tick(){
 void LedExtTimered::canBlink(bool canBlink){
     this->isBlinking = canBlink;
 }
-
-
 
 
 

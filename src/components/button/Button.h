@@ -2,10 +2,8 @@
 #define __BUTT__
 
 class Button {
-
 public:
     virtual bool isPressed() = 0;
-    
 };
 
 #endif
