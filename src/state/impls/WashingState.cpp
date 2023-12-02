@@ -59,13 +59,13 @@ StateName WashingState::changeState() {
     #ifdef TEMP_DEBUG
     Serial.println("oooooooo: " + (String)this->tempSens->senseTemperature());
     #endif
-    if(this->tempSens->isOverHeat()) {
-        this->clock->pause();
-        return WARNING_STATE;
-    } else if (this->clock->isOver()) {
-        //flushTimer();
+    if(this->clock->isOver()) {
+       //flushTimer();
         startNewWash = true;
         return PRE_WASHING_DONE_STATE;
+    } else if (this->tempSens->isOverHeat()) {
+       //  this->clock->pause();
+        return WARNING_STATE;
     } else {
         if (this->lcd->changeProgBar(this->clock->percentageComplete())){
             this->lcd->printProgBar();

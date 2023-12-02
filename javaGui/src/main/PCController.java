@@ -20,7 +20,8 @@ public class PCController implements EasyControllerObserver{
         "3", "Confirm state",
         "4", "Washing state",
         "5", "Error state",
-        "6", "Lefting state"
+        "6", "Lefting state",
+        "7", "ssss"
     );;
     private Map<String, String> messages = Map.of(
         "1", "Empty - no car is in washing machine",
@@ -28,7 +29,8 @@ public class PCController implements EasyControllerObserver{
         "3", "Wait user input",
         "4", "Washing car",
         "5", "Maintenance required",
-        "6", "Car is washed, left the machine"
+        "6", "Car is washed, left the machine",
+        "7", "ssss"
     );;
     
     
@@ -63,7 +65,7 @@ public class PCController implements EasyControllerObserver{
             //    System.out.println("\n\n\n");
             //}	
             this.myView.refresh();
-			Thread.sleep(490);
+			Thread.sleep(150);
             //i = 0;
 		}
     }
@@ -72,6 +74,7 @@ public class PCController implements EasyControllerObserver{
     public void notifySolvedProblem() {
         System.out.println("BHBH");
         this.channel.sendMsg("_o:l");
+        System.out.println("post send");
     }
 
     private void byStringToCommand(String command, String argument){

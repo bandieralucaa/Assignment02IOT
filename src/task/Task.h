@@ -24,7 +24,7 @@ class Task {
             return res;
         }
         this->millis += millis;
-        if (this->millis > this->period){
+        if (this->millis >= this->period){
             res = true;
             this->millis = 0;
         }

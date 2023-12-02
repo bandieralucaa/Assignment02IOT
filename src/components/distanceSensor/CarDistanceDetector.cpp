@@ -1,5 +1,5 @@
 #include "CarDistanceDetector.h"
-#define TIMEOUT_SONAR (100) //(SONAR_PERIOD / 2)
+#define TIMEOUT_SONAR (100000) //(SONAR_PERIOD / 2)
 
 CarDistanceDetector::CarDistanceDetector(int trigPin, int echoPin){
     this->trigPin = trigPin ;
@@ -41,6 +41,10 @@ void CarDistanceDetector::measure(){
     /* Receiving the echo */
     unsigned long m = pulseIn(this->echoPin, HIGH, TIMEOUT_SONAR);
     if (m == 0) {
+        #ifdef SONAR_DEBUG
+        Serial.println("@\n 999.9");
+        Serial.print(" ########################## ");
+        #endif
         this->lastRead = 999.0;
         return;
     }
@@ -58,5 +62,6 @@ void CarDistanceDetector::measure(){
 }
 
 void CarDistanceDetector::tick(){
-    this->lastRead = this->getDistance();
+    //this->lastRead = this->getDistance();
+    this->measure();
 }

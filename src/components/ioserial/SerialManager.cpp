@@ -35,7 +35,7 @@ void SerialManager::increaseWashedCar(){
     this->isNewAmount = true;
 
 
-    String comm = trasdutter2('c', this->actState);
+    String comm = trasdutter2('c', (String) this->amountCarWashed);
 
     MsgService.sendMsg(comm);
 }
@@ -119,21 +119,21 @@ void SerialManager::sendTemperature() {
     String comm = "";
     comm += trasdutter2('t', (String)this->tS->senseTemperature());
     i++;
-    if(i == (UPGRADE_RATIO)){
+   // if(i == (UPGRADE_RATIO)){
         MsgService.sendMsg(comm);
         i=0;
-    }
+   // }
     
 }
 
 
 void SerialManager::executeCommands(String comm){
-    int a = comm.length();
-    int i=0;
+    unsigned int a = comm.length();
+    unsigned int i=0;
     String command = "";
     String argument = "";
     bool parsingCommand = true;
-    Serial.print(comm);
+    Serial.print(comm + "<-----------------------------------");
     while(i<a || comm.charAt(i) != '\n') {
         char c = comm.charAt(i);
         switch (c)
@@ -155,6 +155,7 @@ void SerialManager::executeCommands(String comm){
             parsingCommand ? command += c : argument += c;
             break;
         }
+        i++;
 
     }
 
@@ -202,7 +203,9 @@ void SerialManager::tick(){
         delay(100);
         if (msg->getContent().length() > 0) {
             //delay(500);
-            this->executeCommands(msg->getContent());
+            Serial.println(msg->getContent());
+            //this->executeCommands(msg->getContent());
+            this->isSolvedProblem = true;
         }
         delete msg;
     }   

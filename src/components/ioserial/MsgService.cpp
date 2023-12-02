@@ -33,11 +33,14 @@ void MsgServiceClass::init(){
 void MsgServiceClass::sendMsg(const String& msg){
   Serial.println(msg);  
 }
+bool isT = false;
 
 void serialEvent() {
+  digitalWrite(11, isT?HIGH:LOW);
+  isT = !isT;
   /* reading the content */
   while (Serial.available()) {
-    //Serial.println("ALFA");
+    Serial.println("_t:" + (String)Serial.available());
     char ch = (char) Serial.read();
     if (ch == '\n'){
       MsgService.currentMsg = new Msg(content);
