@@ -1,6 +1,4 @@
 #include "./state/State.h"
-
-//#include "./components/servomotor/Servomotor.h"
 #include "./components/servomotor/Gate.h"
 #include "./components/led/LedExtTimered.h"
 #include "./components/lcd/LcdMonitor.h"

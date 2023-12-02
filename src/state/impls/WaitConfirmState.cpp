@@ -16,10 +16,8 @@ void WaitConfirmState::init(){
     #endif
 
     this->button->start();
-
     this->out->updateState(STATE3, false);
     this->lcd->writeOnLcd(WAITING_STRING);
-    // this->out->updateMessage(MESS3, false);
 };
 
 StateName WaitConfirmState::changeState(){

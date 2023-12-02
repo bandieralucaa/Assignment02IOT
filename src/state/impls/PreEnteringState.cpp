@@ -1,4 +1,3 @@
-
 #include "./state/impls/PreEnteringState.h"
 
 #ifdef DEBUG
@@ -18,21 +17,14 @@ void PreEnteringState::init() {
     Serial.print("PreEnteringState");
     #endif
     this->out->updateState((String)STATE2, false);
-
     this->myGate->start();
     this->myGate->open();
-    // this->blinkLed->setIntensity(0);
-    // this->blinkLed->switchOn();
-
     this->blinkLed->switchOn();
     this->blinkLed->canBlink(true);
     this->blinkLed->setFading(BLINK_DELTA_1);
     this->blinkLed->init();
-
     this->lcd->writeOnLcd(PRE_ENTERING_STRING);
-    
-    // this->out->updateMessage((String)MESS2, false);
-    
+     
 }
 
 StateName PreEnteringState::changeState() {

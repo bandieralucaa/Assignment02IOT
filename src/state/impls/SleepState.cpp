@@ -1,4 +1,3 @@
-
 #include "./state/impls/SleepState.h"
 
 #ifdef DEBUG
@@ -20,16 +19,13 @@ void SleepState::init() {
     this->l1->switchOff();
     this->lcd->turnOff();
     this->out->updateState((String)STATE1, false);
-
     this->myPir->start();
 
-    // this->out->updateMessage((String)MESS1,false);
-    delay(1000); //giving time to serial port
+    delay(1000); 
 
     set_sleep_mode(SLEEP_MODE_PWR_DOWN); 
     sleep_enable(); 
-    sleep_mode();
-    
+    sleep_mode();   
 }
 
 StateName SleepState::changeState(){

@@ -30,7 +30,6 @@ public class SerialCommChannel implements CommChannel, SerialPortEventListener {
 		serialPort.setFlowControlMode(SerialPort.FLOWCONTROL_RTSCTS_IN | 
 		                                  SerialPort.FLOWCONTROL_RTSCTS_OUT);
 
-		//serialPort.addEventListener(this, SerialPort.MASK_RXCHAR);
 		serialPort.addEventListener(this);
 	}
 
@@ -44,7 +43,6 @@ public class SerialCommChannel implements CommChannel, SerialPortEventListener {
 		try {
 			synchronized (serialPort) {
 				serialPort.writeBytes(bytes);
-				//serialPort.writeString(msg);
 			}
 		} catch(Exception ex){
 			ex.printStackTrace();
@@ -53,13 +51,11 @@ public class SerialCommChannel implements CommChannel, SerialPortEventListener {
 
 	@Override
 	public String receiveMsg() throws InterruptedException {
-		// TODO Auto-generated method stub
 		return queue.take();
 	}
 
 	@Override
 	public boolean isMsgAvailable() {
-		// TODO Auto-generated method stub
 		return !queue.isEmpty();
 	}
 
@@ -80,7 +76,6 @@ public class SerialCommChannel implements CommChannel, SerialPortEventListener {
 
 
 	public void serialEvent(SerialPortEvent event) {
-		/* if there are bytes received in the input buffer */
 		if (event.isRXCHAR()) {
             try {
             		String msg = serialPort.readString(event.getEventValue());

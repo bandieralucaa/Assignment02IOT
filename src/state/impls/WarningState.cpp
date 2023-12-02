@@ -1,4 +1,3 @@
-
 #include "WarningState.h"
 
 #include "Arduino.h"
@@ -24,10 +23,8 @@ void WarningState::init() {
 
 StateName WarningState::changeState() {
     if (!this->tempSens->isOverHeat()){
-        //flushTimer();
         return WASHING_STATE;
     } else if (this->globalClock->isOver()) {
-        //flushTimer();
         this->washingClock->pause();
         return HOT_STATE;
     } else {

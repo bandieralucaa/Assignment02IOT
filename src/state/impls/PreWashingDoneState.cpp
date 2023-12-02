@@ -22,13 +22,10 @@ void PreWashingDoneState::init() {
 
     this->blink->start();
     this->myGate->start();
-
     this->myGate->open();
     this->lcd->writeOnLcd(PRE_WASHING_DONE_STRING);
     this->blink->switchOff();
     this->l2->switchOn();
-    
-    // this->out->updateMessage(MESS6,false);
 }
 
 StateName PreWashingDoneState::changeState() {

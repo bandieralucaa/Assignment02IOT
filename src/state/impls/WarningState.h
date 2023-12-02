@@ -1,11 +1,8 @@
 #include "./state/State.h"
-
 #include "./components/temperature/TemperatureSensor.h"
 #include "./components/cooldown/Cooldown.h"
 #include "./components/lcd/LcdMonitor.h"
 #include "./components/ioserial/OutSender.h"
-//#include "./components/
-//#include <arduino-timer.h>
 
 class WarningState : public State {
 public:

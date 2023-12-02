@@ -96,37 +96,37 @@ public class Gui extends JFrame implements View {
     }
 
 
-public void setController(EasyControllerObserver c){
-    this.c = c;
-}
+    public void setController(EasyControllerObserver c){
+        this.c = c;
+    }
 
 
-public void updateTemp(double newTemp){
-    this.temp.setText(Double.toString(newTemp));
-}
+    public void updateTemp(double newTemp){
+        this.temp.setText(Double.toString(newTemp));
+    }
 
-public void updateCars(int newAmount){
-    this.cars.setText(Integer.toString(newAmount));
-    this.temp.setText("--.--");
-}
+    public void updateCars(int newAmount){
+        this.cars.setText(Integer.toString(newAmount));
+        this.temp.setText("--.--");
+    }
 
-public void updateState(String newState){
-    this.state.setText(newState);
-}
+    public void updateState(String newState){
+        this.state.setText(newState);
+    }
 
-public void refresh(){}
-
-
-public void printMessage(String state, String msg) {
-    this.message.setText(msg);
-    this.state.setText(state);
-}
+    public void refresh(){}
 
 
-@Override
-public void printError(String state, String error) {
-    printMessage(state, error);
-    this.button.setEnabled(true);
-}
+    public void printMessage(String state, String msg) {
+        this.message.setText(msg);
+        this.state.setText(state);
+    }
+
+
+    @Override
+    public void printError(String state, String error) {
+        printMessage(state, error);
+        this.button.setEnabled(true);
+    }
 
 }

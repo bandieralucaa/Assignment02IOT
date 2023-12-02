@@ -1,10 +1,5 @@
 #include "./state/impls/EnteringState.h"
 
-// EnteringState::EnteringState(LedExtTimered* blinkLed, CarDistanceDetector* sonar){
-//     this->blinkLed = blinkLed;
-//     this->sonar = sonar;
-// }
-
 EnteringState::EnteringState(CarDistanceDetector* sonar){
     this->sonar = sonar;
 }

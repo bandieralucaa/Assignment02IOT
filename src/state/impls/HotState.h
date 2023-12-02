@@ -1,8 +1,5 @@
 #include "./state/State.h"
-
 #include "configs.h"
-
-//#include "./components/button/Button.h"
 #include "./components/button/WashingMachineButton.h"
 #include "./components/lcd/LcdMonitor.h"
 #include "./components/ioserial/InReceiver.h"

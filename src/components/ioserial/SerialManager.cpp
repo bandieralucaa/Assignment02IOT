@@ -203,9 +203,9 @@ void SerialManager::tick(){
         delay(100);
         if (msg->getContent().length() > 0) {
             //delay(500);
-            Serial.println(msg->getContent());
-            //this->executeCommands(msg->getContent());
-            this->isSolvedProblem = true;
+            //Serial.println(msg->getContent());
+            this->executeCommands(msg->getContent());
+            //this->isSolvedProblem = true;
         }
         delete msg;
     }   
