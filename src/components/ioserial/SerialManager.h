@@ -21,6 +21,8 @@ public:
 
     void increaseWashedCar();
     void updateState(String newState, bool isErrorState);
+
+    void sendTemperature();
     //void updateState(String newState);
     //void updateMessage(String newMessage, bool isErrorMessage);
 
@@ -28,6 +30,8 @@ public:
 
     void init();
     void tick();
+
+    void manageMsg();
 
 private:
 
