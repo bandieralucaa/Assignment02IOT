@@ -26,6 +26,7 @@ StateName HotState::changeState(){
         this->lcd->goBackNormal();
         return WASHING_STATE;
     } else {
+        this->out->sendTemperature();
         return NONE;
     }
 }

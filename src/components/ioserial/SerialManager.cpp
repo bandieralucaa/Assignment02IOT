@@ -18,6 +18,13 @@ SerialManager::SerialManager(TemperatureSensor* tS){
     Serial.begin(9600);
 }
 
+// String trasdutter(String codec, String value){
+//     return codec + value + "\n";
+// }
+
+String trasdutter2(char command, String value){
+    return ((String)COMMAND_CHAR) + ((String)command) + ((String)ARGUMENT_CHAR) + value;
+}
 
 void SerialManager::increaseWashedCar(){
     this->amountCarWashed++;
@@ -74,13 +81,7 @@ void SerialManager::updateState(String newState, bool isErrorState){
 
 
 
-// String trasdutter(String codec, String value){
-//     return codec + value + "\n";
-// }
 
-String trasdutter2(char command, String value){
-    return ((String)COMMAND_CHAR) + ((String)command) + ((String)ARGUMENT_CHAR) + value;
-}
 
 
 void SerialManager::init(){
@@ -109,10 +110,18 @@ void SerialManager::executeCommandByGui(String command, String value){
     }
 }
 
+static int i = 0;
+#define UPGRADE_RATIO (((int) (((IOMAN_PERIOD)*1.0) / ((SCHEDULE_BASE_PERIOD)*1.0)))+1)
+
 void SerialManager::sendTemperature() {
     String comm = "";
     comm += trasdutter2('t', (String)this->tS->senseTemperature());
-    MsgService.sendMsg(comm);
+    i++;
+    if(i == (UPGRADE_RATIO*4)){
+        MsgService.sendMsg(comm);
+        i=0;
+    }
+    
 }
 
 
@@ -186,10 +195,13 @@ void SerialManager::executeCommands(String comm){
 
 void SerialManager::tick(){
     if (MsgService.isMsgAvailable()){           
-        Msg* m = MsgService.receiveMsg();
-        String tmp = m->getContent();//->ioManager->boardReceiveMsg();
-        delete m;
-        executeCommands(tmp);
+        Msg* msg = MsgService.receiveMsg();    
+        delay(100);
+        if (msg->getContent().length() > 0) {
+            //delay(500);
+            this->executeCommands(msg->getContent());
+        }
+        delete msg;
     }   
 }
 
