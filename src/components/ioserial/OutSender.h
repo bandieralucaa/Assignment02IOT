@@ -3,9 +3,8 @@
 
 #include "configs.h"
 
-#ifdef DEBUG
 #include <Arduino.h>
-#endif
+
 
 class OutSender{
 public:

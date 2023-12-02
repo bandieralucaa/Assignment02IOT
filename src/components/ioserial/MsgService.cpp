@@ -1,5 +1,6 @@
-#include "Arduino.h"
 #include "MsgService.h"
+#include "Arduino.h"
+
 
 String content;
 
@@ -23,7 +24,6 @@ Msg* MsgServiceClass::receiveMsg(){
 
 void MsgServiceClass::init(){
   Serial.begin(9600);
-
   content.reserve(256);
   content = "";
   currentMsg = NULL;
@@ -36,8 +36,10 @@ void MsgServiceClass::sendMsg(const String& msg){
 bool isT = false;
 
 void serialEvent() {
-  digitalWrite(11, isT?HIGH:LOW);
-  isT = !isT;
+
+  // digitalWrite(11, isT ? HIGH : LOW);
+  // isT = !isT;
+  
   /* reading the content */
   while (Serial.available()) {
     Serial.println("_t:" + (String)Serial.available());

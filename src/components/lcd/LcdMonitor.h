@@ -1,7 +1,10 @@
 #ifndef __LCD__
 #define __LCD__
 
+#include "Arduino.h"
+
 #define MAX_VALUE_PERCENTAGE_BAR 100
+
 
 class LcdMonitor{
 public:

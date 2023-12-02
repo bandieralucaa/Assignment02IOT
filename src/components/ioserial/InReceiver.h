@@ -4,7 +4,6 @@
 class InReceiver{
 public:
     virtual bool checkIfOk() = 0;
-
 };
 
 
