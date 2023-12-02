@@ -14,6 +14,10 @@ void WashingDoneState::init() {
     #ifdef STATE_CHANGE_DEBUG
     Serial.println("WashingDoneState");
     #endif
+
+    this->blinkLed->start();
+    this->sonar->start();
+
     this->blinkLed->switchOff();
 }
 

@@ -17,11 +17,17 @@ void PreWashingDoneState::init() {
     #ifdef STATE_CHANGE_DEBUG
     Serial.println("PreWashingDoneState");
     #endif
+
+    this->out->updateState(STATE6, false);
+
+    this->blink->start();
+    this->myGate->start();
+
     this->myGate->open();
     this->lcd->writeOnLcd(PRE_WASHING_DONE_STRING);
     this->blink->switchOff();
     this->l2->switchOn();
-    this->out->updateState(STATE6, false);
+    
     // this->out->updateMessage(MESS6,false);
 }
 

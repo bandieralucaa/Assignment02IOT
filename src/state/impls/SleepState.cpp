@@ -6,7 +6,7 @@
 #endif
 #include <avr/sleep.h>
 
-SleepState::SleepState(Pir* awakePir, Light* l1, LcdMonitor* lcd, OutSender* out){
+SleepState::SleepState(CarPresenceDetector* awakePir, Light* l1, LcdMonitor* lcd, OutSender* out){
     this->myPir = awakePir;
     this->l1 = l1;
     this->lcd = lcd;
@@ -20,6 +20,9 @@ void SleepState::init() {
     this->l1->switchOff();
     this->lcd->turnOff();
     this->out->updateState((String)STATE1, false);
+
+    this->myPir->start();
+
     // this->out->updateMessage((String)MESS1,false);
     delay(1000); //giving time to serial port
 

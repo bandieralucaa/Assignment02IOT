@@ -14,10 +14,14 @@ void AfterWashingDoneState::init() {
     #ifdef STATE_CHANGE_DEBUG
     Serial.println("AfterWashingDoneState");
     #endif
-    this->myGate->close();
-    this->l2->switchOff();
+
     this->out->increaseWashedCar();
     this->out->updateState(STATE1, false);
+    
+    this->myGate->start();
+    this->myGate->close();
+
+    this->l2->switchOff();
 }
 
 StateName AfterWashingDoneState::changeState() {

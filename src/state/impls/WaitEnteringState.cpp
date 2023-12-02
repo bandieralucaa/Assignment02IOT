@@ -20,6 +20,7 @@ void WaitEnteringState::init() {
     #ifdef STATE_CHANGE_DEBUG
     Serial.print("WaitEnteringState");
     #endif
+    this->sonar->start();
     // this->blinkLed->switchOn();
     // this->blinkLed->setFading(5);
     // this->blinkLed->init();

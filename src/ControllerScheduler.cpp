@@ -74,7 +74,7 @@ ControllerScheduler::ControllerScheduler() {
     State* s10 = new WashingDoneState(blinkLed, sonar);
     State* s11 = new LeftingState(sonar, globalCooldown);
     State* s12 = new AfterWashingDoneState(myGate, l2, sm);
-    State* s13 = new WarningState(tS,globalCooldown,washingCooldown);
+    State* s13 = new WarningState(tS,globalCooldown,washingCooldown,lcd);
     State* s14 = new HotState(butt,lcd, sm, sm);
 
     myStates = new State*[14]{s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, s11, s12, s13, s14};
@@ -136,6 +136,9 @@ bool interuptAppened2() {
     StateName newState = myStates[actState]->changeState();
     if (newState != NONE) {
         actState = newState;
+        for(i=0; i < actAmountTask; i++) {
+            myTasks[i]->stop();
+        }
         myStates[actState]->init();
     }
     

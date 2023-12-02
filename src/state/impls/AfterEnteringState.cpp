@@ -14,6 +14,10 @@ void AfterEnteringState::init() {
     #ifdef STATE_CHANGE_DEBUG
     Serial.println("CHIUDI GATEEEEE");
     #endif
+
+    this->blink->start();
+    this->myGate->start();
+
     this->myGate->close();
     this->blink->canBlink(false);
     this->blink->switchOn();

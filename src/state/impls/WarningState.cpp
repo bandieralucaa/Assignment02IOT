@@ -5,36 +5,19 @@
 
 static volatile bool isOver;
 
-WarningState::WarningState(TemperatureSensor* tempSens, Cooldown* globalClock, Cooldown* washingClock){
+WarningState::WarningState(TemperatureSensor* tempSens, Cooldown* globalClock, Cooldown* washingClock, LcdMonitor* lcd){
     this->tempSens = tempSens;
     this->globalClock = globalClock;
     this->washingClock = washingClock;
+    this->lcd = lcd;
 
 }
-
-// static void* tt;
-
-// bool isOverTime1(void*){
-//     isOver = true;
-//     return true;
-// }
 
 void WarningState::init() {
     #ifdef STATE_CHANGE_DEBUG
     Serial.print("WarningState");
     #endif
     this->globalClock->format(N4_TIME);
-    //tt = this->clock->every(N2_TIME, isOverTime1);
-}
-
-
-void WarningState::flushTimer(){
-    // Serial.print("\n");
-    // Serial.print(this->clock->size());
-    // Serial.print("\n");
-    // this->clock->cancel(tt);
-    // Serial.print(this->clock->size());
-    // Serial.print("\n");
 }
 
 
@@ -47,6 +30,9 @@ StateName WarningState::changeState() {
         this->washingClock->pause();
         return HOT_STATE;
     } else {
+        if (this->lcd->changeProgBar(this->washingClock->percentageComplete())){
+            this->lcd->printProgBar();
+        }
         return NONE;
     }
 };

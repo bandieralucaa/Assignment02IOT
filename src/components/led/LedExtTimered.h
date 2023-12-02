@@ -25,6 +25,16 @@ public:
 
     void canBlink(bool canBlink);
     
+    bool updateAndCheckTime(int millis){
+        bool res = false;
+        this->millis += millis;
+        if (this->millis > this->period){
+            res = true;
+            this->millis = 0;
+        }
+        return res;
+    };
+
 private:
     void updateIntensity(int toUpdate);
     int delta;

@@ -6,7 +6,6 @@
 // }
 
 EnteringState::EnteringState(CarDistanceDetector* sonar){
-    //this->blinkLed = blinkLed;
     this->sonar = sonar;
 }
 
@@ -15,9 +14,7 @@ void EnteringState::init() {
     #ifdef STATE_CHANGE_DEBUG
     Serial.print("EnteringState");
     #endif
-    // this->blinkLed->switchOn();
-    // this->blinkLed->setFading(5);
-    // this->blinkLed->init();
+    this->sonar->start();
 }
 
 StateName EnteringState::changeState() {

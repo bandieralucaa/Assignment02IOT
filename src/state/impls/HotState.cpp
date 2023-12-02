@@ -1,6 +1,6 @@
 #include "HotState.h"
 
-HotState::HotState(Button* butt, LcdMonitor* lcd, InReceiver* in, OutSender* out){
+HotState::HotState(WashingMachineButton* butt, LcdMonitor* lcd, InReceiver* in, OutSender* out){
     this->button = butt;
     this->lcd = lcd;
     this->in = in;
@@ -11,9 +11,12 @@ void HotState::init(){
     #ifdef STATE_CHANGE_DEBUG
     Serial.print("HotState");
     #endif
+
+    this->button->start();
+
+    this->out->updateState(STATE5, true);
     this->lcd->raiseError();
     this->lcd->writeOnLcd(ERROR_STRING);
-    this->out->updateState(STATE5, true);
     // this->out->updateMessage(MESS5,true);
 }
 

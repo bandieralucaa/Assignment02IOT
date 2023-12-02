@@ -17,6 +17,9 @@ void PreEnteringState::init() {
     #ifdef STATE_CHANGE_DEBUG
     Serial.print("PreEnteringState");
     #endif
+    this->out->updateState((String)STATE2, false);
+
+    this->myGate->start();
     this->myGate->open();
     // this->blinkLed->setIntensity(0);
     // this->blinkLed->switchOn();
@@ -27,14 +30,13 @@ void PreEnteringState::init() {
     this->blinkLed->init();
 
     this->lcd->writeOnLcd(PRE_ENTERING_STRING);
-    this->out->updateState((String)STATE2, false);
+    
     // this->out->updateMessage((String)MESS2, false);
     
 }
 
 StateName PreEnteringState::changeState() {
     if (this->myGate->isOpen()){
-        // timer->schedule();
         this->myGate->stop();
         return ENTERING_STATE;
     } else {

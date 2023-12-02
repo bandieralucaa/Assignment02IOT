@@ -25,12 +25,18 @@ void WashingState::init() {
     #ifdef STATE_CHANGE_DEBUG
     Serial.println("Washing state");
     #endif
-    startNewWash ? this->clock->format(N3_TIME) : this->clock->resume();
+    this->lcd->clear();
+    this->lcd->initProgBar();
+    if(startNewWash){
+        this->clock->format(N3_TIME);
+    } else {
+        this->clock->resume();
+        this->lcd->printProgBar();
+    }
     startNewWash = false;
     this->blink->canBlink(true);
     this->blink->setFading(BLINK_DELTA_2);
-    this->lcd->clear();
-    this->lcd->initProgBar();
+    
 
     this->out->updateState(STATE4, false);
     // this->out->updateMessage(MESS4, false);

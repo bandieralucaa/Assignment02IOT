@@ -13,6 +13,7 @@ void LeftingState::init() {
     #ifdef STATE_CHANGE_DEBUG
     Serial.print("LeftingState");
     #endif
+    this->sonar->start();
     this->clock->format(N2_TIME);
 
     // tt = this->clock->every(N2_TIME, isOverTime3);

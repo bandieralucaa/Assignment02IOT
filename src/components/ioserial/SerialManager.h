@@ -29,6 +29,17 @@ public:
     void init();
     void tick();
 
+    bool updateAndCheckTime(int millis){
+        bool res = false;
+        this->millis += millis;
+        if (this->millis > this->period){
+            res = true;
+            this->millis = 0;
+        }
+        return res;
+    };
+
+
 private:
 
     TemperatureSensor* tS;

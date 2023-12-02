@@ -6,12 +6,12 @@
 
 volatile bool isOver;
 
-bool isOverTime(void*){
-    isOver = true;
-    return true;
-}
+// bool isOverTime(void*){
+//     isOver = true;
+//     return true;
+// }
 
-WelcomeState::WelcomeState(Pir* awakePir, Cooldown* clock, LcdMonitor* lcd, Led* l1){
+WelcomeState::WelcomeState(CarPresenceDetector* awakePir, Cooldown* clock, LcdMonitor* lcd, Led* l1){
     this->myPir = awakePir;
     this->l1 = l1;
     this->clock = clock;
@@ -28,6 +28,8 @@ void WelcomeState::init() {
     #ifdef STATE_CHANGE_DEBUG
     Serial.println("WelcomeState ");
     #endif
+
+    this->myPir->start();
 
     this->clock->format(N1_TIME);
 
