@@ -23,6 +23,8 @@ Msg* MsgServiceClass::receiveMsg(){
 
 void MsgServiceClass::init(){
   Serial.begin(9600);
+      Serial.setTimeout(1000);
+
   content.reserve(256);
   content = "";
   currentMsg = NULL;
