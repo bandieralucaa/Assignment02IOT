@@ -14,7 +14,7 @@ SleepState::SleepState(CarPresenceDetector* awakePir, Light* l1, LcdMonitor* lcd
 
 void SleepState::init() {
     #ifdef STATE_CHANGE_DEBUG
-    Serial.println("NOT HELO\n");
+    Serial.println("SleepState");
     #endif
     this->l1->switchOff();
     this->lcd->turnOff();

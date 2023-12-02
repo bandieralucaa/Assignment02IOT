@@ -1,6 +1,8 @@
 #include "./state/impls/LeftingState.h"
 
+#ifdef DEBUG
 #include "Arduino.h"
+#endif
 
 LeftingState::LeftingState(CarDistanceDetector* sonar, Cooldown* clock){
     this->sonar = sonar;

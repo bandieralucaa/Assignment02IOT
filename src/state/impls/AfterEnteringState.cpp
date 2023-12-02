@@ -1,9 +1,6 @@
 #include "./components/pir/PIR.h"
 #include "./state/impls/AfterEnteringState.h"
 
-#ifdef DEBUG
-#include <Arduino.h>
-#endif
 
 AfterEnteringState::AfterEnteringState(Gate* myGate, LedExtTimered* blink) {
     this->myGate = myGate;
