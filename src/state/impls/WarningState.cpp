@@ -2,8 +2,6 @@
 
 #include "Arduino.h"
 
-static volatile bool isOver;
-
 WarningState::WarningState(TemperatureSensor* tempSens, Cooldown* globalClock, Cooldown* washingClock, LcdMonitor* lcd, OutSender* out){
     this->tempSens = tempSens;
     this->globalClock = globalClock;

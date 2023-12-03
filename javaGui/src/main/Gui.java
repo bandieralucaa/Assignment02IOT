@@ -28,7 +28,8 @@ public class Gui extends JFrame implements View {
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
+        //setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
+        setLayout(new BorderLayout());
 
         add(createLabeledTextField("Amount car washed:"));
         add(createLabeledTextField("Temperature value:"));

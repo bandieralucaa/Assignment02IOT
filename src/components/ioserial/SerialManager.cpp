@@ -82,7 +82,7 @@ void SerialManager::executeCommandByGui(String command, String value){
 void SerialManager::sendTemperature() {
     String comm = "";
     comm += trasdutter('t', (String)this->tS->senseTemperature());
-
+    
     MsgService.sendMsg(comm);
 }
 
