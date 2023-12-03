@@ -41,12 +41,13 @@ StateName WashingState::changeState() {
         startNewWash = true;
         return PRE_WASHING_DONE_STATE;
     } else if (this->tempSens->isOverHeat()) {
+        this->out->sendTemperature();
         return WARNING_STATE;
     } else {
+        this->out->sendTemperature();
         if (this->lcd->changeProgBar(this->clock->percentageComplete())){
             this->lcd->printProgBar();
         }
-        this->out->sendTemperature();
         #ifdef LCD_DEBUG
         Serial.println(this->clock->percentageComplete());
         #endif

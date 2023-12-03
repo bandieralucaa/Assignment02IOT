@@ -37,7 +37,7 @@ public class Gui extends JFrame implements View {
 
 
     
-        button = new JButton("Problem solved");
+        button = new JButton("Maintenance done");
         button.setFont(new Font("Arial", Font.PLAIN, 20));
         add(Box.createVerticalGlue());  
         add(button);

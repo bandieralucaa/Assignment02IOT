@@ -9,7 +9,7 @@ public class PCController implements EasyControllerObserver{
     
     private CommChannel channel;
     private View myView;
-    private final static boolean DEBUG = false;
+    private final static boolean DEBUG = true;
     private Map<String, String> states = Map.of(
         "1", "Empty state",
         "2", "Entering state",
