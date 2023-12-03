@@ -1,10 +1,11 @@
 #include "EscapingCarState.h"
 
-EscapingCarState::EscapingCarState(CarDistanceDetector* sonar, CarPresenceDetector* pir, Gate* gate, LcdMonitor* lcd){
+EscapingCarState::EscapingCarState(CarDistanceDetector* sonar, CarPresenceDetector* pir, Gate* gate, LcdMonitor* lcd, LedExtTimered* blink){
     this->sonar = sonar;
     this->pir = pir;
     this->gate = gate;
     this->lcd = lcd;
+    this->blink = blink;
 }
 
 void EscapingCarState::init(){
@@ -19,6 +20,7 @@ StateName EscapingCarState::changeState(){
     } else if (this->gate->isClose()){
         this->gate->stopGate();
         this->lcd->clear();
+        this->blink->switchOff();
         return SLEEP_STATE;
     } else {
         this->gate->close();
