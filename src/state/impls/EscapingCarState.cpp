@@ -16,10 +16,11 @@ void EscapingCarState::init(){
 StateName EscapingCarState::changeState(){
     if(this->pir->isAnyone() || !this->sonar->isAboveMax()){
         return ENTERING_STATE;
-    } else {
+    } else if (this->gate->isClose()){
         this->gate->close();
         this->lcd->writeOnLcd(MYSTRING_1);
-        while(!this->gate->isClose());
+        return NONE;
+    } else {
         this->gate->stopGate();
         this->lcd->clear();
         return SLEEP_STATE;
