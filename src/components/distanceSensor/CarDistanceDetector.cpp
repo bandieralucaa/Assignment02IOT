@@ -2,7 +2,7 @@
 #define TIMEOUT_SONAR (100000)
 
 CarDistanceDetector::CarDistanceDetector(int trigPin, int echoPin){
-    this->trigPin = trigPin ;
+    this->trigPin = trigPin;
     this->echoPin = echoPin;
     this->period = SONAR_PERIOD;
     pinMode(trigPin, OUTPUT);
@@ -14,15 +14,15 @@ double CarDistanceDetector::getDistance(){
 }
 
 bool CarDistanceDetector::isAboveMax(){
-    return this->getDistance() > MAX_DIST;
+    return this->lastRead > MAX_DIST;
 }
 
 bool CarDistanceDetector::isUnderMin(){
-    return this->getDistance() < MIN_DIST;
+    return this->lastRead < MIN_DIST;
 }
 
 void CarDistanceDetector::init(){
-
+    this->lastRead = MAX_DIST + MIN_DIST;
 }
 
 void CarDistanceDetector::measure(){

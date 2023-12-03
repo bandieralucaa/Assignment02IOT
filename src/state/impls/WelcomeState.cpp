@@ -4,7 +4,7 @@
 #include <Arduino.h>
 
 
-WelcomeState::WelcomeState(CarPresenceDetector* awakePir, Cooldown* clock, LcdMonitor* lcd, Led* l1){
+WelcomeState::WelcomeState(CarPresenceDetector* awakePir, Cooldown* clock, LcdMonitor* lcd, Light* l1){
     this->myPir = awakePir;
     this->l1 = l1;
     this->clock = clock;
