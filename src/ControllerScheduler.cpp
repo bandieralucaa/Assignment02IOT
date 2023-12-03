@@ -49,12 +49,12 @@ ControllerScheduler::ControllerScheduler() {
 
     State* s1 = new SleepState(myPir, l1, lcd, sm);
     State* s2 = new WelcomeState(myPir, globalCooldown, lcd, l1);
-    State* s3 = new PreEnteringState(myGate,blinkLed,lcd, sm);
+    State* s3 = new PreEnteringState(myGate, blinkLed, lcd, sm);
     State* s4 = new EnteringState(sonar, globalCooldown);
     State* s5 = new WaitEnteringState(sonar, globalCooldown);
     State* s6 = new AfterEnteringState(myGate,blinkLed);
     State* s7 = new WaitConfirmState(butt,lcd, sm);
-    State* s8 = new WashingState(tS, washingCooldown,lcd, blinkLed, sm);
+    State* s8 = new WashingState(tS, washingCooldown, lcd, blinkLed, sm);
     State* s9 = new PreWashingDoneState(myGate,lcd,blinkLed,l2, sm);
     State* s10 = new WashingDoneState(blinkLed, sonar);
     State* s11 = new LeftingState(sonar, globalCooldown);

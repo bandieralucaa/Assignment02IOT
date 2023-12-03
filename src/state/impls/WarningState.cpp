@@ -23,6 +23,7 @@ void WarningState::init() {
 
 StateName WarningState::changeState() {
     if (!this->tempSens->isOverHeat()){
+        this->out->sendTemperature();
         return WASHING_STATE;
     } else if (this->globalClock->isOver()) {
         this->washingClock->pause();

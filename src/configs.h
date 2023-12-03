@@ -95,7 +95,7 @@
 
 //#define SONAR_DEBUG_LEFTING
 
-//#define STATE_CHANGE_DEBUG //TODO, quasi
+//#define STATE_CHANGE_DEBUG 
 
 #endif
 

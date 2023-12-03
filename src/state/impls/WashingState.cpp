@@ -23,8 +23,8 @@ void WashingState::init() {
         this->clock->format(N3_TIME);
     } else {
         this->clock->resume();
-        this->lcd->printProgBar();
     }
+    this->lcd->printProgBar();
     startNewWash = false;
     this->blink->canBlink(true);
     this->blink->setFading(BLINK_DELTA_2);
