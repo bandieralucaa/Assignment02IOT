@@ -14,7 +14,7 @@ void LeftingState::init() {
     Serial.print("LeftingState");
     #endif
     this->sonar->start();
-    this->clock->format(N2_TIME);
+    this->clock->format(N4_TIME);
 }
 
 StateName LeftingState::changeState() {
