@@ -22,7 +22,7 @@ void AfterEnteringState::init() {
 
 StateName AfterEnteringState::changeState() {
     if (this->myGate->isClose()) {
-        this->myGate->stop();
+        this->myGate->stopGate();
         return WAIT_CONFIRM_STATE;
     } else {
         return NONE;

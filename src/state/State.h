@@ -18,7 +18,8 @@ enum StateName {
     LEFTING_STATE,
     AFTER_WASHING_DONE_STATE,
     WARNING_STATE,
-    HOT_STATE
+    HOT_STATE,
+    ESCAPING_CAR_STATE
 };
 
 class State {

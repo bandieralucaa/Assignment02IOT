@@ -20,7 +20,7 @@ public:
     bool isClose();
     void open();
     void close();
-    void stop();
+    void stopGate();
 
     void init();
     void tick();

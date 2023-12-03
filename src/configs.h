@@ -47,6 +47,8 @@
 #define N3_TIME (9000 * (SCHEDULE_BASE_PERIOD / IDEALLY_TIME))
 #define N4_TIME (3000 * (SCHEDULE_BASE_PERIOD / IDEALLY_TIME))
 
+#define MYTIME1 5000
+
 /* ### ### ### ### ### ### ### ### */
 
 
@@ -58,6 +60,8 @@
 #define WAITING_STRING "Ready to Wash"
 #define PRE_WASHING_DONE_STRING "Washing complete, you can leave the area"
 #define ERROR_STRING "Detected a Problem - Please Wait"
+
+#define MYSTRING_1 "Abort Washing"
 
 /* ### ### ### ### ### ### ### ### */
 

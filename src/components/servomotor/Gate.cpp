@@ -8,7 +8,7 @@ Gate::Gate(int pin, bool isActOpen) {
     this->motor.attach(pin);
     this->period = SERVO_MOTOR_PERIOD;
 
-    this->stop();
+    this->stopGate();
 }
 
 bool Gate::isOpen() {
@@ -27,7 +27,7 @@ void Gate::close() {
     this->direction = -1;
 }
 
-void Gate::stop() {
+void Gate::stopGate() {
     this->direction = 0;
 }
 

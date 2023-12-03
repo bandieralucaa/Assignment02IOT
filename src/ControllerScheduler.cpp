@@ -33,7 +33,7 @@ ControllerScheduler::ControllerScheduler() {
 
     SerialManager* sm = new SerialManager(tS);
     sm->init();
-    
+
     Cooldown* washingCooldown = new Cooldown(N3_TIME);
 
     Cooldown* globalCooldown = new Cooldown(N1_TIME);    
@@ -42,7 +42,7 @@ ControllerScheduler::ControllerScheduler() {
     lcd->turnOff();
 
     int amountTask = 6;
-    myTasks = new Task*[amountTask]{(myPir), myGate, sonar, blinkLed, butt, sm};
+    myTasks = new Task*[amountTask]{myPir, myGate, sonar, blinkLed, butt, sm};
     // int amountTask = 1;
     // myTasks = new Task*[amountTask]{sonar};
     actAmountTask = amountTask;
@@ -50,7 +50,7 @@ ControllerScheduler::ControllerScheduler() {
     State* s1 = new SleepState(myPir, l1, lcd, sm);
     State* s2 = new WelcomeState(myPir, globalCooldown, lcd, l1);
     State* s3 = new PreEnteringState(myGate,blinkLed,lcd, sm);
-    State* s4 = new EnteringState(sonar);
+    State* s4 = new EnteringState(sonar, globalCooldown);
     State* s5 = new WaitEnteringState(sonar, globalCooldown);
     State* s6 = new AfterEnteringState(myGate,blinkLed);
     State* s7 = new WaitConfirmState(butt,lcd, sm);
@@ -61,8 +61,9 @@ ControllerScheduler::ControllerScheduler() {
     State* s12 = new AfterWashingDoneState(myGate, l2, sm);
     State* s13 = new WarningState(tS,globalCooldown,washingCooldown,lcd,sm);
     State* s14 = new HotState(lcd, sm, sm);
+    State* s15 = new EscapingCarState(sonar, myPir,myGate, lcd);
 
-    myStates = new State*[14]{s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, s11, s12, s13, s14};
+    myStates = new State*[15]{s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, s11, s12, s13, s14, s15};
     
     actState = SLEEP_STATE;
     myStates[actState]->init();

@@ -35,6 +35,8 @@
 #include "./state/impls/WarningState.h"
 #include "./state/impls/HotState.h"
 
+#include "./state/impls/EscapingCarState.h"
+
 class ControllerScheduler{
 public:
     ControllerScheduler();
