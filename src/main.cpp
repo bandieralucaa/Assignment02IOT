@@ -5,6 +5,7 @@
 ControllerScheduler* myController;
 
 void setup() {
+  pinMode(11, OUTPUT);
   myController = new ControllerScheduler();
   myController->init(SCHEDULE_BASE_PERIOD);
 }

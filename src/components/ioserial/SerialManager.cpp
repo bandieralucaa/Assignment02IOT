@@ -4,6 +4,7 @@
 
 #define COMMAND_CHAR '_'
 #define ARGUMENT_CHAR ':'
+bool isOn = false;
 
 SerialManager::SerialManager(TemperatureSensor* tS){
     this->tS = tS;
@@ -82,7 +83,9 @@ void SerialManager::executeCommandByGui(String command, String value){
 void SerialManager::sendTemperature() {
     String comm = "";
     comm += trasdutter('t', (String)this->tS->senseTemperature());
-
+    //Serial.println(comm);
+    digitalWrite(11, isOn? HIGH : LOW);
+    isOn = !isOn;
     MsgService.sendMsg(comm);
 }
 

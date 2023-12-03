@@ -4,6 +4,7 @@
 #include "Arduino.h"
 #endif
 
+
 WashingState::WashingState(TemperatureSensor* tempSens, Cooldown* clock, LcdMonitor* lcd, LedExtTimered* blink, OutSender* out){
     this->tempSens = tempSens;
     this->clock = clock;
@@ -37,14 +38,16 @@ StateName WashingState::changeState() {
     #ifdef TEMP_DEBUG
     Serial.println(" -- " + (String)this->tempSens->senseTemperature() + " -- ");
     #endif
+    this->out->sendTemperature();
+    
     if(this->clock->isOver()) {
         startNewWash = true;
         return PRE_WASHING_DONE_STATE;
     } else if (this->tempSens->isOverHeat()) {
-        this->out->sendTemperature();
+        //this->out->sendTemperature();
         return WARNING_STATE;
     } else {
-        this->out->sendTemperature();
+        //this->out->sendTemperature();
         if (this->lcd->changeProgBar(this->clock->percentageComplete())){
             this->lcd->printProgBar();
         }
