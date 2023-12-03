@@ -37,8 +37,8 @@ public class Gui extends JFrame implements View {
 
 
     
-        button = new JButton("Problem solved");
-        button.setFont(new Font("Arial", Font.PLAIN, 20));
+        button = new JButton("Maintenance done");
+        button.setFont(new Font("Arial", Font.PLAIN, 80));
         add(Box.createVerticalGlue());  
         add(button);
 
@@ -59,12 +59,11 @@ public class Gui extends JFrame implements View {
         panel.setLayout(new FlowLayout(FlowLayout.LEFT));
 
         JLabel label = new JLabel(labelText);
-        label.setFont(new Font("Arial", Font.PLAIN, 20));
+        label.setFont(new Font("Arial", Font.PLAIN, 50));
 
         JTextField textField = new JTextField(25);
-        textField.setFont(new Font("Arial", Font.PLAIN, 20));
+        textField.setFont(new Font("Arial", Font.PLAIN, 50));
         textField.setEditable(false);
-
 
 
         panel.add(label);
