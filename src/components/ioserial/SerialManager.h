@@ -50,7 +50,8 @@ private:
 
     bool isNewTemp = true;
     bool isNewAmount = false;
-    bool isNewState = false; bool isErrorMessage = false;
+    bool isNewState = false; 
+    bool isErrorMessage = false;
 };
 
 

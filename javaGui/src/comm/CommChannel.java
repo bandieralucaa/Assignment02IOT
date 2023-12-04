@@ -1,6 +1,8 @@
 package comm;
 
 /**
+ * Questa interfaccia è stata presa dal codice visto a lezione e fornita dal prof. Ricci.
+ * 
  * Simple interface for an async msg communication channel
  * @author aricci
  *

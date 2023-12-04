@@ -5,6 +5,8 @@ import java.util.concurrent.*;
 import jssc.*;
 
 /**
+ * Questa classe è stata presa dal codice visto a lezione e fornita dal prof. Ricci.
+
  * Comm channel implementation based on serial port.
  * 
  * @author aricci

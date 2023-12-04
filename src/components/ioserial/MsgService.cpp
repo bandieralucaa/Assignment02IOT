@@ -3,6 +3,12 @@
 
 #include "configs.h"
 
+/**
+ * 
+ * Questa interfaccia è stata presa dal codice visto a lezione e fornita dal prof. Ricci.
+ * 
+*/
+
 String content;
 
 MsgServiceClass MsgService;

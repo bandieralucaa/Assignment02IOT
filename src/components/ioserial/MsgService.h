@@ -3,6 +3,13 @@
 
 #include "Arduino.h"
 
+/**
+ * 
+ * Questa interfaccia è stata presa dal codice visto a lezione e fornita dal prof. Ricci.
+ * 
+*/
+
+
 class Msg {
   String content;
 
