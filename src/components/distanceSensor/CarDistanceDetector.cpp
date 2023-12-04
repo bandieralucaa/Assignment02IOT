@@ -26,6 +26,8 @@ void CarDistanceDetector::init(){
 }
 
 void CarDistanceDetector::measure(){
+    
+    //codice ispirato da materiale di laboratorio
     float temperature = 20; 
 
     float vs = 331.45 + 0.62*temperature;

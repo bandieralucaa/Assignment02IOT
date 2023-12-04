@@ -50,7 +50,7 @@ public class PCController implements EasyControllerObserver{
     @Override
     public void notifySolvedProblem() {
         if (DEBUG) {
-            System.out.println("BHBH");
+            System.out.println("pre send");
         }
         this.channel.sendMsg("_o:l");
         if (DEBUG) {

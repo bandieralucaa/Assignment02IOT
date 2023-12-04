@@ -18,6 +18,7 @@ bool TemperatureSensorTimered::isOverHeat(){
 }
 
 void TemperatureSensorTimered::tick(){
+    // codice ispirato da internet
     int sensorInput = analogRead(this->myPin); 
     double temp = (double)sensorInput / 1024; 
     temp = temp * 5; 
