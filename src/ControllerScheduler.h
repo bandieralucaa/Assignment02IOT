@@ -12,7 +12,7 @@
 #include "./components/distanceSensor/CarDistanceDetector.h"
 #include "./components/led/LedExtTimered.h"
 #include "./components/button/WashingMachineButton.h"
-#include "./components/temperature/TemperatureSensor.h"
+#include "./components/temperature/TemperatureSensorTimered.h"
 #include "./components/cooldown/Cooldown.h"
 #include "./components/lcd/MyLcdMonitor.h"
 #include "./components/led/Led.h"

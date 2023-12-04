@@ -4,7 +4,7 @@
 #include "Arduino.h"
 #endif
 
-WashingState::WashingState(TemperatureSensor* tempSens, Cooldown* clock, LcdMonitor* lcd, LedExtTimered* blink, OutSender* out){
+WashingState::WashingState(TemperatureSensorTimered* tempSens, Cooldown* clock, LcdMonitor* lcd, LedExtTimered* blink, OutSender* out){
     this->tempSens = tempSens;
     this->clock = clock;
     this->lcd = lcd;
@@ -29,6 +29,7 @@ void WashingState::init() {
     this->blink->canBlink(true);
     this->blink->setFading(BLINK_DELTA_2);
     
+    this->tempSens->start();
 
     this->out->updateState(STATE4, false);
 }

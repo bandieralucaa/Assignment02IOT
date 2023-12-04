@@ -29,7 +29,8 @@ ControllerScheduler::ControllerScheduler() {
 
     WashingMachineButton* butt = new WashingMachineButton(BUTT_PIN);
 
-    TemperatureSensor* tS = new TemperatureSensor(TEMPERATURE_SENSOR_PIN);
+    TemperatureSensorTimered* tS = new TemperatureSensorTimered(TEMPERATURE_SENSOR_PIN);
+    tS->init();
 
     SerialManager* sm = new SerialManager(tS);
     sm->init();
@@ -41,8 +42,8 @@ ControllerScheduler::ControllerScheduler() {
     MyLcdMonitor* lcd = new MyLcdMonitor();
     lcd->turnOff();
 
-    int amountTask = 6;
-    myTasks = new Task*[amountTask]{(myPir), myGate, sonar, blinkLed, butt, sm};
+    int amountTask = 7;
+    myTasks = new Task*[amountTask]{(myPir), myGate, sonar, blinkLed, butt, sm, tS};
     // int amountTask = 1;
     // myTasks = new Task*[amountTask]{sonar};
     actAmountTask = amountTask;

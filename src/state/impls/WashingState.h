@@ -1,5 +1,5 @@
 #include "./state/State.h"
-#include "./components/temperature/TemperatureSensor.h"
+#include "./components/temperature/TemperatureSensorTimered.h"
 #include "./components/cooldown/Cooldown.h"
 #include "./components/lcd/LcdMonitor.h"
 #include "./components/led/LedExtTimered.h"
@@ -7,12 +7,12 @@
 
 class WashingState : public State {
 public:
-    WashingState(TemperatureSensor* tempSens, Cooldown* clock, LcdMonitor* lcd, LedExtTimered* blink, OutSender* out);
+    WashingState(TemperatureSensorTimered* tempSens, Cooldown* clock, LcdMonitor* lcd, LedExtTimered* blink, OutSender* out);
     void init();
     StateName changeState(); 
 
 private:
-    TemperatureSensor* tempSens;
+    TemperatureSensorTimered* tempSens;
     Cooldown* clock;
     LcdMonitor* lcd;
     LedExtTimered* blink;

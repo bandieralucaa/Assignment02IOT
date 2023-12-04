@@ -4,7 +4,7 @@
 
 static volatile bool isOver;
 
-WarningState::WarningState(TemperatureSensor* tempSens, Cooldown* globalClock, Cooldown* washingClock, LcdMonitor* lcd, OutSender* out){
+WarningState::WarningState(TemperatureSensorTimered* tempSens, Cooldown* globalClock, Cooldown* washingClock, LcdMonitor* lcd, OutSender* out){
     this->tempSens = tempSens;
     this->globalClock = globalClock;
     this->washingClock = washingClock;
@@ -18,6 +18,7 @@ void WarningState::init() {
     Serial.print("WarningState");
     #endif
     this->globalClock->format(N4_TIME);
+    this->tempSens->start();
 }
 
 
